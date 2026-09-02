@@ -1,0 +1,559 @@
+[
+  {
+    "airlinePnr": null,
+    "bookingReference": "FN-QYZ5RK",
+    "status": "Pending",
+    "statusMessage": "Your booking request has been received. Our operations team is confirming seat availability and ticketing.",
+    "passengerName": "Daniel Oyigeya",
+    "email": "play96878@gmail.com",
+    "phone": "+234 8172y896736",
+    "passengers": [
+      {
+        "type": "Adult",
+        "roleLabel": "Adult 1",
+        "title": "Mr",
+        "firstName": "Daniel",
+        "middleName": "",
+        "lastName": "Oyigeya",
+        "dateOfBirth": "2026-09-03",
+        "gender": "Male",
+        "nationality": "Nigerian",
+        "passportNumber": "",
+        "phone": "",
+        "email": ""
+      },
+      {
+        "type": "Infant",
+        "roleLabel": "Infant 1",
+        "title": "Master",
+        "firstName": "Daniel",
+        "middleName": "",
+        "lastName": "Oyigeya",
+        "dateOfBirth": "2026-09-23",
+        "gender": "Male",
+        "nationality": "Nigerian",
+        "passportNumber": "",
+        "phone": "",
+        "email": ""
+      }
+    ],
+    "flight": {
+      "id": "1_0_1001",
+      "airline": "United Nigeria Airlines",
+      "airlineCode": "UN",
+      "flightNumber": "UN 595",
+      "origin": "ABV",
+      "destination": "LOS",
+      "departureAirport": "ABV",
+      "arrivalAirport": "LOS",
+      "departureTime": "Wed 2 Sep 20:30",
+      "arrivalTime": "Wed 2 Sep 21:45",
+      "duration": "01h 15m",
+      "stops": 0,
+      "price": 298433,
+      "currency": "NGN",
+      "aircraft": "Boeing 737",
+      "cabinClass": "Economy",
+      "provider": "AlternativeAirlines"
+    },
+    "price": 298433,
+    "currency": "NGN",
+    "extras": {
+      "seatPreference": "Any seat",
+      "mealPreference": "Standard meal",
+      "specialAssistance": "None"
+    },
+    "paymentMethod": "bank_transfer",
+    "createdAt": "2026-09-01T12:54:39.111Z",
+    "updatedAt": "2026-09-01T12:54:39.170Z"
+  },
+  {
+    "airlinePnr": null,
+    "bookingReference": "FN-D6AF8K",
+    "status": "Pending",
+    "statusMessage": "Your booking request has been received. Our operations team is confirming seat availability and ticketing.",
+    "passengerName": "Daniel Oyigeya",
+    "email": "oyigeyadan@gmail.com",
+    "phone": "+234 98987876",
+    "passengers": [
+      {
+        "title": "Mr",
+        "firstName": "Daniel",
+        "middleName": "",
+        "lastName": "Oyigeya",
+        "dateOfBirth": "2026-09-02",
+        "gender": "Male",
+        "nationality": "Nigerian",
+        "passportNumber": ""
+      }
+    ],
+    "flight": {
+      "id": "1_0_1001",
+      "airline": "Air Peace",
+      "airlineCode": "P4",
+      "flightNumber": "P4 7128",
+      "origin": "LOS",
+      "destination": "ABV",
+      "departureAirport": "LOS",
+      "arrivalAirport": "ABV",
+      "departureTime": "Thu 3 Sep 18:45",
+      "arrivalTime": "Thu 3 Sep 20:05",
+      "duration": "01h 20m",
+      "stops": 0,
+      "price": 201812,
+      "currency": "NGN",
+      "aircraft": "Boeing 737-800",
+      "cabinClass": "Economy",
+      "provider": "AlternativeAirlines"
+    },
+    "price": 201812,
+    "currency": "NGN",
+    "extras": {
+      "seatPreference": "Any seat",
+      "mealPreference": "Standard meal",
+      "specialAssistance": "None"
+    },
+    "paymentMethod": "bank",
+    "createdAt": "2026-09-01T11:48:40.596Z",
+    "updatedAt": "2026-09-01T11:48:40.666Z"
+  },
+  {
+    "airlinePnr": null,
+    "bookingReference": "FN-TEST4PAX",
+    "status": "Pending",
+    "statusMessage": "Test booking for multi-passenger verification",
+    "passengerName": "Chukwuma Adebayo",
+    "email": "chukwuma.adebayo@test.com",
+    "phone": "+234 8012345678",
+    "passengers": [
+      {
+        "type": "Adult",
+        "title": "Mr",
+        "firstName": "Chukwuma",
+        "lastName": "Adebayo",
+        "dateOfBirth": "1985-05-12",
+        "gender": "Male",
+        "nationality": "Nigerian"
+      },
+      {
+        "type": "Adult",
+        "title": "Mrs",
+        "firstName": "Nneka",
+        "lastName": "Adebayo",
+        "dateOfBirth": "1988-09-20",
+        "gender": "Female",
+        "nationality": "Nigerian"
+      },
+      {
+        "type": "Child",
+        "title": "Master",
+        "firstName": "David",
+        "lastName": "Adebayo",
+        "dateOfBirth": "2016-03-15",
+        "gender": "Male",
+        "nationality": "Nigerian"
+      },
+      {
+        "type": "Infant",
+        "title": "Master",
+        "firstName": "Daniel",
+        "lastName": "Adebayo",
+        "dateOfBirth": "2025-01-10",
+        "gender": "Male",
+        "nationality": "Nigerian"
+      }
+    ],
+    "adults": 2,
+    "children": 1,
+    "infants": 1,
+    "totalPassengers": 4,
+    "cabinClass": "Economy",
+    "flight": {
+      "airline": "Air Peace",
+      "flightNumber": "P47120",
+      "origin": "LOS",
+      "destination": "ABV",
+      "departureTime": "2026-09-10T08:00:00",
+      "arrivalTime": "2026-09-10T09:15:00",
+      "price": 400000,
+      "currency": "NGN",
+      "stops": 0
+    },
+    "price": 1140000,
+    "currency": "NGN",
+    "fareBreakdown": {
+      "adultPrice": 400000,
+      "childPrice": 300000,
+      "infantPrice": 40000,
+      "adults": 2,
+      "children": 1,
+      "infants": 1,
+      "adultTotal": 800000,
+      "childTotal": 300000,
+      "infantTotal": 40000,
+      "totalPassengers": 4,
+      "totalFare": 1140000,
+      "currency": "NGN"
+    },
+    "extras": {},
+    "paymentMethod": "card",
+    "createdAt": "2026-08-25T20:28:06.696Z",
+    "updatedAt": "2026-08-25T20:28:06.700Z"
+  },
+  {
+    "airlinePnr": null,
+    "adults": 2,
+    "children": 1,
+    "infants": 1,
+    "totalPassengers": 4,
+    "cabinClass": "First Class",
+    "bookingReference": "FN-ATWQEU",
+    "status": "Pending",
+    "statusMessage": "Your booking request has been received. Our operations team is confirming seat availability and ticketing.",
+    "passengerName": "Chukwuma Adebayo",
+    "email": "chukwuma@flynow.ng",
+    "phone": "+234 801 444 5555",
+    "passengers": [
+      {
+        "firstName": "Chukwuma",
+        "lastName": "Adebayo",
+        "roleLabel": "Adult 1 (Lead)"
+      },
+      {
+        "firstName": "Nneka",
+        "lastName": "Adebayo",
+        "roleLabel": "Adult 2"
+      },
+      {
+        "firstName": "Emeka",
+        "lastName": "Adebayo",
+        "roleLabel": "Child 1"
+      },
+      {
+        "firstName": "Kachi",
+        "lastName": "Adebayo",
+        "roleLabel": "Infant 1"
+      }
+    ],
+    "flight": {
+      "id": "test-fl-101",
+      "airline": "Air Peace",
+      "airlineCode": "P4",
+      "flightNumber": "P47120",
+      "origin": "LOS",
+      "destination": "ABV",
+      "departureTime": "2026-09-01T08:00:00",
+      "arrivalTime": "2026-09-01T09:15:00",
+      "price": 400000,
+      "currency": "NGN"
+    },
+    "price": 1140000,
+    "currency": "NGN",
+    "pricingBreakdown": {
+      "adultPrice": 400000,
+      "childPrice": 300000,
+      "infantPrice": 40000,
+      "adults": 2,
+      "children": 1,
+      "infants": 1,
+      "totalPassengers": 4,
+      "adultTotal": 800000,
+      "childTotal": 300000,
+      "infantTotal": 40000,
+      "totalFare": 1140000,
+      "currency": "NGN"
+    },
+    "extras": {},
+    "paymentMethod": "card",
+    "createdAt": "2026-08-25T20:08:37.528Z",
+    "updatedAt": "2026-08-25T20:08:37.529Z"
+  },
+  {
+    "airlinePnr": null,
+    "adults": 2,
+    "children": 1,
+    "infants": 0,
+    "totalPassengers": 3,
+    "cabinClass": "Economy",
+    "bookingReference": "FN-4ED57V",
+    "status": "Pending",
+    "statusMessage": "Your booking request has been received. Our operations team is confirming seat availability and ticketing.",
+    "passengerName": "Test Adult1",
+    "email": "test3@flynow.ng",
+    "phone": "+234 801 333 4444",
+    "passengers": [
+      {
+        "firstName": "Test",
+        "lastName": "Adult1"
+      },
+      {
+        "firstName": "Test",
+        "lastName": "Adult2"
+      },
+      {
+        "firstName": "Test",
+        "lastName": "Child1"
+      }
+    ],
+    "flight": {
+      "id": "test-fl-101",
+      "airline": "Air Peace",
+      "airlineCode": "P4",
+      "flightNumber": "P47120",
+      "origin": "LOS",
+      "destination": "ABV",
+      "departureTime": "2026-09-01T08:00:00",
+      "arrivalTime": "2026-09-01T09:15:00",
+      "price": 400000,
+      "currency": "NGN"
+    },
+    "price": 1100000,
+    "currency": "NGN",
+    "pricingBreakdown": {
+      "adultPrice": 400000,
+      "childPrice": 300000,
+      "infantPrice": 40000,
+      "adults": 2,
+      "children": 1,
+      "infants": 0,
+      "totalPassengers": 3,
+      "adultTotal": 800000,
+      "childTotal": 300000,
+      "infantTotal": 0,
+      "totalFare": 1100000,
+      "currency": "NGN"
+    },
+    "extras": {},
+    "paymentMethod": "card",
+    "createdAt": "2026-08-25T20:08:37.518Z",
+    "updatedAt": "2026-08-25T20:08:37.519Z"
+  },
+  {
+    "airlinePnr": null,
+    "adults": 2,
+    "children": 0,
+    "infants": 0,
+    "totalPassengers": 2,
+    "cabinClass": "Business",
+    "bookingReference": "FN-E8U2Q3",
+    "status": "Pending",
+    "statusMessage": "Your booking request has been received. Our operations team is confirming seat availability and ticketing.",
+    "passengerName": "Test Adult1",
+    "email": "test2@flynow.ng",
+    "phone": "+234 801 222 3333",
+    "passengers": [
+      {
+        "firstName": "Test",
+        "lastName": "Adult1"
+      },
+      {
+        "firstName": "Test",
+        "lastName": "Adult2"
+      }
+    ],
+    "flight": {
+      "id": "test-fl-101",
+      "airline": "Air Peace",
+      "airlineCode": "P4",
+      "flightNumber": "P47120",
+      "origin": "LOS",
+      "destination": "ABV",
+      "departureTime": "2026-09-01T08:00:00",
+      "arrivalTime": "2026-09-01T09:15:00",
+      "price": 400000,
+      "currency": "NGN"
+    },
+    "price": 800000,
+    "currency": "NGN",
+    "pricingBreakdown": {
+      "adultPrice": 400000,
+      "childPrice": 300000,
+      "infantPrice": 40000,
+      "adults": 2,
+      "children": 0,
+      "infants": 0,
+      "totalPassengers": 2,
+      "adultTotal": 800000,
+      "childTotal": 0,
+      "infantTotal": 0,
+      "totalFare": 800000,
+      "currency": "NGN"
+    },
+    "extras": {},
+    "paymentMethod": "card",
+    "createdAt": "2026-08-25T20:08:37.462Z",
+    "updatedAt": "2026-08-25T20:08:37.508Z"
+  },
+  {
+    "airlinePnr": "PNR557",
+    "adults": 1,
+    "children": 0,
+    "infants": 0,
+    "totalPassengers": 1,
+    "cabinClass": "Economy",
+    "bookingReference": "FN-9X3PKU",
+    "status": "Confirmed",
+    "statusMessage": "Your flight reservation has been confirmed with Air Peace. Airline PNR: PNR557.",
+    "passengerName": "Test Adult1",
+    "email": "test1@flynow.ng",
+    "phone": "+234 801 111 2222",
+    "passengers": [
+      {
+        "firstName": "Test",
+        "lastName": "Adult1"
+      }
+    ],
+    "flight": {
+      "id": "test-fl-101",
+      "airline": "Air Peace",
+      "airlineCode": "P4",
+      "flightNumber": "P47120",
+      "origin": "LOS",
+      "destination": "ABV",
+      "departureTime": "2026-09-01T08:00:00",
+      "arrivalTime": "2026-09-01T09:15:00",
+      "price": 400000,
+      "currency": "NGN"
+    },
+    "price": 400000,
+    "currency": "NGN",
+    "pricingBreakdown": {
+      "adultPrice": 400000,
+      "childPrice": 300000,
+      "infantPrice": 40000,
+      "adults": 1,
+      "children": 0,
+      "infants": 0,
+      "totalPassengers": 1,
+      "adultTotal": 400000,
+      "childTotal": 0,
+      "infantTotal": 0,
+      "totalFare": 400000,
+      "currency": "NGN"
+    },
+    "extras": {},
+    "paymentMethod": "card",
+    "createdAt": "2026-08-25T20:08:36.560Z",
+    "updatedAt": "2026-08-31T19:20:38.655Z"
+  },
+  {
+    "airlinePnr": "ABC123",
+    "bookingReference": "FN-K4HA94",
+    "status": "Confirmed",
+    "statusMessage": "Your flight reservation has been confirmed with Air Peace. Airline PNR: ABC123.",
+    "passengerName": "David Adeleke",
+    "email": "david.adeleke@example.com",
+    "phone": "+234 8023456789",
+    "passengers": [
+      {
+        "name": "David Adeleke",
+        "email": "david.adeleke@example.com",
+        "phone": "+234 8023456789"
+      }
+    ],
+    "flight": {
+      "airline": "Air Peace",
+      "flightNumber": "P47122",
+      "origin": "LOS",
+      "destination": "ABV",
+      "departureTime": "2026-09-05 09:00",
+      "price": 88000,
+      "currency": "NGN"
+    },
+    "price": 88000,
+    "currency": "NGN",
+    "extras": {},
+    "paymentMethod": "card",
+    "createdAt": "2026-08-24T21:28:39.568Z",
+    "updatedAt": "2026-08-24T21:28:39.678Z"
+  },
+  {
+    "airlinePnr": "PNR556",
+    "bookingReference": "FN-K73PJR",
+    "status": "Confirmed",
+    "statusMessage": "Your flight reservation has been confirmed with Transaero Airlines. Airline PNR: PNR556.",
+    "passengerName": "Daniel Oyigeya",
+    "email": "play96878@gmail.com",
+    "phone": "+234 88767657456",
+    "passengers": [
+      {
+        "title": "Mr",
+        "firstName": "Daniel",
+        "middleName": "",
+        "lastName": "Oyigeya",
+        "dateOfBirth": "2026-08-25",
+        "gender": "Male",
+        "nationality": "Nigerian",
+        "passportNumber": ""
+      },
+      {
+        "title": "Mrs",
+        "firstName": "Daniellla",
+        "middleName": "",
+        "lastName": "Oyigeya",
+        "dateOfBirth": "2026-08-25",
+        "gender": "Male",
+        "nationality": "Nigerian",
+        "passportNumber": ""
+      }
+    ],
+    "flight": {
+      "id": "1_6",
+      "airline": "Transaero Airlines",
+      "airlineCode": "UN",
+      "flightNumber": "559",
+      "origin": "ABV",
+      "destination": "LOS",
+      "departureAirport": "ABV",
+      "arrivalAirport": "LOS",
+      "departureTime": "2026-08-25 13:00:00.000000",
+      "arrivalTime": "2026-08-25 14:15:00.000000",
+      "duration": "01h 15m",
+      "stops": 0,
+      "price": 465919,
+      "currency": "NGN",
+      "aircraft": "Boeing 737",
+      "provider": "AlternativeAirlines"
+    },
+    "price": 465919,
+    "currency": "NGN",
+    "extras": {
+      "seatPreference": "Aisle seat request",
+      "mealPreference": "Standard meal",
+      "specialAssistance": "None"
+    },
+    "paymentMethod": "bank",
+    "createdAt": "2026-08-24T21:07:31.502Z",
+    "updatedAt": "2026-08-24T21:29:49.493Z"
+  },
+  {
+    "bookingReference": "FN-FGDJL5",
+    "status": "Approved",
+    "statusMessage": "Your booking request has been approved by operations. E-ticket issued.",
+    "passengerName": "Jane Smith",
+    "email": "jane.smith@example.com",
+    "phone": "+234 8098765432",
+    "passengers": [
+      {
+        "name": "Jane Smith",
+        "email": "jane.smith@example.com",
+        "phone": "+234 8098765432"
+      }
+    ],
+    "flight": {
+      "airline": "Ibom Air",
+      "flightNumber": "QI0501",
+      "origin": "LOS",
+      "destination": "QUO",
+      "departureTime": "2026-09-01 10:30",
+      "price": 92000,
+      "currency": "NGN"
+    },
+    "price": 92000,
+    "currency": "NGN",
+    "extras": {},
+    "paymentMethod": "card",
+    "createdAt": "2026-08-24T20:35:51.609Z",
+    "updatedAt": "2026-08-24T20:35:51.810Z"
+  }
+]
