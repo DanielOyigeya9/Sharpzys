@@ -1,0 +1,329 @@
+/* ============================================================
+   confirmation.css — Light Theme Booking Confirmation
+   ============================================================ */
+
+.confirmation-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-secondary);
+}
+
+.confirmation-page {
+  flex: 1;
+  padding: 40px 24px 80px;
+}
+
+.confirmation-container {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.confirmation-header-banner {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.success-icon-badge {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--status-success-bg);
+  border: 2px solid var(--status-success-border);
+  color: var(--status-success);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.success-icon-badge svg {
+  width: 32px;
+  height: 32px;
+}
+
+.confirmation-header-banner h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.confirmation-subtitle {
+  font-size: 1rem;
+  color: var(--text-muted);
+}
+
+/* Reference Hero Card */
+.reference-hero-card {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: 24px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--shadow-sm);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.ref-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.ref-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.ref-code {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--brand-primary);
+  letter-spacing: 0.04em;
+}
+
+.status-badge.pending {
+  font-size: 0.85rem;
+  font-weight: 700;
+  background: var(--status-warning-bg);
+  color: var(--status-warning);
+  border: 1px solid var(--status-warning-border);
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+
+/* Status Info Alert */
+.status-info-alert {
+  display: flex;
+  gap: 16px;
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--brand-primary);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+}
+
+.alert-icon {
+  font-size: 1.5rem;
+}
+
+.alert-body strong {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.alert-body p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Confirmation Details Card */
+.confirmation-details-card {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: 32px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.conf-section h3 {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+.conf-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.conf-label {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 2px;
+}
+
+.conf-divider {
+  height: 1px;
+  background: var(--border-color);
+}
+
+.conf-price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.05rem;
+}
+
+.conf-price-amount {
+  font-size: 1.6rem;
+  color: var(--brand-primary);
+  font-weight: 800;
+}
+
+/* Confirmation Actions */
+.confirmation-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 600px) {
+  .confirmation-page {
+    padding: 20px 12px 60px;
+  }
+  
+  .confirmation-container {
+    gap: 16px;
+  }
+  
+  .confirmation-header-banner {
+    gap: 6px;
+  }
+  
+  .success-icon-badge {
+    width: 56px;
+    height: 56px;
+  }
+  
+  .success-icon-badge svg {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .confirmation-header-banner h1 {
+    font-size: 1.4rem;
+  }
+  
+  .confirmation-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .reference-hero-card { 
+    flex-direction: column; 
+    align-items: flex-start;
+    padding: 16px;
+    gap: 12px;
+  }
+  
+  .ref-code {
+    font-size: 1.5rem;
+  }
+  
+  .status-badge.pending {
+    font-size: 0.8rem;
+    padding: 4px 10px;
+  }
+  
+  .status-info-alert {
+    gap: 12px;
+    padding: 16px;
+  }
+  
+  .alert-icon {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+  
+  .alert-body strong {
+    font-size: 0.9rem;
+  }
+  
+  .alert-body p {
+    font-size: 0.8rem;
+  }
+  
+  .confirmation-details-card {
+    padding: 20px;
+    gap: 18px;
+  }
+  
+  .conf-section h3 {
+    font-size: 1rem;
+    margin-bottom: 12px;
+  }
+  
+  .conf-grid-2 { 
+    grid-template-columns: 1fr; 
+  }
+  
+  .conf-label {
+    font-size: 0.7rem;
+  }
+  
+  .conf-price-row {
+    font-size: 1rem;
+  }
+  
+  .conf-price-amount {
+    font-size: 1.3rem;
+  }
+  
+  .confirmation-actions {
+    gap: 12px;
+    margin-top: 12px;
+  }
+  
+  .confirmation-actions a,
+  .confirmation-actions button {
+    height: 40px;
+    font-size: 0.9rem;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .confirmation-page {
+    padding: 16px 8px 50px;
+  }
+  
+  .confirmation-container {
+    gap: 12px;
+  }
+  
+  .confirmation-header-banner h1 {
+    font-size: 1.2rem;
+  }
+  
+  .reference-hero-card {
+    padding: 12px;
+  }
+  
+  .ref-code {
+    font-size: 1.3rem;
+  }
+  
+  .confirmation-details-card {
+    padding: 16px;
+    gap: 14px;
+  }
+  
+  .status-info-alert {
+    padding: 12px;
+    gap: 8px;
+  }
+}

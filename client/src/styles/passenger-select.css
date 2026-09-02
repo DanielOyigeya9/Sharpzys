@@ -1,0 +1,301 @@
+/* ============================================================
+   passenger-select.css — Passenger Dropdown Popover Panel
+   ============================================================ */
+
+.passenger-select-container {
+  position: relative;
+}
+
+.passenger-select-trigger {
+  height: 48px;
+  width: 100%;
+  padding: 0 14px;
+  border-radius: var(--radius-md, 8px);
+  border: 1px solid var(--border-color, #cbd5e1);
+  background: var(--bg-primary, #ffffff);
+  color: var(--text-primary, #0f172a);
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.passenger-select-trigger:focus,
+.passenger-select-trigger.is-active {
+  border-color: var(--brand-primary, #1d4ed8);
+  box-shadow: 0 0 0 3px var(--brand-light, #dbeafe);
+  outline: none;
+}
+
+.passenger-summary-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 90%;
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-caret {
+  font-size: 0.72rem;
+  color: var(--text-muted, #64748b);
+  margin-left: 8px;
+}
+
+/* ── Popover Panel Card ────────────────────────────────────── */
+.passenger-dropdown-panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 1000;
+  width: 320px;
+  background: #ffffff;
+  border-radius: var(--radius-lg, 12px);
+  padding: 20px;
+  box-shadow: 0 12px 30px -4px rgba(0, 0, 0, 0.18), 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e2e8f0;
+  animation: fadeInDown 0.18s ease-out forwards;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.passenger-dropdown-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.passenger-dropdown-header h3 {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+}
+
+.passenger-close-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.1rem;
+  color: #64748b;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  line-height: 1;
+}
+
+.passenger-close-btn:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+/* ── Rows List ─────────────────────────────────────────────── */
+.passenger-rows-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.passenger-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.passenger-type-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.passenger-type-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.passenger-type-age {
+  font-size: 0.78rem;
+  color: #64748b;
+}
+
+/* ── Counter Controls ───────────────────────────────────────── */
+.counter-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.counter-circle-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #1d4ed8;
+  font-size: 1.2rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.counter-circle-btn:hover:not(:disabled) {
+  background: #1d4ed8;
+  color: #ffffff;
+  border-color: #1d4ed8;
+}
+
+.counter-circle-btn:disabled {
+  opacity: 0.35;
+  border-color: #e2e8f0;
+  color: #94a3b8;
+  cursor: not-allowed;
+}
+
+.counter-number-val {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #0f172a;
+  min-width: 20px;
+  text-align: center;
+}
+
+.infant-validation-note {
+  background: #fffbeb;
+  border: 1px solid #fef3c7;
+  color: #b45309;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-radius: 6px;
+  margin-top: 4px;
+}
+
+.passenger-dropdown-divider {
+  height: 1px;
+  background: #f1f5f9;
+  margin: 16px 0;
+}
+
+/* ── Cabin Class Section ───────────────────────────────────── */
+.cabin-class-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.cabin-class-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #64748b;
+}
+
+.cabin-class-dropdown-select {
+  height: 42px;
+  padding: 0 12px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #0f172a;
+  font-weight: 600;
+  font-size: 0.9rem;
+
+}
+
+.cabin-class-dropdown-select:focus {
+  border-color: #1d4ed8;
+  outline: none;
+}
+
+/* ── Footer / Done Button ──────────────────────────────────── */
+.passenger-dropdown-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.passenger-done-btn {
+  width: 100%;
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: none;
+  background: #1d4ed8;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.passenger-done-btn:hover {
+  background: #1e40af;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .passenger-dropdown-panel {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.15);
+    animation: slideUp 0.25s ease-out forwards;
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  .passenger-dropdown-footer {
+    padding-top: 16px;
+    border-top: 1px solid #f1f5f9;
+  }
+}
+
+@media (max-width: 480px) {
+  .passenger-dropdown-panel {
+    padding: 16px;
+  }
+  
+  .passenger-summary-text {
+    max-width: 75%;
+    font-size: 0.85rem;
+  }
+  
+  .passenger-done-btn {
+    padding: 10px 14px;
+    font-size: 0.9rem;
+  }
+}

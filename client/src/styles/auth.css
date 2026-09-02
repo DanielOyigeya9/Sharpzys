@@ -1,0 +1,139 @@
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-secondary);
+}
+
+.auth-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+}
+
+.auth-card {
+  width: min(440px, 100%);
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: var(--shadow-md);
+}
+
+.auth-card h1 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  text-align: center;
+}
+
+.auth-card label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.auth-card input {
+  height: 48px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  padding: 0 14px;
+  background: #ffffff;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+}
+
+.auth-card input:focus {
+  border-color: var(--brand-primary);
+  outline: none;
+  box-shadow: 0 0 0 3px var(--brand-light);
+}
+
+.auth-card button[type="submit"] {
+  height: 48px;
+  border: none;
+  border-radius: var(--radius-md);
+  background: var(--brand-primary);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  margin-top: 8px;
+}
+
+.auth-card button[type="submit"]:hover {
+  background: var(--brand-hover);
+}
+
+.auth-switch-link {
+  font-size: 0.88rem;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 600px) {
+  .auth-container {
+    padding: 20px 16px;
+  }
+  
+  .auth-card {
+    width: 100%;
+    padding: 24px;
+    gap: 16px;
+    border-radius: var(--radius-lg);
+  }
+  
+  .auth-card h1 {
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+  }
+  
+  .auth-card label {
+    gap: 4px;
+    font-size: 0.8rem;
+  }
+  
+  .auth-card input {
+    height: 40px;
+    font-size: 16px;
+    padding: 0 12px;
+  }
+  
+  .auth-card button[type="submit"] {
+    height: 40px;
+    font-size: 0.95rem;
+  }
+  
+  .auth-switch-link {
+    font-size: 0.8rem;
+    margin-top: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-container {
+    padding: 16px 12px;
+    align-items: flex-start;
+    margin-top: 16px;
+  }
+  
+  .auth-card {
+    width: 100%;
+    padding: 20px;
+    gap: 14px;
+  }
+  
+  .auth-card h1 {
+    font-size: 1.2rem;
+  }
+}

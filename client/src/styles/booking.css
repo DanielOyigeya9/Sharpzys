@@ -1,0 +1,785 @@
+/* ============================================================
+   booking.css — Multi-Step Booking Flow Light Theme
+   ============================================================ */
+
+.booking-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-secondary);
+}
+
+.booking-page {
+  flex: 1;
+  padding-bottom: 80px;
+}
+
+.empty-booking {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+}
+
+.no-flight-card {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: 40px;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  max-width: 440px;
+}
+
+.no-flight-card h2 {
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+}
+
+.no-flight-card p {
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+/* ── Progress Indicator Bar ──────────────────────────────────── */
+.booking-progress-bar {
+  background: #ffffff;
+  border-bottom: 1px solid var(--border-color);
+  padding: 16px 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.progress-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.step-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.5;
+  transition: opacity 0.15s ease;
+}
+
+.step-item.active {
+  opacity: 1;
+}
+
+.step-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.step-item.active .step-num {
+  background: var(--brand-primary);
+  color: #ffffff;
+}
+
+.step-item.completed .step-num {
+  background: var(--status-success);
+  color: #ffffff;
+}
+
+.step-label {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.step-divider {
+  flex: 1;
+  height: 2px;
+  background: var(--border-color);
+  margin: 0 12px;
+}
+
+/* ── Container Layout ────────────────────────────────────────── */
+.booking-container {
+  max-width: 1240px;
+  margin: 32px auto 0;
+  padding: 0 24px;
+}
+
+.booking-layout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 32px;
+  align-items: start;
+}
+
+/* ── Step Content Cards ──────────────────────────────────────── */
+.step-card {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: 32px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.step-card-header h2 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.step-card-header p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* Step 1 Box */
+.selected-flight-summary-box {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.flight-box-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.airline-tag {
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--brand-primary);
+}
+
+.flight-num-tag {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  background: #ffffff;
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+}
+
+.route-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.route-endpoint strong {
+  display: block;
+  font-size: 1.2rem;
+}
+
+.route-endpoint span {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.route-mid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.route-bar {
+  width: 120px;
+  height: 2px;
+  background: var(--brand-primary);
+}
+
+.inclusions-mini {
+  display: flex;
+  gap: 16px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--status-success);
+}
+
+/* Step 2 Passenger Forms */
+.passenger-fieldset {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.passenger-fieldset legend {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--brand-primary);
+  padding: 0 8px;
+}
+
+.form-grid-3 {
+  display: grid;
+  grid-template-columns: 100px 1fr 1fr;
+  gap: 12px;
+}
+
+.form-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.form-group input,
+.form-group select {
+  height: 46px;
+  padding: 0 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: #ffffff;
+  font-size: 0.92rem;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--brand-primary);
+  outline: none;
+  box-shadow: 0 0 0 3px var(--brand-light);
+}
+
+.phone-input-wrap {
+  display: flex;
+  gap: 8px;
+}
+
+.phone-input-wrap select {
+  width: 110px;
+}
+
+.phone-input-wrap input {
+  flex: 1;
+}
+
+.help-text {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.add-passenger-btn {
+  padding: 10px;
+  border: 1px dashed var(--brand-primary);
+  border-radius: var(--radius-md);
+  background: var(--brand-light);
+  color: var(--brand-primary);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Step 3 Extras */
+.extras-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.extra-item-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  background: var(--bg-secondary);
+}
+
+.extra-icon {
+  font-size: 1.6rem;
+}
+
+.extra-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.extra-details h4 {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.extra-details p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.extra-details select {
+  height: 40px;
+  padding: 0 10px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  margin-top: 4px;
+}
+
+.extras-disclaimer {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  background: var(--bg-tertiary);
+  padding: 12px;
+  border-radius: var(--radius-md);
+}
+
+/* Step 4 Review */
+.review-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.review-section {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.review-section h3 {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--brand-primary);
+}
+
+.review-data-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+}
+
+.terms-checkbox-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.88rem;
+  background: var(--bg-tertiary);
+  padding: 14px;
+  border-radius: var(--radius-md);
+}
+
+.terms-checkbox-wrap input {
+  accent-color: var(--brand-primary);
+  width: 18px;
+  height: 18px;
+}
+
+/* Step 5 Payment */
+.payment-notice-box {
+  display: flex;
+  gap: 16px;
+  background: var(--status-info-bg);
+  border: 1px solid var(--status-info-border);
+  padding: 16px;
+  border-radius: var(--radius-lg);
+}
+
+.notice-icon {
+  font-size: 1.5rem;
+}
+
+.notice-text h4 {
+  font-size: 0.98rem;
+  color: var(--status-info);
+  font-weight: 700;
+}
+
+.notice-text p {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+}
+
+.payment-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.payment-option-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.payment-option-card.selected {
+  border-color: var(--brand-primary);
+  background: var(--brand-light);
+}
+
+.option-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.option-info strong {
+  font-size: 0.95rem;
+}
+
+.option-info span {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.step-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.btn-secondary {
+  padding: 12px 20px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-primary {
+  padding: 12px 24px;
+  border-radius: var(--radius-md);
+  border: none;
+  background: var(--brand-primary);
+  color: #ffffff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-success {
+  padding: 14px 28px;
+  border-radius: var(--radius-md);
+  border: none;
+  background: var(--status-success);
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.step-error {
+  color: #dc2626;
+  font-weight: 600;
+  font-size: 0.88rem;
+  background: #fef2f2;
+  padding: 10px;
+  border-radius: var(--radius-md);
+}
+
+/* ── Sticky Price Summary Sidebar ────────────────────────────── */
+.sticky-sidebar-card {
+  position: sticky;
+  top: 96px;
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media (max-width: 600px) {
+  .booking-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .booking-container {
+    padding: 0 12px;
+    margin-top: 20px;
+  }
+
+  .step-card {
+    padding: 18px 14px;
+    gap: 16px;
+  }
+
+  .passenger-fieldset {
+    padding: 14px;
+    gap: 12px;
+  }
+
+  .form-grid-3,
+  .form-grid-2 {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .phone-input-wrap {
+    flex-direction: column;
+  }
+
+  .phone-input-wrap select,
+  .phone-input-wrap input {
+    width: 100%;
+  }
+
+  .step-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .btn-secondary,
+  .btn-primary,
+  .btn-success {
+    width: 100%;
+  }
+
+  .sticky-sidebar-card {
+    position: static;
+    padding: 18px 14px;
+  }
+}
+
+.sticky-sidebar-card h3 {
+  font-size: 1.1rem;
+  font-weight: 800;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 12px;
+}
+
+.sidebar-airline-badge {
+  font-weight: 700;
+  color: var(--brand-primary);
+}
+
+.sidebar-price-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+}
+
+.free-tag {
+  color: var(--status-success);
+  font-weight: 700;
+}
+
+.sidebar-divider {
+  height: 1px;
+  background: var(--border-color);
+}
+
+.sidebar-total-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+}
+
+.total-amount {
+  font-size: 1.4rem;
+  color: var(--brand-primary);
+  font-weight: 800;
+}
+
+.sidebar-features {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  background: var(--bg-secondary);
+  padding: 12px;
+  border-radius: var(--radius-md);
+}
+
+@media (max-width: 900px) {
+  .booking-layout { grid-template-columns: 1fr; }
+  .progress-inner { overflow-x: auto; gap: 8px; }
+  .step-label { display: none; }
+  .form-grid-3, .form-grid-2 { grid-template-columns: 1fr; }
+  
+  .booking-summary-sidebar {
+    position: sticky;
+    bottom: 0;
+    background: #ffffff;
+    border-top: 1px solid var(--border-color);
+    padding: 16px 0;
+    margin: 0 -24px;
+  }
+  
+  .sticky-sidebar-card {
+    padding: 16px;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .booking-container {
+    padding: 12px 0;
+  }
+  
+  .booking-layout {
+    padding: 12px;
+  }
+  
+  .progress-inner {
+    padding: 12px 12px;
+    gap: 6px;
+  }
+  
+  .progress-step {
+    min-width: 80px;
+    padding: 8px 10px;
+    font-size: 0.75rem;
+  }
+  
+  .step-num {
+    width: 28px;
+    height: 28px;
+    font-size: 0.8rem;
+  }
+  
+  .step-label { display: none; }
+  
+  .form-grid-3,
+  .form-grid-2 {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .form-field-group {
+    gap: 8px;
+  }
+  
+  .form-field-group label {
+    font-size: 0.8rem;
+  }
+  
+  .form-field-group input,
+  .form-field-group select,
+  .form-field-group textarea {
+    height: 40px;
+    font-size: 16px;
+    padding: 8px 10px;
+  }
+  
+  .form-field-group textarea {
+    height: 80px;
+  }
+  
+  .form-status {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+  
+  .submit-btn-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .submit-btn-group button {
+    width: 100%;
+    height: 44px;
+    font-size: 0.95rem;
+  }
+  
+  .booking-summary-sidebar {
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
+    background: #ffffff;
+    border-top: 1px solid var(--border-color);
+    border-bottom: none;
+    padding: 12px 0;
+    margin: 0 -12px;
+  }
+  
+  .sticky-sidebar-card {
+    padding: 12px;
+    border-radius: 0;
+    box-shadow: none;
+    gap: 8px;
+  }
+  
+  .sidebar-airline-badge {
+    font-size: 0.8rem;
+  }
+  
+  .sidebar-price-row,
+  .sidebar-total-row {
+    font-size: 0.85rem;
+    gap: 8px;
+  }
+  
+  .sidebar-features {
+    flex-direction: column;
+    gap: 6px;
+    font-size: 0.75rem;
+  }
+  
+  .total-amount {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .booking-container {
+    padding: 8px 0;
+  }
+  
+  .booking-layout {
+    padding: 8px;
+  }
+  
+  .progress-inner {
+    padding: 8px;
+  }
+  
+  .progress-step {
+    min-width: 70px;
+    padding: 6px 8px;
+    font-size: 0.7rem;
+  }
+  
+  .form-grid-3,
+  .form-grid-2 {
+    gap: 10px;
+  }
+  
+  .sticky-sidebar-card {
+    padding: 10px;
+  }
+}
