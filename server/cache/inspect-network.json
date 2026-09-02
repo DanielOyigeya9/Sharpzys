@@ -1,0 +1,1990 @@
+[
+  {
+    "url": "https://o4507582432608256.ingest.us.sentry.io/api/4507033851133957/envelope/?sentry_version=7&sentry_key=557204f09f4caec7873ae0313c810b5d&sentry_client=sentry.javascript.nextjs%2F8.55.0",
+    "json": {}
+  },
+  {
+    "url": "https://www.alternativeairlines.com/_next/data/trplinAAPVhN6Vl9ktd0Z/en.json",
+    "json": {
+      "pageProps": {
+        "trustpilot": {
+          "score": 4.9,
+          "reviewCount": 30870
+        },
+        "homepagePrismicData": {
+          "id": "YAqrfhMAAJV4oMuE",
+          "uid": "homepage",
+          "url": null,
+          "type": "homepage",
+          "href": "https://altair.cdn.prismic.io/api/v2/documents/search?ref=anRcQRIAACsA__gL&q=%5B%5B%3Ad+%3D+at%28document.id%2C+%22YAqrfhMAAJV4oMuE%22%29+%5D%5D",
+          "tags": [],
+          "first_publication_date": "2021-01-22T10:40:05+0000",
+          "last_publication_date": "2026-05-08T09:13:40+0000",
+          "slugs": [
+            "homepage"
+          ],
+          "linked_documents": [],
+          "lang": "en-gb",
+          "alternate_languages": [],
+          "data": {
+            "body": [
+              {
+                "variation": "default",
+                "version": "sktwi1xtmkfgx8626",
+                "items": [
+                  {
+                    "question": [
+                      {
+                        "type": "heading3",
+                        "text": "Who are Alternative Airlines?",
+                        "spans": [],
+                        "direction": "ltr"
+                      }
+                    ],
+                    "answer": [
+                      {
+                        "type": "paragraph",
+                        "text": "Never heard of us? We get it, we do things a little differently.",
+                        "spans": [],
+                        "direction": "ltr"
+                      },
+                      {
+                        "type": "paragraph",
+                        "text": "\nWe’re all about putting you in control and giving you the freedom to travel your way. Compare flights from over 600 airlines, add the extras you need, and choose how to pay, upfront or over time, all in one simple place.",
+                        "spans": [
+                          {
+                            "start": 95,
+                            "end": 125,
+                            "type": "hyperlink",
+                            "data": {
+                              "link_type": "Web",
+                              "url": "https://www.alternativeairlines.com/airlines-we-can-ticket",
+                              "target": "_self"
+                            }
+                          },
+                          {
+                            "start": 95,
+                            "end": 125,
+                            "type": "strong"
+                          }
+                        ],
+                        "direction": "ltr"
+                      },
+                      {
+                        "type": "paragraph",
+                        "text": "\nOnce you’ve booked your flight, our dedicated customer support team is here 7 days a week to help with anything you need.",
+                        "spans": [],
+                        "direction": "ltr"
+                      }
+                    ],
+                    "category": null
+                  },
+                  {
+                    "question": [
+                      {
+                        "type": "heading3",
+                        "text": "Can I pay later for my flights?",
+                        "spans": [],
+                        "direction": "ltr"
+                      }
+                    ],
+                    "answer": [
+                      {
+                        "type": "paragraph",
+                        "text": "Yes. At Alternative Airlines, we offer over 40 ways to pay, including flexible pay-later options that let you split the cost or book now and pay the rest later. ",
+                        "spans": [],
+                        "direction": "ltr"
+                      },
+                      {
+                        "type": "paragraph",
+                        "text": "\nAlternative Airlines works with leading global providers like Affirm, Afterpay, Klarna, Tamara, Atome and many more. This means you can choose a payment plan that works for your budget, whether that's splitting your flight cost into 3-4 weekly instalments or paying a small deposit now and the rest before departure. ",
+                        "spans": [
+                          {
+                            "start": 63,
+                            "end": 69,
+                            "type": "hyperlink",
+                            "data": {
+                              "link_type": "Web",
+                              "url": "https://www.alternativeairlines.com/affirm",
+                              "target": "_self"
+                            }
+                          },
+                          {
+                            "start": 63,
+                            "end": 69,
+                            "type": "strong"
+                          },
+                          {
+                            "start": 71,
+                            "end": 79,
+                            "type": "hyperlink",
+                            "data": {
+                              "link_type": "Web",
+                              "url": "https://www.alternativeairlines.com/afterpay",
+                              "target": "_self"
+                            }
+                          },
+                          {
+                            "start": 71,
+                            "end": 79,
+                            "type": "strong"
+                          },
+                          {
+                            "start": 81,
+                            "end": 87,
+                            "type": "hyperlink",
+                            "data": {
+                              "link_type": "Web",
+                              "url": "https://www.alternativeairlines.com/klarna",
+                              "target": "_self"
+                            }
+                          },
+                          {
+                            "start": 81,
+                            "end": 87,
+                            "type": "strong"
+                          },
+                          {
+                            "start": 89,
+                            "end": 95,
+                            "type": "hyperlink",
+                            "data": {
+                              "link_type": "Web",
+                              "url": "https://www.alternativeairlines.com/tamara",
+                              "target": "_self"
+                            }
+                          },
+                          {
+                            "start": 89,
+                            "end": 95,
+                            "type": "strong"
+                          },
+                          {
+                            "start": 97,
+                            "end": 102,
+                            "type": "hyperlink",
+                            "data": {
+                              "link_type": "Web",
+                              "url": "https://www.alternativeairlines.com/atome",
+                              "target": "_self"
+                            }
+                          },
+                          {
+                            "start": 97,
+                            "end": 102,
+                            "type": "strong"
+                          },
+                          {
+                            "start": 234,
+                            "end": 256,
+                            "type": "strong"
+                          }
+                        ],
+                        "direction": "ltr"
+                      },
+                      {
+                        "type": "paragraph",
+                        "text": "\nMost pay-later options don't require a hard credit check, and many come with zero interest when you pay on time. We've built the world's most flexible flight booking experience so you can book your trip today without paying everything up front",
+                        "spans": [],
+                        "direction": "ltr"
+                      }
+                    ],
+                    "category": null
+                  },
+                  {
+                    "question": [
+                      {
+                        "type": "heading3",
+                        "text": "Can I add seats and bags after booking?",
+                        "spans": [],
+                        "direction": "ltr"
+                      }
+                    ],
+                    "answer": [
+                      {
+                        "type": "paragraph",
+                        "text": "Yes. At Alternative Airlines, you can add seats and bags to your booking after you've completed your purchase. ",
+                        "spans": [
+                          {
+                            "start": 38,
+                            "end": 56,
+                            "type": "strong"
+                          }
+                        ],
+                        "direction": "ltr"
+                      },
+                      {
+                        "type": "paragraph",
+                        "text": "\nOnce your flight is confirmed, you can manage your booking through our Manage My Booking portal. Use your booking reference and last name to access your booking.",
+                        "spans": [],
+                        "direction": "ltr"
+                      },
+                      {
+                        "type": "paragraph",
+                        "text": "\nOur Customer Service team can help you add extras to your booking. Contact the team if you need help selecting seats, adding luggage or making other changes to your journey.",
+                        "spans": [
+                          {
+                            "start": 1,
+                            "end": 35,
+                            "type": "strong"
+                          }
+                        ],
+                        "direction": "ltr"
+                      }
+                    ],
+                    "category": null
+                  },
+                  {
+                    "question": [
+                      {
+                        "type": "heading3",
+                        "text": "How do I know my booking is confirmed?",
+                        "spans": [],
+                        "direction": "ltr"
+                      }
+                    ],
+                    "answer": [
+                      {
+                        "type": "paragraph",
+                        "text": "We will send an instant booking confirmation once your payment is complete. You'll receive a confirmation email with your booking reference, flight details and e-ticket numbers within minutes of booking. ",
+                        "spans": [
+                          {
+                            "start": 16,
+                            "end": 44,
+                            "type": "strong"
+                          },
+                          {
+                            "start": 122,
+                            "end": 139,
+                            "type": "strong"
+                          },
+                          {
+                            "start": 141,
+                            "end": 155,
+                            "type": "strong"
+                          },
+                          {
+                            "start": 160,
+                            "end": 176,
+                            "type": "strong"
+                          }
+                        ],
+                        "direction": "ltr"
+                      },
+                      {
+                        "type": "paragraph",
+                        "text": "\nCheck your inbox for an email from Alternative Airlines with the subject line 'Booking Confirmation and E-Ticket'. This email includes everything you need: your booking reference, flight times, airline details and passenger information. If you don't see your confirmation email within 24 hours of booking, check your spam folder or contact us. The team can resend your confirmation and help with any booking questions.",
+                        "spans": [],
+                        "direction": "ltr"
+                      }
+                    ],
+                    "category": null
+                  },
+                  {
+                    "question": [
+                      {
+                        "type": "heading3",
+                        "text": "What happens if I need to cancel my flight?",
+                        "spans": [],
+                        "direction": "ltr"
+                      }
+                    ],
+                    "answer": [
+                      {
+                        "type": "paragraph",
+                        "text": "Contact Alternative Airlines' Customer Service team as soon as possible if you need to cancel your flight. ",
+                        "spans": [
+                          {
+                            "start": 0,
+                            "end": 51,
+                            "type": "hyperlink",
+                            "data": {
+                              "link_type": "Web",
+                              "url": "https://www.alternativeairlines.com/customer-service",
+                              "target": "_self"
+                            }
+                          },
+                          {
+                            "start": 0,
+                            "end": 51,
+                            "type": "strong"
+                          }
+                        ],
+                        "direction": "ltr"
+                      },
+                      {
+                        "type": "paragraph",
+                        "text": "\nOur friendly team can check your airline's cancellation policy and help you understand your options. Cancellation terms depend on the airline you've booked with and the fare type you selected. Some airlines offer flexible fares that allow free cancellations within 24 hours, while others charge cancellation fees.",
+                        "spans": [],
+                        "direction": "ltr"
+                      },
+                      {
+                        "type": "paragraph",
+                        "text": "\nIf you purchased Cancellation Protection when booking and need to cancel due to an emergency, you may be eligible for a refund. We can process your cancellation request and help you claim any eligible refunds. The team stays with you through the process, making cancellations less of a hassle to deal with.",
+                        "spans": [
+                          {
+                            "start": 1,
+                            "end": 42,
+                            "type": "strong"
+                          }
+                        ],
+                        "direction": "ltr"
+                      }
+                    ],
+                    "category": null
+                  }
+                ],
+                "primary": {
+                  "title": [],
+                  "subtitle": [],
+                  "categories": false
+                },
+                "id": "faq$e0bb261f-be39-4598-b95d-5f95d671fefb",
+                "slice_type": "faq",
+                "slice_label": null
+              }
+            ]
+          }
+        },
+        "metadata": {
+          "title": "Alternative Airlines: Book Flights on 600+ Airlines & Pay Later",
+          "meta": {
+            "title": "Alternative Airlines: Book Flights on 600+ Airlines & Pay Later",
+            "description": "Book flights to anywhere in the world on 600+ airlines. Pay with 40+ payment methods, including Buy Now, Pay Later. Expert customer service on hand to help.",
+            "canonical": "",
+            "robots": "index, follow",
+            "languages": false
+          }
+        },
+        "robots": "index, follow",
+        "gaContentGroup": "home"
+      },
+      "__N_SSG": true
+    }
+  },
+  {
+    "url": "https://n.alternativeairlines.com/api/trustpilot/overview",
+    "json": {
+      "trustScore": 4.9,
+      "reviewCount": 30866
+    }
+  },
+  {
+    "url": "https://n.alternativeairlines.com/api/trustpilot/horizontal",
+    "json": {
+      "reviews": [
+        {
+          "id": "6a742f0acd22096d9c0de65d",
+          "createdAt": "2026-08-06T08:51:54Z",
+          "text": "Was easy to browse through and find good deals. And when I called customer service they were on point with all of my questions.",
+          "title": "Was easy to browse through and find…",
+          "consumer": {
+            "displayName": "Clarisa martinez"
+          }
+        },
+        {
+          "id": "6a74235f7cfe1e797fb0b43a",
+          "createdAt": "2026-08-06T08:02:07Z",
+          "text": "Great website with a wide range of flights available at very reasonable prices and multiple payment options. Highly recommend. ",
+          "title": "Plenty of flight and payment options!",
+          "consumer": {
+            "displayName": "S.P"
+          }
+        },
+        {
+          "id": "6a741f378da2a71f3403497e",
+          "createdAt": "2026-08-06T07:44:23Z",
+          "text": "Booking was smooth and easy and I am happy to say it was made into an enjoyable experience. ",
+          "title": "Booking was smooth and easy and I am…",
+          "consumer": {
+            "displayName": "Jack Kallman"
+          }
+        },
+        {
+          "id": "6a740eed36d8ce75486dfa34",
+          "createdAt": "2026-08-06T06:34:54Z",
+          "text": "Smooth flight\n",
+          "title": "Smooth flight",
+          "consumer": {
+            "displayName": "Camelle Potot"
+          }
+        },
+        {
+          "id": "6a740a87b1b802d5effabefb",
+          "createdAt": "2026-08-06T06:16:07Z",
+          "text": "This is my second time for long haul flights and is such an easy process. My family and I live across other sides of the world and flights are often too much to pay in one payment, the option to pay off is revolutionary. I worked as a travel agent and for an airline in the early 2000s for 10 years so seeing this option just shows how far the industry has come and is moving with the times! Will always come here first for future travel!",
+          "title": "Love Alternative!",
+          "consumer": {
+            "displayName": "JENNIFER JETTE"
+          }
+        },
+        {
+          "id": "6a74009094812f0d25b27628",
+          "createdAt": "2026-08-06T05:33:36Z",
+          "text": "The experience was great because I can use GrabPay Installments for the flights.",
+          "title": "I can use GrabPay",
+          "consumer": {
+            "displayName": "Raindeer"
+          }
+        },
+        {
+          "id": "6a73f9ab9eddf53bb57b0c71",
+          "createdAt": "2026-08-06T05:04:11Z",
+          "text": "It was fairly seamless to book the flight. Similar pricing as booking directly with the airline. Would definitely use again!",
+          "title": "It was fairly seamless to book the…",
+          "consumer": {
+            "displayName": "Alexandra W."
+          }
+        },
+        {
+          "id": "6a73c72ddf3e1cc83c988ac3",
+          "createdAt": "2026-08-06T01:28:45Z",
+          "text": "Was an easy transaction to fill out and book my flight! Would use again on my next trip!!!",
+          "title": "Was an easy transaction to fill out and…",
+          "consumer": {
+            "displayName": "Conrad velasco"
+          }
+        },
+        {
+          "id": "6a73c565b838c1c16715eae0",
+          "createdAt": "2026-08-06T01:21:16Z",
+          "text": "It was easy and fast to get the right flight.",
+          "title": "It was easy and fast to get the right…",
+          "consumer": {
+            "displayName": "Jose Santos"
+          }
+        },
+        {
+          "id": "6a73bf025fd5d925fc1b6525",
+          "createdAt": "2026-08-06T00:53:54Z",
+          "text": "Love this app",
+          "title": "Love this app",
+          "consumer": {
+            "displayName": "Julia Aponte"
+          }
+        },
+        {
+          "id": "6a73bd34b75ea3deb7894db1",
+          "createdAt": "2026-08-06T00:46:12Z",
+          "text": "I have used alternative airlines multiple times, once with Afterpay and once with affirm, the process was smooth and easy and I was able to buy first class tickets and pay on my terms ",
+          "title": "I have used alternative airlines…",
+          "consumer": {
+            "displayName": "Miko Starks"
+          }
+        },
+        {
+          "id": "6a73b60e40a112c448d1708d",
+          "createdAt": "2026-08-06T00:15:42Z",
+          "text": "It was very easy to navigate from the beginning till the end. I was given multiple options that I could pick from. At the end the down payment was right in the price range I wanted. ",
+          "title": "It was very easy to navigate from the…",
+          "consumer": {
+            "displayName": "Amber Bouteiller"
+          }
+        },
+        {
+          "id": "6a73b4fccb3696ca0db95e80",
+          "createdAt": "2026-08-06T00:11:08Z",
+          "text": "Alternative airlines makes it easy and economical to book flights from anywhere in the world and I’m very appreciative and will choose it always ",
+          "title": "Alternative airlines makes it easy and…",
+          "consumer": {
+            "displayName": "Vanessa Perez"
+          }
+        },
+        {
+          "id": "6a73aa0a717f2431add0db35",
+          "createdAt": "2026-08-05T23:24:26Z",
+          "text": "It was easy to book and pay later option was a bonus.  Flights  was reasonable  for last minute ",
+          "title": "It was easy to book and pay later…",
+          "consumer": {
+            "displayName": "Shenika Campbell"
+          }
+        },
+        {
+          "id": "6a73a53997b61f38c8e8c04b",
+          "createdAt": "2026-08-05T23:03:53Z",
+          "text": "Seamless and easy to complete ",
+          "title": "Seamless and easy to complete",
+          "consumer": {
+            "displayName": "KM"
+          }
+        },
+        {
+          "id": "6a73a51d187e8ce136688916",
+          "createdAt": "2026-08-05T23:03:25Z",
+          "text": "My experience was amazing! I was able to book my flight with out any issues. Having this I was able to save alot of money as well. I will most definitly using them in the future and I would recommend them to anyone !",
+          "title": "My experience was amazing",
+          "consumer": {
+            "displayName": "Nivea Johnson"
+          }
+        },
+        {
+          "id": "6a73a2d1398b7aa678a245bd",
+          "createdAt": "2026-08-05T22:53:37Z",
+          "text": "Awesome customer support ",
+          "title": "Awesome customer support",
+          "consumer": {
+            "displayName": "Anthony Crosbourne"
+          }
+        },
+        {
+          "id": "6a73a14b6433093bed149114",
+          "createdAt": "2026-08-05T22:47:07Z",
+          "text": "Should be more popular I think!",
+          "title": "Great service",
+          "consumer": {
+            "displayName": "Sky Alkemade"
+          }
+        },
+        {
+          "id": "6a7395cc8a235677a8faabab",
+          "createdAt": "2026-08-05T21:58:04Z",
+          "text": "process was fairly easy",
+          "title": "process was fairly easy",
+          "consumer": {
+            "displayName": "SuzAnn Ramos"
+          }
+        },
+        {
+          "id": "6a73937cf18c9394721a3ae8",
+          "createdAt": "2026-08-05T21:48:12Z",
+          "text": "Quick and simple ",
+          "title": "Quick and simple",
+          "consumer": {
+            "displayName": "Ludivico Ditablan"
+          }
+        },
+        {
+          "id": "6a7384d21f56b7a8b1d45bce",
+          "createdAt": "2026-08-05T20:45:38Z",
+          "text": "Smooth process, no delays, great service at check-in...great flight and smooth landing...no problems at the other end. They are even following up on my lost items(my fault for not paying attention)",
+          "title": "Smooth Operater",
+          "consumer": {
+            "displayName": "Trish Manning"
+          }
+        },
+        {
+          "id": "6a736be27ab6334d07cbad2b",
+          "createdAt": "2026-08-05T18:59:14Z",
+          "text": "Very easy to book my flight \nThank you \nA Claytor ",
+          "title": "Very easy to book my flight ",
+          "consumer": {
+            "displayName": "Annette Claytor"
+          }
+        },
+        {
+          "id": "6a736a5b9ec6f569fe301f2a",
+          "createdAt": "2026-08-05T18:52:43Z",
+          "text": "Good service. ",
+          "title": "Good service.",
+          "consumer": {
+            "displayName": "Carmelita Gomez de Cardozo"
+          }
+        },
+        {
+          "id": "6a735f872f2c389a8bdb1d9e",
+          "createdAt": "2026-08-05T18:06:31Z",
+          "text": "Easy to navigate, was able to find affordable flight at the right time with little to no effort getting waht I needed ",
+          "title": "Easy to navigate",
+          "consumer": {
+            "displayName": "Myles Jai Saadiq"
+          }
+        },
+        {
+          "id": "6a733059933a7f514da75445",
+          "createdAt": "2026-08-05T14:45:13Z",
+          "text": "Booking is really easy and the prices are very good – it will always be my first choice",
+          "title": "Booking is really easy and the prices…",
+          "consumer": {
+            "displayName": "Athanasios Christoforidis"
+          }
+        },
+        {
+          "id": "6a732ed213134d765d1ae7c0",
+          "createdAt": "2026-08-05T14:38:42Z",
+          "text": "The booking process was simple and smooth. I found a good price, and everything was clearly explained. Overall, I had a positive experience and would use Alternative Airlines again.",
+          "title": "The booking process was simple and…",
+          "consumer": {
+            "displayName": "Al Muthanna Qudimat"
+          }
+        },
+        {
+          "id": "6a73267bedca1d1634561192",
+          "createdAt": "2026-08-05T14:03:07Z",
+          "text": "It was easy to book",
+          "title": "It was easy to book",
+          "consumer": {
+            "displayName": "Debra Powe"
+          }
+        },
+        {
+          "id": "6a732299d523d215297d4faa",
+          "createdAt": "2026-08-05T13:46:33Z",
+          "text": "That is a real help as I was struggling financially but they just give me an option to pay in instalments with k larna.",
+          "title": "That is a real help as I was struggling…",
+          "consumer": {
+            "displayName": "Aisha Nazir Lodhi"
+          }
+        },
+        {
+          "id": "6a73179873bbb0122c7e6820",
+          "createdAt": "2026-08-05T12:59:36Z",
+          "text": "Quick and easy booking with great payment plans available ",
+          "title": "Quick and easy booking with great…",
+          "consumer": {
+            "displayName": "Cvy"
+          }
+        },
+        {
+          "id": "6a73161c3332284f35b9a3c5",
+          "createdAt": "2026-08-05T12:53:16Z",
+          "text": "Straight forward purchase ticket received quickly, very smooth process. Definitely will use again",
+          "title": "Straight forward purchase ticket…",
+          "consumer": {
+            "displayName": "yvonne Wiggan"
+          }
+        },
+        {
+          "id": "6a7308461dee9f4ef79d971a",
+          "createdAt": "2026-08-05T11:54:14Z",
+          "text": "The convenience of the booking",
+          "title": "The convenience of the booking",
+          "consumer": {
+            "displayName": "KASHIEFA KLEINSMITH"
+          }
+        },
+        {
+          "id": "6a72e3358b494d223a928c8c",
+          "createdAt": "2026-08-05T09:16:05Z",
+          "text": "Great website for booking flights from Pokhara Airport, quick, easy, efficient!",
+          "title": "Great website for booking flights from…",
+          "consumer": {
+            "displayName": "Rachael Treacher"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "url": "https://n.alternativeairlines.com/api/trustpilot/overview",
+    "json": {
+      "trustScore": 4.9,
+      "reviewCount": 30866
+    }
+  },
+  {
+    "url": "https://www.altairapi.com/api/currencies",
+    "json": [
+      {
+        "name": "British Pound",
+        "code": "GBP",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "&#163;",
+        "suffix": ""
+      },
+      {
+        "name": "Emirati Dirham",
+        "code": "AED",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "AED",
+        "suffix": ""
+      },
+      {
+        "name": "Afghan Afghani",
+        "code": "AFN",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "",
+        "suffix": "؋ "
+      },
+      {
+        "name": "Albanian Lek",
+        "code": "ALL",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": " ",
+        "prefix": "",
+        "suffix": " L"
+      },
+      {
+        "name": "Armenian Dram",
+        "code": "AMD",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "դր.",
+        "suffix": ""
+      },
+      {
+        "name": "Netherlands Antilles Guilder",
+        "code": "ANG",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "ƒ",
+        "suffix": ""
+      },
+      {
+        "name": "Angolan Kwanza",
+        "code": "AOA",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "Kz",
+        "suffix": ""
+      },
+      {
+        "name": "Argentine Peso",
+        "code": "ARS",
+        "decimal_digits": 2,
+        "decimal_point": ",",
+        "thousands_separator": ".",
+        "prefix": "AR&#36;",
+        "suffix": ""
+      },
+      {
+        "name": "Australian Dollar",
+        "code": "AUD",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "AU&#36;",
+        "suffix": ""
+      },
+      {
+        "name": "Aruba Guilder",
+        "code": "AWG",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "ƒ",
+        "suffix": ""
+      },
+      {
+        "name": "Azerbaijan Manat",
+        "code": "AZN",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "₼",
+        "suffix": ""
+      },
+      {
+        "name": "Bosnian Convertible Marka",
+        "code": "BAM",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "KM",
+        "suffix": ""
+      },
+      {
+        "name": "Barbadian Dollar",
+        "code": "BBD",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "Bds&#36;",
+        "suffix": ""
+      },
+      {
+        "name": "Bangladeshi Taka",
+        "code": "BDT",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "&#2547;",
+        "suffix": ""
+      },
+      {
+        "name": "Bulgarian Lev",
+        "code": "BGN",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": " ",
+        "prefix": "",
+        "suffix": " лв."
+      },
+      {
+        "name": "Bahraini Dinar",
+        "code": "BHD",
+        "decimal_digits": 3,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": ".د.ب",
+        "suffix": ""
+      },
+      {
+        "name": "Burundian Franc",
+        "code": "BIF",
+        "decimal_digits": 0,
+        "decimal_point": "",
+        "thousands_separator": ",",
+        "prefix": "Fr",
+        "suffix": ""
+      },
+      {
+        "name": "Bermudian Dollar",
+        "code": "BMD",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "BD&#163;",
+        "suffix": ""
+      },
+      {
+        "name": "Brunei Dollar",
+        "code": "BND",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "B&#36;",
+        "suffix": ""
+      },
+      {
+        "name": "Bolivian Boliviano",
+        "code": "BOB",
+        "decimal_digits": 2,
+        "decimal_point": ",",
+        "thousands_separator": ".",
+        "prefix": "Bs.",
+        "suffix": ""
+      },
+      {
+        "name": "Brazilian Real",
+        "code": "BRL",
+        "decimal_digits": 2,
+        "decimal_point": ",",
+        "thousands_separator": ".",
+        "prefix": "R&#36;",
+        "suffix": ""
+      },
+      {
+        "name": "Bahamian Dollar",
+        "code": "BSD",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "B&#163;",
+        "suffix": ""
+      },
+      {
+        "name": "Bhutanese Ngultrum",
+        "code": "BTN",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "Nu",
+        "suffix": ""
+      },
+      {
+        "name": "Botswana Pula",
+        "code": "BWP",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "P",
+        "suffix": ""
+      },
+      {
+        "name": "Belarussian Ruble",
+        "code": "BYN",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "Br",
+        "suffix": ""
+      },
+      {
+        "name": "Belize Dollar",
+        "code": "BZD",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "BZ&#163;",
+        "suffix": ""
+      },
+      {
+        "name": "Canadian Dollar",
+        "code": "CAD",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "C&#36;",
+        "suffix": ""
+      },
+      {
+        "name": "Congolese franc",
+        "code": "CDF",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "Fr",
+        "suffix": ""
+      },
+      {
+        "name": "Swiss Franc",
+        "code": "CHF",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": "‘",
+        "prefix": "CHF",
+        "suffix": ""
+      },
+      {
+        "name": "Chilean Peso",
+        "code": "CLP",
+        "decimal_digits": 0,
+        "decimal_point": "",
+        "thousands_separator": ".",
+        "prefix": "CLP &#36;",
+        "suffix": ""
+      },
+      {
+        "name": "Chinese Yuan",
+        "code": "CNY",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "&#165;",
+        "suffix": ""
+      },
+      {
+        "name": "Colombian Peso",
+        "code": "COP",
+        "decimal_digits": 0,
+        "decimal_point": "",
+        "thousands_separator": ".",
+        "prefix": "COP &#36;",
+        "suffix": ""
+      },
+      {
+        "name": "Costa Rican colón",
+        "code": "CRC",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "&#8353;",
+        "suffix": ""
+      },
+      {
+        "name": "Cape Verdean escudo",
+        "code": "CVE",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "&#36;",
+        "suffix": ""
+      },
+      {
+        "name": "Czech Koruna",
+        "code": "CZK",
+        "decimal_digits": 2,
+        "decimal_point": ",",
+        "thousands_separator": ".",
+        "prefix": "",
+        "suffix": " Kč"
+      },
+      {
+        "name": "Djiboutian franc",
+        "code": "DJF",
+        "decimal_digits": 0,
+        "decimal_point": "",
+        "thousands_separator": ",",
+        "prefix": "",
+        "suffix": "Fdj"
+      },
+      {
+        "name": "Danish Krone",
+        "code": "DKK",
+        "decimal_digits": 2,
+        "decimal_point": ",",
+        "thousands_separator": ".",
+        "prefix": "DKK",
+        "suffix": ""
+      },
+      {
+        "name": "Dominican Peso",
+        "code": "DOP",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "RD&#36;",
+        "suffix": ""
+      },
+      {
+        "name": "Algerian Dinar",
+        "code": "DZD",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "د.ج",
+        "suffix": ""
+      },
+      {
+        "name": "Egyptian Pound",
+        "code": "EGP",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "E&#163;",
+        "suffix": ""
+      },
+      {
+        "name": "Eritrean nakfa",
+        "code": "ERN",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "Nkf",
+        "suffix": ""
+      },
+      {
+        "name": "Ethiopian Birr",
+        "code": "ETB",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "Br",
+        "suffix": ""
+      },
+      {
+        "name": "Euro",
+        "code": "EUR",
+        "decimal_digits": 2,
+        "decimal_point": ",",
+        "thousands_separator": ".",
+        "prefix": "",
+        "suffix": " &#8364;"
+      },
+      {
+        "name": "Fijian Dollar",
+        "code": "FJD",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "FJ&#163;",
+        "suffix": ""
+      },
+      {
+        "name": "Falkland Islands pound",
+        "code": "FKP",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "FK&#163;",
+        "suffix": ""
+      },
+      {
+        "name": "Georgian lari",
+        "code": "GEL",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "",
+        "suffix": " ლ"
+      },
+      {
+        "name": "Ghanaian cedi",
+        "code": "GHS",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "GH¢",
+        "suffix": ""
+      },
+      {
+        "name": "Gibraltar Pound",
+        "code": "GIP",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "&#163;",
+        "suffix": ""
+      },
+      {
+        "name": "Gambian Dalasi",
+        "code": "GMD",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "GMD",
+        "suffix": ""
+      },
+      {
+        "name": "Guinean franc",
+        "code": "GNF",
+        "decimal_digits": 0,
+        "decimal_point": "",
+        "thousands_separator": ",",
+        "prefix": "Fr",
+        "suffix": ""
+      },
+      {
+        "name": "Guatemalan quetzal",
+        "code": "GTQ",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "Q",
+        "suffix": ""
+      },
+      {
+        "name": "Guyanese Dollar",
+        "code": "GYD",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "G&#36;",
+        "suffix": ""
+      },
+      {
+        "name": "Hong Kong Dollar",
+        "code": "HKD",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "HK&#36;",
+        "suffix": ""
+      },
+      {
+        "name": "Honduran lempira",
+        "code": "HNL",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "L",
+        "suffix": ""
+      },
+      {
+        "name": "Haitian Gourde",
+        "code": "HTG",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "G",
+        "suffix": ""
+      },
+      {
+        "name": "Hungarian Forint",
+        "code": "HUF",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": " ",
+        "prefix": "",
+        "suffix": " Ft"
+      },
+      {
+        "name": "Indonesian rupiah",
+        "code": "IDR",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "Rp",
+        "suffix": ""
+      },
+      {
+        "name": "Israeli New Shekel",
+        "code": "ILS",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": "",
+        "prefix": "&#8362;",
+        "suffix": ""
+      },
+      {
+        "name": "Indian Rupee",
+        "code": "INR",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "",
+        "suffix": " &#8377;"
+      },
+      {
+        "name": "Icelandic Krona",
+        "code": "ISK",
+        "decimal_digits": 0,
+        "decimal_point": "",
+        "thousands_separator": ".",
+        "prefix": "",
+        "suffix": " ISK"
+      },
+      {
+        "name": "Jamaican Dollar",
+        "code": "JMD",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "J&#36;",
+        "suffix": ""
+      },
+      {
+        "name": "Japanese Yen",
+        "code": "JPY",
+        "decimal_digits": 0,
+        "decimal_point": "",
+        "thousands_separator": ",",
+        "prefix": "&#165;",
+        "suffix": ""
+      },
+      {
+        "name": "Kenyan Shilling",
+        "code": "KES",
+        "decimal_digits": 0,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "KSh",
+        "suffix": ""
+      },
+      {
+        "name": "Kyrgyzstani Som",
+        "code": "KGS",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "",
+        "suffix": " лв"
+      },
+      {
+        "name": "Cambodian Riel",
+        "code": "KHR",
+        "decimal_digits": 0,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "&#6107;",
+        "suffix": ""
+      },
+      {
+        "name": "Comorian Franc",
+        "code": "KMF",
+        "decimal_digits": 0,
+        "decimal_point": "",
+        "thousands_separator": ",",
+        "prefix": "Fr",
+        "suffix": ""
+      },
+      {
+        "name": "South Korean Won",
+        "code": "KRW",
+        "decimal_digits": 0,
+        "decimal_point": "",
+        "thousands_separator": ",",
+        "prefix": "₩",
+        "suffix": ""
+      },
+      {
+        "name": "Kuwaiti Dinar",
+        "code": "KWD",
+        "decimal_digits": 3,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "د.ك",
+        "suffix": ""
+      },
+      {
+        "name": "Cayman Islands Dollar",
+        "code": "KYD",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "CI&#163;",
+        "suffix": ""
+      },
+      {
+        "name": "Kazakhstani Tenge",
+        "code": "KZT",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "&#8376;",
+        "suffix": ""
+      },
+      {
+        "name": "Lao Kip",
+        "code": "LAK",
+        "decimal_digits": 0,
+        "decimal_point": "",
+        "thousands_separator": ",",
+        "prefix": "&#8365;",
+        "suffix": ""
+      },
+      {
+        "name": "Sri Lankan Rupee",
+        "code": "LKR",
+        "decimal_digits": 2,
+        "decimal_point": ",",
+        "thousands_separator": ".",
+        "prefix": "Rs",
+        "suffix": ""
+      },
+      {
+        "name": "Liberian Dollar",
+        "code": "LRD",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "LD&#163;",
+        "suffix": ""
+      },
+      {
+        "name": "Lesotho loti",
+        "code": "LSL",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "L",
+        "suffix": ""
+      },
+      {
+        "name": "Moroccan Dirham",
+        "code": "MAD",
+        "decimal_digits": 2,
+        "decimal_point": ",",
+        "thousands_separator": " ",
+        "prefix": "",
+        "suffix": "DH"
+      },
+      {
+        "name": "Moldovan Leu",
+        "code": "MDL",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "MDL",
+        "suffix": ""
+      },
+      {
+        "name": "Malagasy ariary",
+        "code": "MGA",
+        "decimal_digits": 2,
+        "decimal_point": "",
+        "thousands_separator": ",",
+        "prefix": "Ar",
+        "suffix": ""
+      },
+      {
+        "name": "Macedonian Denar",
+        "code": "MKD",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "ден",
+        "suffix": ""
+      },
+      {
+        "name": "Mongolian Tughrik",
+        "code": "MNT",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "&#8366;",
+        "suffix": ""
+      },
+      {
+        "name": "Macanese pataca",
+        "code": "MOP",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "MOP&#36;",
+        "suffix": ""
+      },
+      {
+        "name": "Mauritanian Ouguiya",
+        "code": "MRO",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "UM",
+        "suffix": ""
+      },
+      {
+        "name": "Mauritian Rupee",
+        "code": "MUR",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "Ɍs",
+        "suffix": ""
+      },
+      {
+        "name": "Maldivian rufiyaa",
+        "code": "MVR",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "Rf",
+        "suffix": ""
+      },
+      {
+        "name": "Malawian kwacha",
+        "code": "MWK",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "MK",
+        "suffix": ""
+      },
+      {
+        "name": "Mexican Peso",
+        "code": "MXN",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "MXN&#36;",
+        "suffix": ""
+      },
+      {
+        "name": "Malaysian Ringgit",
+        "code": "MYR",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "RM",
+        "suffix": ""
+      },
+      {
+        "name": "Mozambican metical",
+        "code": "MZN",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "MT",
+        "suffix": ""
+      },
+      {
+        "name": "Namibian Dollar",
+        "code": "NAD",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "N&#36;",
+        "suffix": ""
+      },
+      {
+        "name": "Nigerian Naira",
+        "code": "NGN",
+        "decimal_digits": 0,
+        "decimal_point": "",
+        "thousands_separator": ",",
+        "prefix": "&#8358;",
+        "suffix": ""
+      },
+      {
+        "name": "Nicaraguan córdoba",
+        "code": "NIO",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "C&#36;",
+        "suffix": ""
+      },
+      {
+        "name": "Norwegian Krone",
+        "code": "NOK",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "",
+        "suffix": " kr"
+      },
+      {
+        "name": "Nepalese Rupee",
+        "code": "NPR",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "Rs",
+        "suffix": ""
+      },
+      {
+        "name": "New Zealand Dollar",
+        "code": "NZD",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "NZ&#36;",
+        "suffix": ""
+      },
+      {
+        "name": "Panamanian balboa",
+        "code": "PAB",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "B/.",
+        "suffix": ""
+      },
+      {
+        "name": "Peruvian Sol",
+        "code": "PEN",
+        "decimal_digits": 2,
+        "decimal_point": ",",
+        "thousands_separator": ".",
+        "prefix": "S/.",
+        "suffix": ""
+      },
+      {
+        "name": "Papua New Guinean Kina",
+        "code": "PGK",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "K",
+        "suffix": ""
+      },
+      {
+        "name": "Philippine Peso",
+        "code": "PHP",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "&#8369;",
+        "suffix": ""
+      },
+      {
+        "name": "Pakistani Rupee",
+        "code": "PKR",
+        "decimal_digits": 0,
+        "decimal_point": "",
+        "thousands_separator": ",",
+        "prefix": "Rs",
+        "suffix": ""
+      },
+      {
+        "name": "Polish Zloty",
+        "code": "PLN",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "zł",
+        "suffix": ""
+      },
+      {
+        "name": "Paraguayan Guarani",
+        "code": "PYG",
+        "decimal_digits": 0,
+        "decimal_point": "",
+        "thousands_separator": ",",
+        "prefix": "",
+        "suffix": " &#8370;"
+      },
+      {
+        "name": "Qatari Riyal",
+        "code": "QAR",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "QR",
+        "suffix": ""
+      },
+      {
+        "name": "Romanian Leu",
+        "code": "RON",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "lei",
+        "suffix": ""
+      },
+      {
+        "name": "Serbian Diner",
+        "code": "RSD",
+        "decimal_digits": 2,
+        "decimal_point": ",",
+        "thousands_separator": ".",
+        "prefix": "",
+        "suffix": " din"
+      },
+      {
+        "name": "Rwandan Franc",
+        "code": "RWF",
+        "decimal_digits": 0,
+        "decimal_point": "",
+        "thousands_separator": ",",
+        "prefix": "RWF",
+        "suffix": ""
+      },
+      {
+        "name": "Saudi Arabian Riyal",
+        "code": "SAR",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "",
+        "suffix": " &#65020;"
+      },
+      {
+        "name": "Solomon Islands Dollar",
+        "code": "SBD",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "SI&#163;",
+        "suffix": ""
+      },
+      {
+        "name": "Seychellois rupee",
+        "code": "SCR",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "Ɍs",
+        "suffix": ""
+      },
+      {
+        "name": "Swedish Krona",
+        "code": "SEK",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "",
+        "suffix": " kr"
+      },
+      {
+        "name": "Singapore Dollar",
+        "code": "SGD",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "SG&#36;",
+        "suffix": ""
+      },
+      {
+        "name": "St. Helena pound",
+        "code": "SHP",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "&#163;",
+        "suffix": ""
+      },
+      {
+        "name": "Sierra Leonean leone",
+        "code": "SLL",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "Le",
+        "suffix": ""
+      },
+      {
+        "name": "Somali Shilling",
+        "code": "SOS",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "SOS",
+        "suffix": ""
+      },
+      {
+        "name": "Surinamese dollar",
+        "code": "SRD",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "&#36;",
+        "suffix": ""
+      },
+      {
+        "name": "Sao Tomean Dobra",
+        "code": "STD",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "",
+        "suffix": "Db"
+      },
+      {
+        "name": "Swazi Lilangeni",
+        "code": "SZL",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "SZL",
+        "suffix": ""
+      },
+      {
+        "name": "Thai Baht",
+        "code": "THB",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "&#3647;",
+        "suffix": ""
+      },
+      {
+        "name": "Tajikistani Somoni",
+        "code": "TJS",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "TJS",
+        "suffix": ""
+      },
+      {
+        "name": "Turkmenistani Manat",
+        "code": "TMT",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "T",
+        "suffix": ""
+      },
+      {
+        "name": "Tongan Paanga",
+        "code": "TOP",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "T&#36;",
+        "suffix": ""
+      },
+      {
+        "name": "Turkish Lira",
+        "code": "TRY",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "",
+        "suffix": " TL"
+      },
+      {
+        "name": "Trinidad and Tobago Dollar",
+        "code": "TTD",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "TT&#36;",
+        "suffix": ""
+      },
+      {
+        "name": "Taiwan New Dollar",
+        "code": "TWD",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "NT&#36;",
+        "suffix": ""
+      },
+      {
+        "name": "Tanzanian Shilling",
+        "code": "TZS",
+        "decimal_digits": 0,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "TSh",
+        "suffix": ""
+      },
+      {
+        "name": "Ukrainian Hryvnia",
+        "code": "UAH",
+        "decimal_digits": 2,
+        "decimal_point": ",",
+        "thousands_separator": " ",
+        "prefix": "",
+        "suffix": " UAH"
+      },
+      {
+        "name": "Ugandan Shilling",
+        "code": "UGX",
+        "decimal_digits": 0,
+        "decimal_point": "",
+        "thousands_separator": ",",
+        "prefix": "USh",
+        "suffix": ""
+      },
+      {
+        "name": "US Dollar",
+        "code": "USD",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "US&#36;",
+        "suffix": ""
+      },
+      {
+        "name": "Uruguayan Peso",
+        "code": "UYU",
+        "decimal_digits": 0,
+        "decimal_point": "",
+        "thousands_separator": ".",
+        "prefix": "U&#36;",
+        "suffix": ""
+      },
+      {
+        "name": "Uzbekistani som",
+        "code": "UZS",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "лв",
+        "suffix": ""
+      },
+      {
+        "name": "Vietnamese Đồng",
+        "code": "VND",
+        "decimal_digits": 0,
+        "decimal_point": "",
+        "thousands_separator": ",",
+        "prefix": "",
+        "suffix": "&#8363;"
+      },
+      {
+        "name": "Vanuatu vatu",
+        "code": "VUV",
+        "decimal_digits": 0,
+        "decimal_point": "",
+        "thousands_separator": ",",
+        "prefix": "VT",
+        "suffix": ""
+      },
+      {
+        "name": "Samoan Tala",
+        "code": "WST",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "WST",
+        "suffix": ""
+      },
+      {
+        "name": "Central African Franc",
+        "code": "XAF",
+        "decimal_digits": 0,
+        "decimal_point": "",
+        "thousands_separator": ",",
+        "prefix": "Fr",
+        "suffix": ""
+      },
+      {
+        "name": "East Caribbean Dollar",
+        "code": "XCD",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "EC&#163;",
+        "suffix": ""
+      },
+      {
+        "name": "West African franc",
+        "code": "XOF",
+        "decimal_digits": 0,
+        "decimal_point": "",
+        "thousands_separator": ",",
+        "prefix": "XOF",
+        "suffix": ""
+      },
+      {
+        "name": "CFP franc",
+        "code": "XPF",
+        "decimal_digits": 0,
+        "decimal_point": "",
+        "thousands_separator": ",",
+        "prefix": "Fr",
+        "suffix": ""
+      },
+      {
+        "name": "South African Rand",
+        "code": "ZAR",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "R",
+        "suffix": ""
+      },
+      {
+        "name": "Zambian Kwacha",
+        "code": "ZMW",
+        "decimal_digits": 2,
+        "decimal_point": ".",
+        "thousands_separator": ",",
+        "prefix": "ZMW",
+        "suffix": ""
+      }
+    ]
+  },
+  {
+    "url": "https://www.alternativeairlines.com/cdn-cgi/zaraz/t",
+    "json": {
+      "e": [
+        "(function(w,d){;w.zarazData.executed.push(\"Pageview\");})(window,document)",
+        "(function(w,d){})(window,document)"
+      ]
+    }
+  },
+  {
+    "url": "https://global.localizecdn.com/api/lib/pJMCp4z3f8sB0/tu?p=%2F&l=en&v=542",
+    "json": {
+      "l": {
+        "it": "Italiano",
+        "es": "Español",
+        "ar": "العربية",
+        "fr": "Français",
+        "pt": "Português",
+        "de": "Deutsch",
+        "pl": "Polski",
+        "tl": "Tagalog",
+        "en": "English"
+      },
+      "el": [
+        "ar",
+        "de",
+        "en",
+        "es",
+        "fr",
+        "it",
+        "pl",
+        "pt",
+        "tl"
+      ],
+      "wl": [
+        {
+          "code": "es",
+          "name": "Español"
+        }
+      ],
+      "w": false,
+      "s": {
+        "theme": "dark",
+        "font": "rgb(255, 255, 255)",
+        "header": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0,0.8)",
+        "position": "right",
+        "positionVertical": "bottom",
+        "border": "",
+        "borderRequired": false,
+        "widgetCompact": true,
+        "isWidgetPositionRelative": false
+      },
+      "b": true,
+      "bn": true,
+      "t": true,
+      "d": "en",
+      "v": 194635,
+      "fv": 1,
+      "tmt": true,
+      "tal": false,
+      "imgs": false,
+      "imgsLmt": false,
+      "urls": false,
+      "urlsLmt": true,
+      "di": true,
+      "source": "en",
+      "ig": false,
+      "im": false,
+      "ih": false
+    }
+  },
+  {
+    "url": "https://o4507582432608256.ingest.us.sentry.io/api/4507033851133957/envelope/?sentry_version=7&sentry_key=557204f09f4caec7873ae0313c810b5d&sentry_client=sentry.javascript.nextjs%2F8.55.0",
+    "json": {
+      "detail": "Sentry dropped data due to a quota or internal rate limit being reached. This will not affect your application. See https://docs.sentry.io/product/accounts/quotas/ for more information."
+    }
+  }
+]

@@ -1,0 +1,1866 @@
+{
+  "reason": "Fill Search Form: Dates: searchBot: cannot find Dates widget",
+  "consoleLogs": [
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "log",
+      "text": "[Script Last Update] 8/18/2026, 10:54:44 AM"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 400 ()"
+    },
+    {
+      "type": "error",
+      "text": "Error fetching API 34: Error: Something went wrong with the request\n    at r (https://www.alternativeairlines.com/_next/static/chunks/pages/_app-2118520e1055ca59.js:91:91166)\n    at async https://www.alternativeairlines.com/_next/static/chunks/pages/flights/%5Bflights%5D-822c8871917e5644.js:1:280228\n    at async Promise.allSettled (index 9)\n    at async https://www.alternativeairlines.com/_next/static/chunks/pages/flights/%5Bflights%5D-822c8871917e5644.js:1:280538\n    at async https://www.alternativeairlines.com/_next/static/chunks/pages/_app-2118520e1055ca59.js:103:195920"
+    },
+    {
+      "type": "log",
+      "text": "Download the Apollo DevTools for a better development experience: %s https://chrome.google.com/webstore/detail/apollo-client-developer-t/jdkknkkbebbapilgoeccciglkfbmbnfm"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "log",
+      "text": "[Script Last Update] 8/18/2026, 10:54:44 AM"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "log",
+      "text": "Download the Apollo DevTools for a better development experience: %s https://chrome.google.com/webstore/detail/apollo-client-developer-t/jdkknkkbebbapilgoeccciglkfbmbnfm"
+    },
+    {
+      "type": "error",
+      "text": "DOMException: signal is aborted without reason\n    at https://www.alternativeairlines.com/_next/static/chunks/4861-2f6ce376faea9edc.js:1:6521\n    at uJ (https://www.alternativeairlines.com/_next/static/chunks/framework-b61e4532c68c23e7.js:9:91733)\n    at u1 (https://www.alternativeairlines.com/_next/static/chunks/framework-b61e4532c68c23e7.js:9:91929)\n    at o6 (https://www.alternativeairlines.com/_next/static/chunks/framework-b61e4532c68c23e7.js:9:112682)\n    at https://www.alternativeairlines.com/_next/static/chunks/framework-b61e4532c68c23e7.js:9:112169\n    at o8 (https://www.alternativeairlines.com/_next/static/chunks/framework-b61e4532c68c23e7.js:9:112234)\n    at oQ (https://www.alternativeairlines.com/_next/static/chunks/framework-b61e4532c68c23e7.js:9:104282)\n    at lf (https://www.alternativeairlines.com/_next/static/chunks/framework-b61e4532c68c23e7.js:9:45456)\n    at https://www.alternativeairlines.com/_next/static/chunks/framework-b61e4532c68c23e7.js:9:101678"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "Failed to load resource: net::ERR_FAILED"
+    },
+    {
+      "type": "error",
+      "text": "DOMException: signal is aborted without reason\n    at https://www.alternativeairlines.com/_next/static/chunks/4861-2f6ce376faea9edc.js:1:6521\n    at uJ (https://www.alternativeairlines.com/_next/static/chunks/framework-b61e4532c68c23e7.js:9:91733)\n    at u1 (https://www.alternativeairlines.com/_next/static/chunks/framework-b61e4532c68c23e7.js:9:91929)\n    at o6 (https://www.alternativeairlines.com/_next/static/chunks/framework-b61e4532c68c23e7.js:9:112682)\n    at https://www.alternativeairlines.com/_next/static/chunks/framework-b61e4532c68c23e7.js:9:112169\n    at o8 (https://www.alternativeairlines.com/_next/static/chunks/framework-b61e4532c68c23e7.js:9:112234)\n    at oQ (https://www.alternativeairlines.com/_next/static/chunks/framework-b61e4532c68c23e7.js:9:104282)\n    at lf (https://www.alternativeairlines.com/_next/static/chunks/framework-b61e4532c68c23e7.js:9:45456)\n    at https://www.alternativeairlines.com/_next/static/chunks/framework-b61e4532c68c23e7.js:9:101678"
+    }
+  ],
+  "failedRequests": [
+    {
+      "url": "https://www.alternativeairlines.com/fonts/DM_Sans/DMSans-Regular.ttf",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://www.alternativeairlines.com/fonts/PangeaAfrikan-MediumWeb.woff2",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://www.altairapi.com/api/p.gif?u=%2Fflights%2FLOS-ABV%3Foutbound%3D2026-08-19%26adults%3D1%26children%3D0%26infants%3D0%26class%3DY%26currency%3DNGN",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/images/pages/flights/ancillaries/seats.png",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/images/pages/flights/ancillaries/flight-protection.jpg",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/images/pages/flights/ancillaries/baggage.png",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/images/pages/flights/ancillaries/check-in.jpg",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://www.alternativeairlines.com/fonts/DM_Sans/DMSans-Medium.ttf",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://www.alternativeairlines.com/fonts/DM_Sans/DMSans-Bold.ttf",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://cm52oozjdv.kameleoon.eu/images/27813-fb6d736a-afa3-42dc-a999-d40eaaa565eb.jpeg",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://cm52oozjdv.kameleoon.eu/images/27813-e28567cd-185d-41cb-8226-ade0eaf59566.jpeg",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://cm52oozjdv.kameleoon.eu/images/27813-fa3d7fb8-a538-4b3e-a024-a08cae00968d.jpeg",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://cm52oozjdv.kameleoon.eu/images/27813-e5a05839-b9c1-4c21-9656-69455eca45cf.jpeg",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://cm52oozjdv.kameleoon.eu/images/27813-b680bb41-7c44-4f79-a35c-4a88c210f7c6.jpeg",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://cm52oozjdv.kameleoon.eu/images/27813-01753224-e7bf-450e-ba97-bd7bb1384785.jpeg",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://cm52oozjdv.kameleoon.eu/images/27813-966d3aa6-6f73-481a-a698-bd10fa7247db.jpeg",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://cm52oozjdv.kameleoon.eu/images/27813-e9da3dbe-b65c-47e3-b44b-ade8d5769016.jpeg",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://www.googletagmanager.com/gtm.js?id=GTM-PBBF72",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://static.cdn.prismic.io/prismic.js?new=true&repo=altair",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fsocial%2Ffacebook.svg&w=32&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fsocial%2Fx.svg&w=32&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fsocial%2Ftiktok.svg&w=32&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fsocial%2Finstagram.svg&w=32&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fsocial%2Flinkedin.svg&w=32&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://global.localizecdn.com/api/lib/pJMCp4z3f8sB0/tl.gif?l=en&c=329845",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://www.alternativeairlines.com/images/flags.png",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://eu-data.kameleoon.eu/ip?engine=true",
+      "method": "GET",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://altair.cdn.prismic.io/altair/aR7kGGGnmrmGqEMt_plane.mp4",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://assets.alternativeairlines.com/images/logos/airlines/p4_logo.gif",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://assets.alternativeairlines.com/images/logos/airlines/un_logo.gif",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://o4507582432608256.ingest.us.sentry.io/api/4507033851133957/envelope/?sentry_version=7&sentry_key=557204f09f4caec7873ae0313c810b5d&sentry_client=sentry.javascript.nextjs%2F8.55.0",
+      "method": "POST",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://www.alternativeairlines.com/_next/static/chunks/428.00518ad5d2d955e9.js",
+      "method": "GET",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/api/trustpilot/overview",
+      "method": "GET",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://lantern.roeyecdn.com/lantern_global_28351.min.js",
+      "method": "GET",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://www.alternativeairlines.com/_next/static/chunks/1358.52a4cbfa78ba470e.js",
+      "method": "GET",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://altair.cdn.prismic.io/altair/aR7kGGGnmrmGqEMt_plane.mp4",
+      "method": "GET",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://www.alternativeairlines.com/fonts/DM_Sans/DMSans-Regular.ttf",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://www.alternativeairlines.com/fonts/PangeaAfrikan-MediumWeb.woff2",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayment-methods%2Faffirm.svg&w=256&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayment-methods%2Fafterpay.svg&w=256&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayment-methods%2Fbitcoin.svg&w=256&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayment-methods%2Fcash-app-afterpay.svg&w=256&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayment-methods%2Fclearpay.svg&w=256&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/images/pages/home/countries/france.webp",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/images/pages/home/countries/usa.webp",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/images/pages/home/countries/japan.webp",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/images/pages/home/countries/indonesia.webp",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/images/pages/home/countries/uk.webp",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/images/pages/home/countries/italy.webp",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/images/pages/home/countries/spain.webp",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/images/pages/home/countries/australia.webp",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/images/pages/home/countries/south-africa.webp",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayment-methods%2Fklarna.svg&w=256&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayment-methods%2Fmastercard.svg&w=256&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayment-methods%2Fpaypal.svg&w=256&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayment-methods%2Fsezzle.svg&w=256&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayment-methods%2Fsplitit.svg&w=256&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayment-methods%2Ftamara.svg&w=256&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayment-methods%2Ftether.svg&w=256&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayment-methods%2Fvisa.svg&w=256&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayment-methods%2Fzip.svg&w=256&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Fair-canada.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Fair-europa.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Fair-france.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Famerican-airlines.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Favianca.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Fbritish-airways.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Fdelta-airlines.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Feasyjet.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Femirates.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Fetihad.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Fflysafair.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Ffrontier-airlines.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Fhawaiian-airlines.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Fiberia.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Fjetblue.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Fklm.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Flufthansa.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Fqantas.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Fqatar-airways.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Friyadh-air.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Fryanair.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Fsaudia.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Fsingapore-airlines.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Fswiss.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Fturkish-airlines.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Funited.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Faffirm.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Fafterpay.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Falipay.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Famerican-express.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Faplazo.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Fapple-pay.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Fbitcoin.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Fcash-app-afterpay.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Fchainlink.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Fclearpay.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Fgoogle-pay.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Fgrab.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Fklarna.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Fmaestro.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Fmastercard.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Fpayflex.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Fpaypal.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Fpolkadot.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Frevolut.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Fsezzle.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Fslice-pay.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Fsolana.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Ftamara.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Ftether.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Fvisa.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Fzip.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://www.alternativeairlines.com/fonts/DM_Sans/DMSans-Medium.ttf",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://www.alternativeairlines.com/images/pages/home/hero/cloud-2.webp",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://www.alternativeairlines.com/images/pages/home/about-us/background.png",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://www.alternativeairlines.com/images/pages/home/hero/cloud-2.webp",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayment-methods%2Faffirm.svg&w=256&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayment-methods%2Fafterpay.svg&w=256&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayment-methods%2Fbitcoin.svg&w=256&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayment-methods%2Fcash-app-afterpay.svg&w=256&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayment-methods%2Fclearpay.svg&w=256&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayment-methods%2Fklarna.svg&w=256&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayment-methods%2Fmastercard.svg&w=256&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayment-methods%2Fsezzle.svg&w=256&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayment-methods%2Fsplitit.svg&w=256&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayment-methods%2Ftamara.svg&w=256&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayment-methods%2Ftether.svg&w=256&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayment-methods%2Fvisa.svg&w=256&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayment-methods%2Fzip.svg&w=256&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Fair-canada.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Fair-europa.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Fair-france.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Famerican-airlines.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Favianca.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Fbritish-airways.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Fdelta-airlines.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Feasyjet.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Femirates.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Fetihad.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Fflysafair.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Ffrontier-airlines.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Fhawaiian-airlines.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Fiberia.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Fjetblue.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Fklm.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Flufthansa.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Fqantas.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Fqatar-airways.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Friyadh-air.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Fryanair.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Fsaudia.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Fsingapore-airlines.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Fswiss.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Fturkish-airlines.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fairlines%2Funited.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Faffirm.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Fafterpay.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Falipay.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Famerican-express.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Faplazo.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Fapple-pay.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Fbitcoin.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Fcash-app-afterpay.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Fchainlink.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Fclearpay.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Fgoogle-pay.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Fgrab.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Fklarna.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Fmaestro.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Fmastercard.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Fpayflex.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Fpaypal.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Fpolkadot.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Frevolut.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Fsezzle.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Fslice-pay.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Fsolana.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Ftamara.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Ftether.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Fvisa.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fpayments%2Fzip.png&w=1920&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://www.alternativeairlines.com/images/pages/home/hero/cloud-3.webp",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://www.googletagmanager.com/gtm.js?id=GTM-PBBF72",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://static.cdn.prismic.io/prismic.js?new=true&repo=altair",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fusps%2Fearth.svg&w=128&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fusps%2Fcalendar.svg&w=128&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fusps%2Fchat.svg&w=128&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://global.localizecdn.com/api/lib/pJMCp4z3f8sB0/tl.gif?l=en&c=2653321",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://www.alternativeairlines.com/images/pages/home/hero/cloud-3.webp",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://www.altairapi.com/api/p.gif?u=https%3A%2F%2Fwww.alternativeairlines.com%2F&kam_vid=armv5q9qlomcvb8a&ct=ecd2615c-70ba-4758-a5f8-f7b9d3317cc8",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://www.alternativeairlines.com/fonts/DM_Sans/DMSans-Bold.ttf",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://www.alternativeairlines.com/images/flags.png",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Ftrustpilot-5star.svg&w=128&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Ftrustpilot-logo.png&w=96&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://www.alternativeairlines.com/images/pages/home/hero/cloud-3.webp",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://www.alternativeairlines.com/images/pages/home/about-us/background.png",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fneed-help%2Farrow.png&w=64&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fpages%2Fhome%2Fneed-help%2Fheart.png&w=64&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fsocial%2Ffacebook.svg&w=32&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://www.altairapi.com/api/search/flight/airports?q=LOS&sessionId=sessionID_5ptejrmn3j9&locale=en",
+      "method": "GET",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fsocial%2Fx.svg&w=32&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fsocial%2Ftiktok.svg&w=32&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fsocial%2Finstagram.svg&w=32&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fsocial%2Flinkedin.svg&w=32&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://n.alternativeairlines.com/_next/image?url=https%3A%2F%2Fn.alternativeairlines.com%2Fimages%2Fiata.svg&w=48&h=undefined&q=80",
+      "method": "GET",
+      "failure": "net::ERR_FAILED"
+    },
+    {
+      "url": "https://www.altairapi.com/api/search/flight/airports?q=ABV&sessionId=sessionID_5ptejrmn3j9&locale=en",
+      "method": "GET",
+      "failure": "net::ERR_ABORTED"
+    }
+  ]
+}

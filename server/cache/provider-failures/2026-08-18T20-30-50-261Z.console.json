@@ -1,0 +1,11 @@
+{
+  "reason": "Alternative Airlines Opened: page.goto: net::ERR_INTERNET_DISCONNECTED at https://www.alternativeairlines.com/flights/ABV-LOS?outbound=2026-08-19&adults=1&children=0&infants=0&class=Y&currency=NGN\nCall log:\n  \u001b[2m- navigating to \"https://www.alternativeairlines.com/flights/ABV-LOS?outbound=2026-08-19&adults=1&children=0&infants=0&class=Y&currency=NGN\", waiting until \"domcontentloaded\"\u001b[22m\n",
+  "consoleLogs": [],
+  "failedRequests": [
+    {
+      "url": "https://www.alternativeairlines.com/flights/ABV-LOS?outbound=2026-08-19&adults=1&children=0&infants=0&class=Y&currency=NGN",
+      "method": "GET",
+      "failure": "net::ERR_INTERNET_DISCONNECTED"
+    }
+  ]
+}
