@@ -1,0 +1,721 @@
+/* ============================================================
+   FLYNOW — home.css
+   Desktop: Dark glass aesthetic
+   Mobile (≤768px): Exact matches attached reference screenshot
+   ============================================================ */
+
+.home {
+    min-height: 100vh;
+    background: #111;
+}
+
+/* ===================== NAVBAR ===================== */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 8%;
+    z-index: 1000;
+    backdrop-filter: blur(12px);
+    background: rgba(0, 0, 0, 0.15);
+}
+
+.navbar nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 28px;
+    font-weight: 700;
+    color: #ffd43b;
+}
+
+.logo-icon {
+    font-size: 30px;
+}
+
+.navbar ul {
+    display: flex;
+    gap: 35px;
+    list-style: none;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: white;
+    font-size: 15px;
+    transition: 0.3s ease;
+}
+
+.navbar a:hover {
+    color: #ffd43b;
+}
+
+/* ===================== HERO (desktop) ===================== */
+
+.hero {
+    position: relative;
+    min-height: 100vh;
+    background: url("https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=2000&q=80")
+        center center / cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 120px 8% 80px;
+    overflow: hidden;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 0;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1150px;
+    text-align: center;
+    animation: fadeUp 0.8s ease;
+}
+
+.hero h1.desktop-hero-title {
+    font-size: 60px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.hero p.desktop-hero-desc {
+    font-size: 18px;
+    opacity: 0.85;
+    margin-bottom: 45px;
+}
+
+/* ===================== BOOKING CARD (desktop) ===================== */
+
+.booking-card-wrapper {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.booking-card {
+    background: rgba(15, 15, 15, 0.65);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 35px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+/* ===================== TABS (desktop) ===================== */
+
+.tabs {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    margin-bottom: 28px;
+}
+
+.tab {
+    flex: 1;
+    padding: 13px 10px;
+    border: none;
+    cursor: pointer;
+    background: #3b3b3b;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 10px;
+    transition: 0.3s ease;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.tab.active {
+    background: #ffd43b;
+    color: #111;
+}
+
+.tab:hover {
+    transform: translateY(-2px);
+}
+
+/* ===================== FIELDS (desktop) ===================== */
+
+.from-to-card-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.field-box {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.field-box label {
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 13px;
+    opacity: 0.85;
+    color: #fff;
+}
+
+.field-box input,
+.field-box select {
+    height: 52px;
+    padding: 0 16px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    color: white;
+    font-size: 15px;
+    outline: none;
+    transition: 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.swap-circle-btn {
+    display: none;
+}
+
+.date-pax-card-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.custom-input-wrap {
+    position: relative;
+    width: 100%;
+}
+
+.date-display-text,
+.pax-display-text {
+    display: none;
+}
+
+.flexible-checkbox-wrap {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.flexible-checkbox-wrap label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #fff;
+}
+
+.flexible-checkbox-wrap input {
+    width: 18px;
+    height: 18px;
+}
+
+/* ===================== SEARCH BUTTON (desktop) ===================== */
+
+.search-btn {
+    width: 100%;
+    height: 56px;
+    border: none;
+    border-radius: 14px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    background: #ffd43b;
+    color: #111;
+    transition: 0.35s ease;
+}
+
+.search-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 35px rgba(255, 212, 59, 0.35);
+}
+
+.search-btn:disabled {
+    opacity: 0.8;
+    cursor: wait;
+}
+
+/* ===================== PASSENGER POPOVER ===================== */
+
+.pax-field {
+    position: relative;
+}
+
+.pax-dropdown-popover {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #222;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 14px;
+    padding: 16px;
+    width: 260px;
+    z-index: 100;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    margin-top: 6px;
+}
+
+.pax-popover-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: 14px;
+    color: #fff;
+}
+
+.pax-popover-row select {
+    height: 36px;
+    padding: 0 8px;
+    width: auto;
+}
+
+.pax-counter-btn-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.pax-counter-btn-group button {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: none;
+    background: #ffd43b;
+    color: #111;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.pax-done-btn {
+    width: 100%;
+    height: 36px;
+    background: #ffd43b;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    color: #111;
+    cursor: pointer;
+    margin-top: 6px;
+}
+
+.return-date-box {
+    margin-bottom: 16px;
+}
+
+/* ===================== TRUSTPILOT / REVIEWS (desktop) ===================== */
+
+.trust-section {
+    position: relative;
+    z-index: 1;
+    margin-top: 36px;
+    padding: 24px 20px;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    text-align: center;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.trust-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 14px;
+}
+
+.trust-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.trust-stars-group {
+    display: flex;
+    gap: 4px;
+}
+
+.green-star-box {
+    width: 24px;
+    height: 24px;
+    background: #00b67a;
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    border-radius: 3px;
+}
+
+.trust-text-details {
+    font-size: 15px;
+    color: #fff;
+}
+
+.reviews-count {
+    font-weight: 700;
+    margin-right: 6px;
+}
+
+.trustpilot-brand {
+    font-weight: 700;
+}
+
+.tp-star {
+    color: #00b67a;
+}
+
+footer {
+    padding: 25px;
+    background: #0f0f0f;
+    text-align: center;
+    font-size: 14px;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ================================================================
+   MOBILE — EXACT MATCH FOR ATTACHED SCREENSHOT (max 768px)
+   ================================================================ */
+
+@media (max-width: 768px) {
+
+    .home {
+        background: #ffffff;
+    }
+
+    .navbar {
+        padding: 14px 20px;
+        background: rgba(30, 22, 90, 0.85);
+    }
+
+    .navbar ul {
+        display: none;
+    }
+
+    .logo {
+        font-size: 22px;
+    }
+
+    .hero {
+        min-height: auto;
+        padding: 70px 0 0;
+        background: linear-gradient(180deg, #23196c 0%, #30238e 65%, #ffffff 100%);
+        align-items: flex-start;
+    }
+
+    .overlay {
+        display: none;
+    }
+
+    .hero-content {
+        padding: 16px 12px 30px;
+    }
+
+    .hero h1.desktop-hero-title,
+    .hero p.desktop-hero-desc {
+        display: none;
+    }
+
+    /* ── Floating Pill Segmented Tabs ── */
+    .tabs {
+        display: flex;
+        background: #1b1552;
+        border-radius: 40px;
+        padding: 5px;
+        gap: 0;
+        margin: 0 auto 20px;
+        width: 100%;
+        max-width: 380px;
+        box-sizing: border-box;
+    }
+
+    .tab {
+        flex: 1;
+        background: transparent;
+        color: #ffffff;
+        font-size: 15px;
+        font-weight: 500;
+        border-radius: 30px;
+        padding: 10px 12px;
+        height: 44px;
+        border: none;
+        transition: 0.25s ease;
+        text-align: center;
+    }
+
+    .tab.active {
+        background: #ffffff;
+        color: #1e155b;
+        font-weight: 600;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+    }
+
+    /* ── White Search Card ── */
+    .booking-card-wrapper {
+        width: 100%;
+        padding: 0 12px;
+        box-sizing: border-box;
+    }
+
+    .booking-card {
+        background: #ffffff;
+        border-radius: 28px;
+        padding: 16px;
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+        border: none;
+        backdrop-filter: none;
+        max-width: 400px;
+        margin: 0 auto;
+        box-sizing: border-box;
+    }
+
+    /* ── Where from? / Where to? Block ── */
+    .from-to-card-group {
+        display: flex;
+        flex-direction: column;
+        background: #f4f5f8;
+        border-radius: 18px 18px 4px 4px;
+        padding: 14px 16px;
+        position: relative;
+        margin-bottom: 4px;
+        gap: 0;
+    }
+
+    .field-box.from-field {
+        border-bottom: 1px solid #e5e7eb;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+
+    .field-box label {
+        color: #6b7280;
+        font-size: 13px;
+        font-weight: 500;
+        margin-bottom: 2px;
+        opacity: 1;
+    }
+
+    .field-box input {
+        background: transparent;
+        border: none;
+        color: #111827;
+        font-size: 16px;
+        font-weight: 600;
+        height: 28px;
+        padding: 0;
+    }
+
+    .field-box input:focus {
+        border-color: transparent;
+        box-shadow: none;
+    }
+
+    /* ── Circular Swap Button ── */
+    .swap-circle-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: #ffffff;
+        border: 1.5px solid #111827;
+        color: #111827;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        z-index: 10;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    /* ── Date | Passengers & Class Grid ── */
+    .date-pax-card-group {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4px;
+        margin-bottom: 16px;
+    }
+
+    .field-box.date-field {
+        background: #f4f5f8;
+        border-radius: 4px 4px 4px 18px;
+        padding: 12px 14px;
+    }
+
+    .field-box.pax-field {
+        background: #f4f5f8;
+        border-radius: 4px 4px 18px 4px;
+        padding: 12px 14px;
+        cursor: pointer;
+    }
+
+    .date-display-text,
+    .pax-display-text {
+        display: block;
+        font-size: 15px;
+        font-weight: 700;
+        color: #111827;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    /* Overlay actual date input invisibly over display text for native picking */
+    .custom-input-wrap input[type="date"] {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+    }
+
+    .flexible-checkbox-wrap {
+        display: none;
+    }
+
+    /* ── Search Flights CTA Button ── */
+    .search-btn {
+        width: 100%;
+        height: 54px;
+        border-radius: 30px;
+        background: #543ee8;
+        color: #ffffff;
+        font-size: 17px;
+        font-weight: 700;
+        border: none;
+        box-shadow: 0 6px 20px rgba(84, 62, 232, 0.35);
+        margin-top: 0;
+    }
+
+    .search-btn:hover,
+    .search-btn:active {
+        background: #4632d4;
+        transform: none;
+    }
+
+    /* ── Passenger Popover on Mobile ── */
+    .pax-dropdown-popover {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 85%;
+        max-width: 320px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        border: 1px solid #e2e8f0;
+        color: #1e293b;
+    }
+
+    .pax-popover-row {
+        color: #1e293b;
+    }
+
+    .pax-popover-row select {
+        border: 1px solid #cbd5e1;
+        border-radius: 8px;
+        color: #1e293b;
+    }
+
+    .pax-counter-btn-group button {
+        background: #543ee8;
+        color: #fff;
+    }
+
+    .pax-done-btn {
+        background: #543ee8;
+        color: #fff;
+    }
+
+    /* ── Trust Section ── */
+    .trust-section {
+        background: transparent;
+        border: none;
+        border-radius: 0;
+        margin-top: 24px;
+        padding: 0;
+        box-shadow: none;
+    }
+
+    .trust-title {
+        color: #334155;
+        font-size: 17px;
+        font-weight: 500;
+        margin-bottom: 14px;
+    }
+
+    .trust-row {
+        gap: 10px;
+    }
+
+    .green-star-box {
+        width: 22px;
+        height: 22px;
+        font-size: 13px;
+        border-radius: 2px;
+    }
+
+    .trust-text-details {
+        font-size: 15px;
+        color: #0f172a;
+    }
+
+    .reviews-count {
+        font-weight: 700;
+    }
+
+    .trustpilot-brand {
+        font-weight: 700;
+        color: #0f172a;
+    }
+
+    .tp-star {
+        color: #00b67a;
+        font-size: 18px;
+    }
+}
