@@ -53,7 +53,6 @@ function FlightCard({ flight, onSelect }) {
   const airlineCode = flight.airlineCode || flight.airline?.substring(0, 2).toUpperCase() || 'FL';
 
   const handleCardToggle = (e) => {
-    // If user clicks direct 'Continue to Booking' button inside expanded drawer, call onSelect
     if (e.target.closest('.continue-booking-btn')) return;
     setIsExpanded((prev) => !prev);
   };
@@ -133,7 +132,7 @@ function FlightCard({ flight, onSelect }) {
           <div className="drawer-inner">
             <div className="drawer-header">
               <h3>Flight & Fare Details</h3>
-              <span className="carrier-badge-sm">{flight.airline} • Flight {flight.flightNumber}</span>
+              <span className="carrier-badge-sm">{flight.airline} • Flight {flight.flightNumber || 'Direct'}</span>
             </div>
 
             <div className="drawer-grid">
@@ -156,8 +155,10 @@ function FlightCard({ flight, onSelect }) {
                   </div>
 
                   <div className="timeline-line">
-                    <span className="segment-duration">Non-stop • {flight.duration || 'Direct flight'}</span>
-                    {flight.aircraft && <span className="segment-aircraft">Aircraft: {flight.aircraft}</span>}
+                    <span className="segment-duration">{stopsText} • {flight.duration || 'Direct flight'}</span>
+                    <span className="segment-aircraft">
+                      Aircraft: {flight.aircraft || 'Information provided by airline'}
+                    </span>
                   </div>
 
                   <div className="timeline-point">
@@ -171,31 +172,33 @@ function FlightCard({ flight, onSelect }) {
                 </div>
               </div>
 
-              {/* Fare & Inclusion Rules */}
+              {/* Baggage & Inclusions Rules */}
               <div className="drawer-section">
                 <h4 className="section-title">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="sec-icon">
                     <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
                     <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
                   </svg>
-                  Inclusions & Fare Rules
+                  Baggage & Inclusions
                 </h4>
                 <ul className="inclusions-list">
                   <li>
                     <span className="icon-check">✓</span>
-                    <span><strong>Checked Baggage:</strong> 1 x 20kg included in fare</span>
+                    <span>
+                      <strong>Checked Baggage:</strong> {flight.baggage || 'Information provided by airline'}
+                    </span>
                   </li>
                   <li>
                     <span className="icon-check">✓</span>
-                    <span><strong>Cabin Hand Luggage:</strong> 1 x 7kg hand bag</span>
+                    <span>
+                      <strong>Cabin Hand Luggage:</strong> {flight.cabinBaggage || 'Information provided by airline'}
+                    </span>
                   </li>
                   <li>
                     <span className="icon-info">i</span>
-                    <span><strong>Reschedule Rule:</strong> Permitted subject to carrier fare difference</span>
-                  </li>
-                  <li>
-                    <span className="icon-info">i</span>
-                    <span><strong>Cancellation Policy:</strong> Standard airline refund policy applies</span>
+                    <span>
+                      <strong>Fare Conditions:</strong> {flight.fareConditions || 'Information provided by airline'}
+                    </span>
                   </li>
                 </ul>
               </div>
@@ -215,11 +218,11 @@ function FlightCard({ flight, onSelect }) {
                     <span>{formattedPrice}</span>
                   </div>
                   <div className="breakdown-row">
-                    <span>Airport Taxes & Service Fees</span>
+                    <span>Taxes & Carrier Fees</span>
                     <span>Included</span>
                   </div>
                   <div className="breakdown-row total-row">
-                    <strong>Total Amount</strong>
+                    <strong>Total Fare</strong>
                     <strong className="total-price">{formattedPrice}</strong>
                   </div>
                 </div>
@@ -228,13 +231,13 @@ function FlightCard({ flight, onSelect }) {
 
             {/* Action Bar */}
             <div className="drawer-action-bar">
-              <span className="guarantee-text">🔒 Verified live inventory locked from carrier</span>
+              <span className="guarantee-text">🔒 Verified live fare from carrier</span>
               <button
                 type="button"
                 className="continue-booking-btn"
                 onClick={() => onSelect && onSelect(flight)}
               >
-                Continue to Booking →
+                Select Flight →
               </button>
             </div>
           </div>
@@ -242,18 +245,6 @@ function FlightCard({ flight, onSelect }) {
       )}
     </article>
   );
-}
-
-function getCarrierColor(code) {
-  const map = {
-    P4: '#1d4ed8', // Air Peace
-    AP: '#1d4ed8',
-    IA: '#0284c7', // Ibom Air
-    UN: '#7c3aed', // United Nigeria
-    GA: '#15803d', // Green Africa
-    OA: '#b45309', // Overland
-  };
-  return map[code] || '#1d4ed8';
 }
 
 export default FlightCard;

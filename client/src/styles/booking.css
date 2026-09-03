@@ -783,3 +783,38 @@
     padding: 10px;
   }
 }
+
+/* ── Contact & Separate Passenger Form Styles ── */
+.sub-heading {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary, #0f172a);
+  margin: 16px 0 8px;
+}
+
+.passenger-fieldset {
+  margin-bottom: 24px;
+  padding: 20px;
+  border-radius: var(--radius-lg, 12px);
+  border: 1px solid var(--border-color, #cbd5e1);
+  background: #ffffff;
+}
+
+.passenger-fieldset legend {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--brand-primary, #2563eb);
+  padding: 0 10px;
+}
+
+.contact-fieldset {
+  background: var(--bg-tertiary, #f8fafc);
+  border: 1px solid var(--brand-light, #bfdbfe);
+}
+
+.contact-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-secondary, #475569);
+  margin: 0 0 16px;
+}
+

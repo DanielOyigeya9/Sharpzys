@@ -17,7 +17,7 @@ function Confirmation() {
             <h2>No booking reference found</h2>
             <p>Please initiate a flight search and complete a booking request.</p>
             <button onClick={() => navigate('/')} type="button" className="primary-btn">
-              Go to Homepage
+              Go to SharpzyTravels Homepage
             </button>
           </div>
         </main>
@@ -47,20 +47,20 @@ function Confirmation() {
             </div>
             <h1>Booking Request Received</h1>
             <p className="confirmation-subtitle">
-              Your flight reservation request has been submitted to our operations desk.
+              Your flight reservation request has been submitted to the SharpzyTravels operations desk.
             </p>
           </div>
 
           {/* Reference Banner Card */}
           <div className="reference-hero-card">
             <div className="ref-left">
-              <span className="ref-label">SharpzyTravels Booking ID</span>
+              <span className="ref-label">SharpzyTravels Booking Reference</span>
               <strong className="ref-code">{booking.bookingReference}</strong>
             </div>
             <div className="ref-center">
               <span className="ref-label">Airline PNR</span>
               <strong className="ref-pnr-code">
-                {booking.airlinePnr ? booking.airlinePnr : 'Not yet assigned'}
+                {booking.airlinePnr ? booking.airlinePnr : 'Pending carrier assignment'}
               </strong>
             </div>
             <div className="ref-right">
@@ -77,7 +77,7 @@ function Confirmation() {
               <strong>What happens next?</strong>
               <p>
                 {booking.statusMessage ||
-                  'Your booking request has been received. Our team will confirm carrier availability and ticketing before issuing your final electronic ticket.'}
+                  'Your booking request has been received. Our team will verify carrier availability and issuance before assigning your official Airline PNR.'}
               </p>
             </div>
           </div>
@@ -90,7 +90,7 @@ function Confirmation() {
               <div className="conf-grid-2">
                 <div>
                   <span className="conf-label">Airline & Flight:</span>
-                  <strong>{booking.flight?.airline} ({booking.flight?.flightNumber})</strong>
+                  <strong>{booking.flight?.airline} ({booking.flight?.flightNumber || 'Direct'})</strong>
                 </div>
                 <div>
                   <span className="conf-label">Route:</span>
@@ -114,11 +114,11 @@ function Confirmation() {
               <h3>Passenger & Contact Details</h3>
               <div className="conf-grid-2">
                 <div>
-                  <span className="conf-label">Primary Passenger:</span>
+                  <span className="conf-label">Booking Contact:</span>
                   <strong>{booking.passengerName}</strong>
                 </div>
                 <div>
-                  <span className="conf-label">Notification Email:</span>
+                  <span className="conf-label">Contact Email:</span>
                   <strong>{booking.email}</strong>
                 </div>
                 <div>
@@ -134,11 +134,11 @@ function Confirmation() {
 
             <div className="conf-divider"></div>
 
-            {/* Payment Summary */}
+            {/* Total Fare Summary */}
             <div className="conf-section">
               <h3>Total Summary</h3>
               <div className="conf-price-row">
-                <span>Total Amount Requested:</span>
+                <span>Total Amount:</span>
                 <strong className="conf-price-amount">{formattedPrice}</strong>
               </div>
             </div>

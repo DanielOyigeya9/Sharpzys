@@ -1,95 +1,79 @@
 import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const location = useLocation();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
-  const links = [
-    { to: '/', label: 'Search Flights' },
-    { to: '/results', label: 'Flight Results' },
-    { to: '/manage-booking', label: 'Manage Booking' },
-    { to: '/admin', label: 'Admin' },
-  ];
+  const handleNavClick = (anchor, path = '/') => {
+    setMobileMenuOpen(false);
+    if (window.location.pathname === path && anchor) {
+      const el = document.getElementById(anchor);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+    }
+    navigate(path + (anchor ? `#${anchor}` : ''));
+  };
 
   return (
-    <header className="navbar">
-      <nav className="navbar-inner">
-        <Link to="/" className="logo" aria-label="SharpzyTravels home">
-          <span className="brand-name">SharpzyTravels</span>
+    <>
+      <header className="site-header">
+        <Link className="logo" to="/">
+          SHARPZY<span>TRAVELS</span>
         </Link>
-
-        {/* Desktop nav */}
-        <ul className="nav-links" role="list">
-          {links.map(({ to, label }) => (
-            <li key={to}>
-              <Link
-                to={to}
-                className={`nav-link${location.pathname === to ? ' nav-link--active' : ''}`}
-              >
-                {label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-
-        <div className="nav-actions">
-          <Link to="/manage-booking" className="nav-secondary-btn">
-            Manage Booking
+        
+        <nav className="desktop-nav">
+          <a href="/#search" onClick={(e) => { e.preventDefault(); handleNavClick('search', '/'); }}>
+            Book flights
+          </a>
+          <a href="/#destinations" onClick={(e) => { e.preventDefault(); handleNavClick('destinations', '/'); }}>
+            Destinations
+          </a>
+          <a href="/#airlines" onClick={(e) => { e.preventDefault(); handleNavClick('airlines', '/'); }}>
+            Airlines
+          </a>
+          <a href="/#help" onClick={(e) => { e.preventDefault(); handleNavClick('help', '/'); }}>
+            Help
+          </a>
+          <Link to="/manage-booking">
+            Manage booking
           </Link>
-          <Link to="/login" className="nav-cta-btn">
-            Sign In
-          </Link>
-        </div>
+        </nav>
 
-        {/* Mobile menu toggle */}
         <button
-          className="nav-toggle"
-          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-          aria-expanded={menuOpen}
-          onClick={() => setMenuOpen((v) => !v)}
+          className="menu-btn"
+          type="button"
+          onClick={() => setMobileMenuOpen(true)}
+          aria-label="Open menu"
         >
-          <span className={`hamburger ${menuOpen ? 'hamburger--open' : ''}`} aria-hidden="true" />
+          ☰
         </button>
-      </nav>
+      </header>
 
-      {/* Mobile drawer */}
-      {menuOpen && (
-        <div className="nav-drawer" role="navigation" aria-label="Mobile navigation">
-          <ul role="list">
-            {links.map(({ to, label }) => (
-              <li key={to}>
-                <Link
-                  to={to}
-                  className={`nav-drawer-link${location.pathname === to ? ' active' : ''}`}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  {label}
-                </Link>
-              </li>
-            ))}
-            <li>
-              <Link
-                to="/manage-booking"
-                className="nav-drawer-link"
-                onClick={() => setMenuOpen(false)}
-              >
-                Manage Booking
-              </Link>
-            </li>
-            <li className="drawer-actions">
-              <Link
-                to="/login"
-                className="nav-cta-btn full-width"
-                onClick={() => setMenuOpen(false)}
-              >
-                Sign In
-              </Link>
-            </li>
-          </ul>
-        </div>
-      )}
-    </header>
+      {/* Mobile menu overlay */}
+      <div className={`mobile-menu ${mobileMenuOpen ? 'open' : ''}`}>
+        <button type="button" onClick={() => setMobileMenuOpen(false)} aria-label="Close menu">
+          ×
+        </button>
+        <a href="/#search" onClick={(e) => { e.preventDefault(); handleNavClick('search', '/'); }}>
+          Book flights
+        </a>
+        <a href="/#destinations" onClick={(e) => { e.preventDefault(); handleNavClick('destinations', '/'); }}>
+          Destinations
+        </a>
+        <a href="/#airlines" onClick={(e) => { e.preventDefault(); handleNavClick('airlines', '/'); }}>
+          Airlines
+        </a>
+        <a href="/#help" onClick={(e) => { e.preventDefault(); handleNavClick('help', '/'); }}>
+          Help
+        </a>
+        <Link to="/manage-booking" onClick={() => setMobileMenuOpen(false)}>
+          Manage booking
+        </Link>
+      </div>
+    </>
   );
 }
 

@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { createBooking } from '../services/api';
-import { buildPassengerList, normalizePaymentMethod, getPaymentLabel } from '../utils/bookingHelpers';
+import { buildPassengerList, normalizePaymentMethod } from '../utils/bookingHelpers';
 import '../styles/booking.css';
 
 function Booking() {
@@ -28,13 +28,15 @@ function Booking() {
   }));
 
   const [contactInfo, setContactInfo] = useState({
+    contactName: '',
     email: '',
     phone: '',
+    country: 'Nigeria',
     countryCode: '+234',
   });
 
   const [extras, setExtras] = useState({
-    seatPreference: 'Any seat',
+    seatPreference: 'Any available seat',
     mealPreference: 'Standard meal',
     specialAssistance: 'None',
   });
@@ -44,20 +46,18 @@ function Booking() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
-  useEffect(() => {
-    const nextPassengers = buildPassengerList({
-      adults: Number(searchParams?.adults || 1),
-      children: Number(searchParams?.children || 0),
-      infants: Number(searchParams?.infants || 0),
-    });
-
-    setPassengers((prev) => {
-      if (prev.length === nextPassengers.length) {
-        return prev;
-      }
-      return nextPassengers;
-    });
-  }, [searchParams]);
+  const targetCount = Number(searchParams?.adults || 1) + Number(searchParams?.children || 0) + Number(searchParams?.infants || 0);
+  const [prevCount, setPrevCount] = useState(targetCount);
+  if (targetCount !== prevCount) {
+    setPrevCount(targetCount);
+    setPassengers(
+      buildPassengerList({
+        adults: Number(searchParams?.adults || 1),
+        children: Number(searchParams?.children || 0),
+        infants: Number(searchParams?.infants || 0),
+      })
+    );
+  }
 
   const updatePassenger = (index, field, value) => {
     setPassengers((prev) => {
@@ -72,19 +72,18 @@ function Booking() {
     setErrorMessage('');
 
     const firstIncomplete = passengers.findIndex((passenger) => {
-      const requiredType = passenger.type === 'Child' || passenger.type === 'Infant' ? 'firstName' : 'firstName';
       return !passenger.firstName?.trim() || !passenger.lastName?.trim() || (passenger.type === 'Adult' && !passenger.dateOfBirth);
     });
 
     if (firstIncomplete >= 0) {
       const passenger = passengers[firstIncomplete];
       const label = passenger.roleLabel || `${passenger.type} ${firstIncomplete + 1}`;
-      setErrorMessage(`Please complete ${label}'s information.`);
+      setErrorMessage(`Please fill out ${label}'s form completely.`);
       return;
     }
 
     if (!contactInfo.email.trim() || !contactInfo.phone.trim()) {
-      setErrorMessage('Please fill in the contact email and phone number.');
+      setErrorMessage('Please complete the Booking contact details (Email and Phone).');
       return;
     }
 
@@ -94,7 +93,7 @@ function Booking() {
   const handleSubmitBookingRequest = async (e) => {
     e.preventDefault();
     if (!agreeTerms) {
-      setErrorMessage('Please accept the booking terms & conditions before submitting.');
+      setErrorMessage('Please accept SharpzyTravels booking terms & conditions before submitting.');
       return;
     }
 
@@ -102,9 +101,11 @@ function Booking() {
     setErrorMessage('');
 
     const normalizedPaymentMethod = normalizePaymentMethod(paymentMethod);
-    const primaryPassengerName = passengers.length > 0
-      ? `${(passengers[0].firstName || '').trim()} ${(passengers[0].lastName || '').trim()}`.trim()
-      : 'Passenger';
+    const primaryPassengerName = contactInfo.contactName.trim() || (
+      passengers.length > 0
+        ? `${(passengers[0].firstName || '').trim()} ${(passengers[0].lastName || '').trim()}`.trim()
+        : 'Passenger'
+    );
 
     try {
       const response = await createBooking({
@@ -113,6 +114,7 @@ function Booking() {
         email: contactInfo.email.trim(),
         phone: `${contactInfo.countryCode} ${contactInfo.phone.trim()}`,
         passengers,
+        contactInfo,
         extras,
         paymentMethod: normalizedPaymentMethod,
         price: selectedFlight.price,
@@ -167,7 +169,7 @@ function Booking() {
 
             <div className={`step-item ${currentStep >= 2 ? 'active' : ''} ${currentStep > 2 ? 'completed' : ''}`}>
               <span className="step-num">{currentStep > 2 ? '✓' : '2'}</span>
-              <span className="step-label">Passengers</span>
+              <span className="step-label">Passenger Details</span>
             </div>
             <div className="step-divider"></div>
 
@@ -205,7 +207,7 @@ function Booking() {
                   <div className="selected-flight-summary-box">
                     <div className="flight-box-header">
                       <span className="airline-tag">{selectedFlight.airline}</span>
-                      <span className="flight-num-tag">Flight {selectedFlight.flightNumber}</span>
+                      <span className="flight-num-tag">Flight {selectedFlight.flightNumber || 'Direct'}</span>
                     </div>
 
                     <div className="route-box">
@@ -223,11 +225,6 @@ function Booking() {
                         <span>{selectedFlight.arrivalTime}</span>
                       </div>
                     </div>
-
-                    <div className="inclusions-mini">
-                      <span>✓ 1 x 20kg Checked Luggage</span>
-                      <span>✓ 1 x 7kg Carry-on Hand Bag</span>
-                    </div>
                   </div>
 
                   <div className="step-actions">
@@ -235,92 +232,121 @@ function Booking() {
                       ← Back to Results
                     </button>
                     <button type="button" className="btn-primary" onClick={() => setCurrentStep(2)}>
-                      Proceed to Passengers →
+                      Proceed to Passenger Details →
                     </button>
                   </div>
                 </div>
               )}
 
-              {/* ── STEP 2: Passenger Details ─────────────────────────── */}
+              {/* ── STEP 2: Separate Passenger Forms & Booking Contact ──── */}
               {currentStep === 2 && (
                 <form onSubmit={handleNextFromPassengers} className="step-card">
                   <div className="step-card-header">
-                    <h2>Step 2: Passenger & Contact Information</h2>
-                    <p>Enter details exactly as they appear on your government-issued ID.</p>
+                    <h2>Step 2: Passenger Details & Contact Information</h2>
+                    <p>Each passenger must have their own separate form. Fill details as on official ID.</p>
                   </div>
 
-                  {passengers.map((p, idx) => (
-                    <fieldset key={`${p.type}-${p.roleLabel}-${idx}`} className="passenger-fieldset">
-                      <legend>
-                        {p.roleLabel || `Passenger ${idx + 1}`} · {p.type}
-                      </legend>
+                  {/* SEPARATE FORM FOR EACH PASSENGER */}
+                  <div className="passenger-forms-container">
+                    <h3 className="sub-heading">Passenger details</h3>
+                    {passengers.map((p, idx) => (
+                      <fieldset key={`${p.type}-${p.roleLabel}-${idx}`} className="passenger-fieldset">
+                        <legend>
+                          Form for {p.roleLabel || `Passenger ${idx + 1}`} ({p.type})
+                        </legend>
 
-                      <div className="form-grid-3">
-                        <div className="form-group">
-                          <label>Title *</label>
-                          <select value={p.title} onChange={(e) => updatePassenger(idx, 'title', e.target.value)}>
-                            <option>Mr</option>
-                            <option>Mrs</option>
-                            <option>Ms</option>
-                            <option>Master</option>
-                            <option>Miss</option>
-                            <option>Dr</option>
-                          </select>
+                        <div className="form-grid-3">
+                          <div className="form-group">
+                            <label>Title *</label>
+                            <select value={p.title} onChange={(e) => updatePassenger(idx, 'title', e.target.value)}>
+                              <option>Mr</option>
+                              <option>Mrs</option>
+                              <option>Ms</option>
+                              <option>Master</option>
+                              <option>Miss</option>
+                              <option>Dr</option>
+                            </select>
+                          </div>
+                          <div className="form-group">
+                            <label>First name *</label>
+                            <input
+                              type="text"
+                              placeholder={p.type === 'Adult' ? 'e.g. Chukwuma' : 'e.g. Daniel'}
+                              value={p.firstName}
+                              onChange={(e) => updatePassenger(idx, 'firstName', e.target.value)}
+                              required
+                            />
+                          </div>
+                          <div className="form-group">
+                            <label>Last name *</label>
+                            <input
+                              type="text"
+                              placeholder={p.type === 'Adult' ? 'e.g. Adebayo' : 'e.g. Adebayo'}
+                              value={p.lastName}
+                              onChange={(e) => updatePassenger(idx, 'lastName', e.target.value)}
+                              required
+                            />
+                          </div>
                         </div>
-                        <div className="form-group">
-                          <label>First Name *</label>
-                          <input
-                            type="text"
-                            placeholder={p.type === 'Adult' ? 'e.g. Chukwuma' : 'e.g. Daniel'}
-                            value={p.firstName}
-                            onChange={(e) => updatePassenger(idx, 'firstName', e.target.value)}
-                          />
-                        </div>
-                        <div className="form-group">
-                          <label>Last Name *</label>
-                          <input
-                            type="text"
-                            placeholder={p.type === 'Adult' ? 'e.g. Adebayo' : 'e.g. Adebayo'}
-                            value={p.lastName}
-                            onChange={(e) => updatePassenger(idx, 'lastName', e.target.value)}
-                          />
-                        </div>
-                      </div>
 
-                      <div className="form-grid-3">
-                        <div className="form-group">
-                          <label>Date of Birth</label>
-                          <input
-                            type="date"
-                            value={p.dateOfBirth}
-                            onChange={(e) => updatePassenger(idx, 'dateOfBirth', e.target.value)}
-                          />
+                        <div className="form-grid-3">
+                          <div className="form-group">
+                            <label>Date of birth {p.type === 'Adult' ? '*' : ''}</label>
+                            <input
+                              type="date"
+                              value={p.dateOfBirth}
+                              onChange={(e) => updatePassenger(idx, 'dateOfBirth', e.target.value)}
+                              required={p.type === 'Adult'}
+                            />
+                          </div>
+                          <div className="form-group">
+                            <label>Gender</label>
+                            <select value={p.gender} onChange={(e) => updatePassenger(idx, 'gender', e.target.value)}>
+                              <option>Male</option>
+                              <option>Female</option>
+                            </select>
+                          </div>
+                          <div className="form-group">
+                            <label>Nationality</label>
+                            <input
+                              type="text"
+                              value={p.nationality}
+                              onChange={(e) => updatePassenger(idx, 'nationality', e.target.value)}
+                            />
+                          </div>
                         </div>
-                        <div className="form-group">
-                          <label>Gender</label>
-                          <select value={p.gender} onChange={(e) => updatePassenger(idx, 'gender', e.target.value)}>
-                            <option>Male</option>
-                            <option>Female</option>
-                          </select>
-                        </div>
-                        <div className="form-group">
-                          <label>Nationality</label>
-                          <input
-                            type="text"
-                            value={p.nationality}
-                            onChange={(e) => updatePassenger(idx, 'nationality', e.target.value)}
-                          />
-                        </div>
-                      </div>
-                    </fieldset>
-                  ))}
+                      </fieldset>
+                    ))}
+                  </div>
 
-                  {/* Contact Details */}
-                  <fieldset className="passenger-fieldset">
-                    <legend>Contact Information for E-Ticket</legend>
+                  {/* SEPARATE BOOKING CONTACT FORM */}
+                  <fieldset className="passenger-fieldset contact-fieldset">
+                    <legend>Booking contact</legend>
+                    <p className="contact-subtitle">We will send your SharpzyTravels booking confirmation and updates here.</p>
+                    
                     <div className="form-grid-2">
                       <div className="form-group">
-                        <label>Email Address *</label>
+                        <label>Contact name</label>
+                        <input
+                          type="text"
+                          placeholder="e.g. Chukwuma Adebayo"
+                          value={contactInfo.contactName}
+                          onChange={(e) => setContactInfo((prev) => ({ ...prev, contactName: e.target.value }))}
+                        />
+                      </div>
+
+                      <div className="form-group">
+                        <label>Country of residence</label>
+                        <input
+                          type="text"
+                          placeholder="e.g. Nigeria"
+                          value={contactInfo.country}
+                          onChange={(e) => setContactInfo((prev) => ({ ...prev, country: e.target.value }))}
+                        />
+                      </div>
+
+                      <div className="form-group">
+                        <label>Email address *</label>
                         <input
                           type="email"
                           placeholder="your.email@domain.com"
@@ -328,11 +354,10 @@ function Booking() {
                           onChange={(e) => setContactInfo((prev) => ({ ...prev, email: e.target.value }))}
                           required
                         />
-                        <span className="help-text">E-ticket confirmation will be sent here</span>
                       </div>
 
                       <div className="form-group">
-                        <label>Phone Number *</label>
+                        <label>Phone number *</label>
                         <div className="phone-input-wrap">
                           <select
                             value={contactInfo.countryCode}
@@ -372,7 +397,7 @@ function Booking() {
                 <div className="step-card">
                   <div className="step-card-header">
                     <h2>Step 3: Travel Preferences & Extras</h2>
-                    <p>Select preferences to be passed to the carrier desk upon ticket issuance.</p>
+                    <p>Select optional seat and meal preferences for your flight.</p>
                   </div>
 
                   <div className="extras-grid">
@@ -380,12 +405,12 @@ function Booking() {
                       <div className="extra-icon">💺</div>
                       <div className="extra-details">
                         <h4>Seat Preference</h4>
-                        <p>Request window, aisle, or extra legroom positioning.</p>
+                        <p>Request window, aisle, or front row seating.</p>
                         <select
                           value={extras.seatPreference}
                           onChange={(e) => setExtras((prev) => ({ ...prev, seatPreference: e.target.value }))}
                         >
-                          <option>Any available seat (Free)</option>
+                          <option>Any available seat</option>
                           <option>Window seat request</option>
                           <option>Aisle seat request</option>
                           <option>Front row seat request</option>
@@ -397,12 +422,12 @@ function Booking() {
                       <div className="extra-icon">🍽️</div>
                       <div className="extra-details">
                         <h4>Meal Preference</h4>
-                        <p>Special meal requests for flights with inflight catering.</p>
+                        <p>Inflight catering preferences.</p>
                         <select
                           value={extras.mealPreference}
                           onChange={(e) => setExtras((prev) => ({ ...prev, mealPreference: e.target.value }))}
                         >
-                          <option>Standard inflight catering</option>
+                          <option>Standard meal</option>
                           <option>Halal meal request</option>
                           <option>Vegetarian meal request</option>
                           <option>Child meal request</option>
@@ -414,26 +439,22 @@ function Booking() {
                       <div className="extra-icon">♿</div>
                       <div className="extra-details">
                         <h4>Special Assistance</h4>
-                        <p>Notify carrier of wheelchair or mobility requirements.</p>
+                        <p>Notify airline of wheelchair requirements.</p>
                         <select
                           value={extras.specialAssistance}
                           onChange={(e) => setExtras((prev) => ({ ...prev, specialAssistance: e.target.value }))}
                         >
-                          <option>None required</option>
-                          <option>Wheelchair assistance at origin/dest</option>
+                          <option>None</option>
+                          <option>Wheelchair assistance</option>
                           <option>Priority boarding request</option>
                         </select>
                       </div>
                     </div>
                   </div>
 
-                  <div className="extras-disclaimer">
-                    ℹ️ Special requests are submitted directly to the airline operations team during ticketing verification.
-                  </div>
-
                   <div className="step-actions">
                     <button type="button" className="btn-secondary" onClick={() => setCurrentStep(2)}>
-                      ← Back to Passengers
+                      ← Back to Passenger Details
                     </button>
                     <button type="button" className="btn-primary" onClick={() => setCurrentStep(4)}>
                       Proceed to Review →
@@ -442,12 +463,12 @@ function Booking() {
                 </div>
               )}
 
-              {/* ── STEP 4: Review Trip ───────────────────────────────── */}
+              {/* ── STEP 4: Review Booking ─────────────────────────────── */}
               {currentStep === 4 && (
                 <div className="step-card">
                   <div className="step-card-header">
                     <h2>Step 4: Review Your Booking</h2>
-                    <p>Verify all details before submitting your ticketing request.</p>
+                    <p>Verify all passenger and contact information before submitting.</p>
                   </div>
 
                   <div className="review-sections">
@@ -455,52 +476,40 @@ function Booking() {
                     <div className="review-section">
                       <h3>Flight Itinerary</h3>
                       <div className="review-data-row">
-                        <span>Carrier:</span>
-                        <strong>{selectedFlight.airline} ({selectedFlight.flightNumber})</strong>
+                        <span>Airline:</span>
+                        <strong>{selectedFlight.airline} ({selectedFlight.flightNumber || 'Direct'})</strong>
                       </div>
                       <div className="review-data-row">
                         <span>Route:</span>
                         <strong>{selectedFlight.origin} → {selectedFlight.destination}</strong>
                       </div>
                       <div className="review-data-row">
-                        <span>Departure Time:</span>
-                        <strong>{selectedFlight.departureTime}</strong>
-                      </div>
-                      <div className="review-data-row">
-                        <span>Arrival Time:</span>
-                        <strong>{selectedFlight.arrivalTime}</strong>
+                        <span>Schedule:</span>
+                        <strong>{selectedFlight.departureTime} – {selectedFlight.arrivalTime}</strong>
                       </div>
                     </div>
 
-                    {/* Passenger Summary */}
+                    {/* Passenger Forms Review */}
                     <div className="review-section">
-                      <h3>Passenger & Contact Details</h3>
+                      <h3>Passenger Forms ({passengers.length})</h3>
                       {passengers.map((p, idx) => (
                         <div className="review-data-row" key={`${p.type}-${p.roleLabel}-${idx}`}>
                           <span>{p.roleLabel || `Passenger ${idx + 1}`}:</span>
-                          <strong>{p.type} · {p.title} {p.firstName} {p.lastName}</strong>
+                          <strong>{p.title} {p.firstName} {p.lastName} ({p.type})</strong>
                         </div>
                       ))}
+                    </div>
+
+                    {/* Booking Contact Review */}
+                    <div className="review-section">
+                      <h3>Booking Contact</h3>
                       <div className="review-data-row">
-                        <span>Contact Email:</span>
+                        <span>Email:</span>
                         <strong>{contactInfo.email}</strong>
                       </div>
                       <div className="review-data-row">
-                        <span>Contact Phone:</span>
+                        <span>Phone:</span>
                         <strong>{contactInfo.countryCode} {contactInfo.phone}</strong>
-                      </div>
-                    </div>
-
-                    {/* Extras */}
-                    <div className="review-section">
-                      <h3>Selected Preferences</h3>
-                      <div className="review-data-row">
-                        <span>Seat Request:</span>
-                        <strong>{extras.seatPreference}</strong>
-                      </div>
-                      <div className="review-data-row">
-                        <span>Meal Request:</span>
-                        <strong>{extras.mealPreference}</strong>
                       </div>
                     </div>
                   </div>
@@ -513,7 +522,7 @@ function Booking() {
                         checked={agreeTerms}
                         onChange={(e) => setAgreeTerms(e.target.checked)}
                       />
-                      I confirm that passenger names match official IDs and agree to airline fare rules.
+                      I confirm that passenger names match official IDs and agree to SharpzyTravels booking terms.
                     </label>
                   </div>
 
@@ -530,20 +539,12 @@ function Booking() {
                 </div>
               )}
 
-              {/* ── STEP 5: Payment / Booking Request Submission ─────── */}
+              {/* ── STEP 5: Payment Options (No Cards) ───────────────── */}
               {currentStep === 5 && (
                 <form onSubmit={handleSubmitBookingRequest} className="step-card">
                   <div className="step-card-header">
-                    <h2>Step 5: Complete Booking Request</h2>
-                    <p>Select your payment preference. Your booking reference will be generated immediately.</p>
-                  </div>
-
-                  <div className="payment-notice-box">
-                    <div className="notice-icon">🛡️</div>
-                    <div className="notice-text">
-                      <h4>Verified Ticketing Desk</h4>
-                      <p>Your booking request will be verified directly with the carrier desk. No unauthorized charges occur until seat availability is locked.</p>
-                    </div>
+                    <h2>Step 5: Select Payment Method</h2>
+                    <p>Select your payment option to complete your SharpzyTravels booking request.</p>
                   </div>
 
                   <div className="payment-options">
@@ -555,8 +556,8 @@ function Booking() {
                         onChange={() => setPaymentMethod('pay_on_site')}
                       />
                       <div className="option-info">
-                        <strong>Pay on Site</strong>
-                        <span>Pay directly at our office.</span>
+                        <strong>PAY ON SITE</strong>
+                        <span>Pay directly according to SharpzyTravels's instructions.</span>
                       </div>
                     </label>
 
@@ -568,8 +569,8 @@ function Booking() {
                         onChange={() => setPaymentMethod('bank_transfer')}
                       />
                       <div className="option-info">
-                        <strong>Direct Bank Transfer</strong>
-                        <span>Complete payment using our bank transfer instructions.</span>
+                        <strong>DIRECT BANK TRANSFER</strong>
+                        <span>Complete payment directly via SharpzyTravels bank transfer details.</span>
                       </div>
                     </label>
                   </div>
@@ -581,7 +582,7 @@ function Booking() {
                       ← Back to Review
                     </button>
                     <button type="submit" className="btn-success" disabled={isSubmitting}>
-                      {isSubmitting ? 'Generating Booking Reference…' : 'Submit Booking Request →'}
+                      {isSubmitting ? 'Submitting SharpzyTravels Booking...' : 'Submit Booking Request →'}
                     </button>
                   </div>
                 </form>
@@ -604,10 +605,6 @@ function Booking() {
                   <span>Taxes & Carrier Surcharges</span>
                   <span>Included</span>
                 </div>
-                <div className="sidebar-price-row">
-                  <span>Booking Processing</span>
-                  <span className="free-tag">FREE</span>
-                </div>
 
                 <div className="sidebar-divider"></div>
 
@@ -617,7 +614,7 @@ function Booking() {
                 </div>
 
                 <div className="sidebar-features">
-                  <span>🔒 256-bit Secure Request</span>
+                  <span>🔒 SharpzyTravels Secure Booking</span>
                   <span>⚡ Instant Booking Reference</span>
                   <span>📞 24/7 Operations Support</span>
                 </div>

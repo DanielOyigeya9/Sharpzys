@@ -76,9 +76,11 @@ function AirportSelect({ label, value, onChange, placeholder, excludeValue }) {
     }).slice(0, 10);
   }, [query, excludeValue]);
 
-  useEffect(() => {
+  const [prevValue, setPrevValue] = useState(value);
+  if (value !== prevValue) {
+    setPrevValue(value);
     setQuery(value || '');
-  }, [value]);
+  }
 
   useEffect(() => {
     const handleClickOutside = (event) => {

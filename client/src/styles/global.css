@@ -101,6 +101,13 @@ a:hover {
   overflow-x: hidden;
 }
 
+.booking-page,
+.confirmation-page,
+.manage-booking-page,
+.auth-page {
+  padding-top: 96px;
+}
+
 /* Accessible focus ring */
 *:focus-visible {
   outline: 2px solid var(--brand-primary);

@@ -1,13 +1,266 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>sharpzy</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SharpzyTravels — Book Flights</title>
+  <meta name="description" content="SharpzyTravels — simple flight search and booking experience.">
+  <style>
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#171642;background:#fff}button,input,select{font:inherit}.site-header{height:76px;position:absolute;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:0 6%;color:#fff}.logo{font-weight:900;letter-spacing:-1.5px;font-size:25px;color:inherit;text-decoration:none}.logo span{font-weight:500}.desktop-nav{display:flex;gap:30px;align-items:center}.desktop-nav a{color:#fff;text-decoration:none;font-weight:600;font-size:14px}.menu-btn{display:none;background:none;border:0;color:#fff;font-size:27px}.hero{min-height:720px;position:relative;background-image:url("https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=2200&q=85");background-size:cover;background-position:center}.hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(25,15,80,.86),rgba(46,27,105,.52) 55%,rgba(12,11,30,.22))}.hero-content{position:relative;z-index:2;max-width:1180px;margin:auto;padding:145px 30px 80px;color:#fff}.eyebrow{font-size:12px;letter-spacing:2px;font-weight:800;margin:0 0 10px;opacity:.82}.hero h1{font-size:58px;line-height:1.02;letter-spacing:-3px;margin:0 0 14px}.hero h1 span{font-weight:400}.hero-copy{max-width:560px;font-size:17px;line-height:1.6;margin:0 0 34px;color:#eee}.search-shell{position:relative;background:#fff;border-radius:24px;padding:8px;box-shadow:0 25px 70px rgba(0,0,0,.25);color:#16143e}.trip-tabs{display:flex;gap:4px;padding:5px;background:#f2f1fa;border-radius:17px;margin-bottom:8px}.trip-tab{flex:1;border:0;background:transparent;padding:12px;border-radius:13px;color:#4e4a72;font-weight:700;cursor:pointer}.trip-tab.active{background:#1c1850;color:#fff}.flight-form{display:grid;grid-template-columns:1.3fr 42px 1.3fr .9fr .9fr 1.15fr 1.05fr;gap:7px;align-items:stretch}.field{position:relative;background:#f8f8fb;border:1px solid #ecebf3;border-radius:14px;padding:10px 13px;min-height:72px}.field label,.passenger-field small{display:block;font-size:11px;color:#77738e;margin-bottom:7px}.field input{width:100%;border:0;outline:0;background:transparent;color:#15133c;font-weight:650;font-size:14px}.swap-btn{width:42px;height:42px;align-self:center;border-radius:50%;border:1px solid #ddd;background:#fff;color:#211d59;box-shadow:0 4px 15px rgba(0,0,0,.12);cursor:pointer;font-size:20px;z-index:3}.search-btn{border:0;border-radius:15px;background:#5746dd;color:#fff;font-weight:800;font-size:14px;cursor:pointer;min-height:72px}.search-btn:hover{background:#4837c9}.passenger-field{display:flex;align-items:center;justify-content:space-between;text-align:left;border:1px solid #ecebf3;cursor:pointer}.passenger-field strong{display:block;font-size:14px;color:#15133c;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.suggestions{position:absolute;left:0;right:0;top:78px;background:#fff;border-radius:14px;box-shadow:0 15px 35px rgba(0,0,0,.18);overflow:hidden;display:none;z-index:20;color:#191744}.suggestion{padding:13px 15px;cursor:pointer;border-bottom:1px solid #eee}.suggestion:hover{background:#f3f2fa}.suggestion b{display:block}.suggestion span{font-size:12px;color:#777}.passenger-popover{display:none;position:absolute;right:15px;top:92px;width:340px;background:#fff;border-radius:18px;padding:18px;box-shadow:0 20px 50px rgba(0,0,0,.25);z-index:30;color:#171642}.passenger-popover.open{display:block}.popover-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}.popover-head button{border:0;background:none;font-size:25px;cursor:pointer}.counter-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #eee}.counter-row small{display:block;color:#888;font-size:11px;margin-top:3px}.counter{display:flex;align-items:center;gap:12px}.counter button{width:32px;height:32px;border-radius:50%;border:1px solid #ddd;background:#fff;cursor:pointer}.class-select{display:block;font-size:12px;color:#777;margin-top:16px}.class-select select{width:100%;margin-top:7px;padding:11px;border-radius:10px;border:1px solid #ddd;background:#fff}.done-btn{width:100%;margin-top:14px;padding:12px;border:0;border-radius:10px;background:#5746dd;color:#fff;font-weight:800}.trust-strip{max-width:1120px;margin:-38px auto 0;position:relative;z-index:4;background:#fff;border-radius:18px;box-shadow:0 15px 45px rgba(30,20,80,.12);display:grid;grid-template-columns:repeat(3,1fr);padding:25px 30px}.trust-strip div{padding:0 25px;border-right:1px solid #eee}.trust-strip div:last-child{border:0}.trust-strip strong,.trust-strip span{display:block}.trust-strip strong{font-size:14px}.trust-strip span{font-size:12px;color:#777;margin-top:5px}.feature-section,.destinations,.airlines,.faq{max-width:1120px;margin:100px auto;padding:0 30px}.section-heading{max-width:680px;margin-bottom:30px}.section-heading h2{font-size:38px;line-height:1.08;letter-spacing:-1.5px;margin:0}.section-heading .eyebrow{color:#5746dd}.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.feature-grid article{padding:30px;border:1px solid #e9e8f0;border-radius:20px;background:#fff}.icon{width:44px;height:44px;border-radius:13px;background:#eeeafd;display:grid;place-items:center;color:#5746dd;font-weight:900}.feature-grid h3{margin:20px 0 8px}.feature-grid p{color:#6d6982;line-height:1.6;font-size:14px}.destination-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.destination-card{height:230px;border-radius:20px;padding:20px;display:flex;flex-direction:column;justify-content:end;color:#fff;background-size:cover;background-position:center;position:relative;overflow:hidden}.destination-card:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent,rgba(0,0,0,.7))}.destination-card>*{position:relative;z-index:1}.destination-card span{font-size:22px;font-weight:800}.destination-card small{opacity:.8;margin-top:4px}.lagos{background-image:url("https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=800&q=75")}.abuja{background-image:url("https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=800&q=75")}.uyo{background-image:url("https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=800&q=75")}.enugu{background-image:url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=75")}.airline-row{display:flex;flex-wrap:wrap;gap:12px}.airline-pill{padding:16px 22px;border:1px solid #e6e4ed;border-radius:14px;font-weight:800;font-size:13px;background:#fff}.faq details{border-top:1px solid #e3e1ea;padding:20px 0}.faq summary{cursor:pointer;font-weight:750}.faq p{color:#6c687d;line-height:1.6;max-width:800px}.footer-main{background:#17143d;color:#fff;padding:65px max(30px,calc((100% - 1120px)/2));display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:35px}.footer-main p{color:#bcb9d2;max-width:280px;line-height:1.6}.footer-main h4{margin-top:0}.footer-main a:not(.logo){display:block;color:#c7c4d7;text-decoration:none;margin:12px 0;font-size:14px}.footer-bottom{background:#100d2c;color:#9995b2;text-align:center;padding:18px;font-size:12px}.mobile-menu{position:fixed;inset:0;background:#17143d;z-index:100;display:none;flex-direction:column;padding:25px}.mobile-menu.open{display:flex}.mobile-menu button{align-self:flex-end;background:none;border:0;color:#fff;font-size:30px}.mobile-menu a{color:#fff;text-decoration:none;font-size:22px;font-weight:700;padding:18px 0;border-bottom:1px solid #38345d}.toast{position:fixed;bottom:25px;left:50%;transform:translateX(-50%) translateY(100px);background:#17143d;color:#fff;padding:13px 18px;border-radius:12px;z-index:200;transition:.25s;opacity:0}.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+@media(max-width:950px){.desktop-nav{display:none}.menu-btn{display:block}.hero{min-height:800px}.hero-content{padding-top:120px}.flight-form{grid-template-columns:1fr 42px 1fr 1fr 1fr}.search-btn{grid-column:1/-1}.passenger-field{grid-column:4/6}.date-field{min-width:0}.return-date{display:none}.trip-tab{padding:10px 6px}.trust-strip{margin:20px 20px 0}.destination-grid{grid-template-columns:repeat(2,1fr)}.feature-grid{grid-template-columns:1fr}}
+@media(max-width:650px){.site-header{padding:0 20px}.hero{min-height:850px;background-position:62% center}.hero-overlay{background:linear-gradient(180deg,rgba(26,17,80,.82),rgba(35,22,95,.72) 45%,rgba(12,11,30,.4))}.hero-content{padding:105px 16px 35px}.hero h1{font-size:40px;letter-spacing:-2px}.hero-copy{font-size:14px;margin-bottom:22px}.search-shell{border-radius:20px;padding:6px}.trip-tabs{margin-bottom:6px}.flight-form{display:grid;grid-template-columns:1fr 1fr;gap:6px}.airport-field{grid-column:1/-1;min-height:65px}.swap-btn{position:absolute;top:126px;right:20px;width:38px;height:38px}.date-field{min-height:68px}.passenger-field{grid-column:2;min-height:68px}.search-btn{grid-column:1/-1;min-height:58px}.suggestions{top:70px}.passenger-popover{left:7px;right:7px;top:65px;width:auto}.trust-strip{grid-template-columns:1fr;margin:15px 16px 0;padding:15px}.trust-strip div{border-right:0;border-bottom:1px solid #eee;padding:13px 8px}.feature-section,.destinations,.airlines,.faq{margin:70px auto;padding:0 20px}.section-heading h2{font-size:31px}.destination-grid{grid-template-columns:1fr 1fr}.destination-card{height:180px}.footer-main{grid-template-columns:1fr 1fr;padding:45px 25px}.footer-main>div:first-child{grid-column:1/-1}}
+@media(max-width:380px){.hero h1{font-size:35px}.trip-tab{font-size:12px}.destination-grid{grid-template-columns:1fr}.flight-form{grid-template-columns:1fr 1fr}.passenger-field strong{font-size:12px}}
+
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="#">SHARPZY<span>TRAVELS</span></a>
+    <nav class="desktop-nav">
+      <a href="#search">Book flights</a>
+      <a href="#destinations">Destinations</a>
+      <a href="#airlines">Airlines</a>
+      <a href="#help">Help</a>
+      <a href="#manage">Manage booking</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+  </header>
+
+  <main>
+    <section class="hero" id="search">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <p class="eyebrow">YOUR JOURNEY STARTS HERE</p>
+        <h1>Book flights.<br><span>Travel your way.</span></h1>
+        <p class="hero-copy">Search flights, compare options and send your booking directly to the SharpzyTravels team.</p>
+
+        <div class="search-shell">
+          <div class="trip-tabs" role="tablist">
+            <button class="trip-tab active" data-trip="oneway">One way</button>
+            <button class="trip-tab" data-trip="return">Return</button>
+            <button class="trip-tab" data-trip="multi">Multi-city</button>
+          </div>
+
+          <form id="flightForm" class="flight-form">
+            <div class="field airport-field" id="fromField">
+              <label>Where from?</label>
+              <input id="fromInput" autocomplete="off" placeholder="City or airport" required>
+              <input type="hidden" id="fromCode">
+              <div class="suggestions" id="fromSuggestions"></div>
+            </div>
+
+            <button type="button" class="swap-btn" id="swapBtn" aria-label="Swap airports">↕</button>
+
+            <div class="field airport-field" id="toField">
+              <label>Where to?</label>
+              <input id="toInput" autocomplete="off" placeholder="City or airport" required>
+              <input type="hidden" id="toCode">
+              <div class="suggestions" id="toSuggestions"></div>
+            </div>
+
+            <div class="field date-field">
+              <label>Departure</label>
+              <input type="date" id="departureDate" required>
+            </div>
+
+            <div class="field date-field return-date" id="returnWrap">
+              <label>Return</label>
+              <input type="date" id="returnDate">
+            </div>
+
+            <button type="button" class="field passenger-field" id="passengerBtn">
+              <span><small>Passengers & class</small><strong id="passengerSummary">1 Adult, Economy</strong></span>
+              <span>⌄</span>
+            </button>
+
+            <button class="search-btn" type="submit">Search flights <span>→</span></button>
+          </form>
+
+          <div class="passenger-popover" id="passengerPopover">
+            <div class="popover-head"><strong>Passengers</strong><button type="button" id="closePassengers">×</button></div>
+            <div class="counter-row"><div><strong>Adults</strong><small>12+</small></div><div class="counter"><button data-counter="adults" data-dir="-1">−</button><b id="adultCount">1</b><button data-counter="adults" data-dir="1">+</button></div></div>
+            <div class="counter-row"><div><strong>Children</strong><small>2–11</small></div><div class="counter"><button data-counter="children" data-dir="-1">−</button><b id="childCount">0</b><button data-counter="children" data-dir="1">+</button></div></div>
+            <div class="counter-row"><div><strong>Infants</strong><small>0–1</small></div><div class="counter"><button data-counter="infants" data-dir="-1">−</button><b id="infantCount">0</b><button data-counter="infants" data-dir="1">+</button></div></div>
+            <label class="class-select">Cabin class
+              <select id="cabin">
+                <option>Economy</option>
+                <option>Premium Economy</option>
+                <option>Business</option>
+                <option>First</option>
+              </select>
+            </label>
+            <button class="done-btn" id="donePassengers">Done</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="trust-strip">
+      <div><strong>Simple booking</strong><span>Clear flight choices</span></div>
+      <div><strong>Human support</strong><span>Your booking goes to SharpzyTravels</span></div>
+      <div><strong>Flexible payment</strong><span>Pay on site or bank transfer</span></div>
+    </section>
+
+    <section class="feature-section">
+      <div class="section-heading">
+        <p class="eyebrow">SHARPZYTRAVELS</p>
+        <h2>Everything you need to plan your trip.</h2>
+      </div>
+      <div class="feature-grid">
+        <article><div class="icon">✈</div><h3>Search flights</h3><p>Find available flights through the existing SharpzyTravels search system.</p></article>
+        <article><div class="icon">✓</div><h3>Book with confidence</h3><p>Enter passenger details and submit your booking to the SharpzyTravels team.</p></article>
+        <article><div class="icon">☎</div><h3>Real support</h3><p>Get help when you need it, from booking through your journey.</p></article>
+      </div>
+    </section>
+
+    <section class="destinations" id="destinations">
+      <div class="section-heading">
+        <p class="eyebrow">EXPLORE</p>
+        <h2>Popular destinations</h2>
+      </div>
+      <div class="destination-grid">
+        <article class="destination-card lagos"><span>Lagos</span><small>LOS</small></article>
+        <article class="destination-card abuja"><span>Abuja</span><small>ABV</small></article>
+        <article class="destination-card uyo"><span>Uyo</span><small>QUO</small></article>
+        <article class="destination-card enugu"><span>Enugu</span><small>ENU</small></article>
+      </div>
+    </section>
+
+    <section class="airlines" id="airlines">
+      <div class="section-heading">
+        <p class="eyebrow">AIRLINES</p>
+        <h2>Airlines we work with</h2>
+      </div>
+      <div class="airline-row">
+        <div class="airline-pill">AIR PEACE</div>
+        <div class="airline-pill">IBOM AIR</div>
+        <div class="airline-pill">AERO</div>
+        <div class="airline-pill">VALUEJET</div>
+        <div class="airline-pill">ENUGU AIR</div>
+      </div>
+    </section>
+
+    <section class="faq" id="help">
+      <div class="section-heading"><p class="eyebrow">HELP</p><h2>Frequently asked questions</h2></div>
+      <details><summary>How does SharpzyTravels booking work?</summary><p>Search for a flight, select an option, enter passenger details and submit the booking. The SharpzyTravels team handles the next steps.</p></details>
+      <details><summary>How can I pay?</summary><p>SharpzyTravels currently supports pay on site and direct bank transfer.</p></details>
+      <details><summary>Where can I find my booking?</summary><p>Use the Manage Booking area with your SharpzyTravels booking reference.</p></details>
+    </section>
+  </main>
+
+  <footer id="manage">
+    <div class="footer-main">
+      <div><a class="logo" href="#">SHARPZY<span>TRAVELS</span></a><p>Simple flight booking with human support.</p></div>
+      <div><h4>Book</h4><a href="#search">Search flights</a><a href="#destinations">Destinations</a></div>
+      <div><h4>Support</h4><a href="#help">FAQs</a><a href="#">Contact us</a></div>
+      <div><h4>Manage</h4><a href="#">Manage booking</a><a href="#">Terms</a></div>
+    </div>
+    <div class="footer-bottom">© 2026 SharpzyTravels. All rights reserved.</div>
+  </footer>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <button id="closeMenu">×</button>
+    <a href="#search">Book flights</a><a href="#destinations">Destinations</a><a href="#airlines">Airlines</a><a href="#help">Help</a><a href="#manage">Manage booking</a>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script>
+    const airports=[
+  {city:"Lagos",name:"Murtala Muhammed International Airport",code:"LOS"},
+  {city:"Abuja",name:"Nnamdi Azikiwe International Airport",code:"ABV"},
+  {city:"Uyo",name:"Victor Attah International Airport",code:"QUO"},
+  {city:"Enugu",name:"Akanu Ibiam International Airport",code:"ENU"},
+  {city:"Calabar",name:"Margaret Ekpo International Airport",code:"CBQ"},
+  {city:"Port Harcourt",name:"Port Harcourt International Airport",code:"PHC"},
+  {city:"Owerri",name:"Sam Mbakwe Airport",code:"QOW"},
+  {city:"Benin City",name:"Benin Airport",code:"BNI"}
+];
+
+const state={trip:"oneway",adults:1,children:0,infants:0,cabin:"Economy"};
+const $=id=>document.getElementById(id);
+
+function bindAirport(inputId,suggestionsId,codeId){
+  const input=$(inputId), box=$(suggestionsId), code=$(codeId);
+  function render(){
+    const q=input.value.trim().toLowerCase();
+    const matches=airports.filter(a=>
+      !q || a.city.toLowerCase().includes(q)||a.name.toLowerCase().includes(q)||a.code.toLowerCase().includes(q)
+    ).slice(0,6);
+    box.innerHTML=matches.map(a=>`<div class="suggestion" data-code="${a.code}" data-city="${a.city}"><b>${a.city} (${a.code})</b><span>${a.name}</span></div>`).join("");
+    box.style.display="block";
+    box.querySelectorAll(".suggestion").forEach(el=>el.onclick=()=>{
+      input.value=el.dataset.city+" ("+el.dataset.code+")";
+      code.value=el.dataset.code;
+      box.style.display="none";
+    });
+  }
+  input.addEventListener("focus",render);
+  input.addEventListener("input",render);
+  document.addEventListener("click",e=>{
+    if(!input.closest(".airport-field").contains(e.target)) box.style.display="none";
+  });
+}
+bindAirport("fromInput","fromSuggestions","fromCode");
+bindAirport("toInput","toSuggestions","toCode");
+
+$("swapBtn").onclick=()=>{
+  const a=$("fromInput").value,b=$("toInput").value;
+  const ac=$("fromCode").value,bc=$("toCode").value;
+  $("fromInput").value=b;$("toInput").value=a;$("fromCode").value=bc;$("toCode").value=ac;
+};
+
+document.querySelectorAll(".trip-tab").forEach(btn=>btn.onclick=()=>{
+  document.querySelectorAll(".trip-tab").forEach(b=>b.classList.remove("active"));
+  btn.classList.add("active"); state.trip=btn.dataset.trip;
+  $("returnWrap").style.display=state.trip==="return"?"block":"none";
+});
+
+$("passengerBtn").onclick=()=>$("passengerPopover").classList.toggle("open");
+$("closePassengers").onclick=()=>$("passengerPopover").classList.remove("open");
+$("donePassengers").onclick=()=>{
+  state.cabin=$("cabin").value;
+  updatePassengerSummary();
+  $("passengerPopover").classList.remove("open");
+};
+document.querySelectorAll("[data-counter]").forEach(btn=>btn.onclick=()=>{
+  const type=btn.dataset.counter, dir=Number(btn.dataset.dir);
+  const next=Math.max(type==="adults"?1:0,state[type]+dir);
+  if(type==="infants" && next>state.adults) return toast("Infants cannot exceed adults.");
+  state[type]=next;
+  $("adultCount").textContent=state.adults;
+  $("childCount").textContent=state.children;
+  $("infantCount").textContent=state.infants;
+});
+function updatePassengerSummary(){
+  const parts=[`${state.adults} Adult${state.adults!==1?"s":""}`];
+  if(state.children)parts.push(`${state.children} Child${state.children!==1?"ren":""}`);
+  if(state.infants)parts.push(`${state.infants} Infant${state.infants!==1?"s":""}`);
+  $("passengerSummary").textContent=parts.join(", ")+", "+state.cabin;
+}
+$("cabin").onchange=updatePassengerSummary;
+
+const dep=$("departureDate"),ret=$("returnDate");
+const today=new Date().toISOString().slice(0,10);dep.min=today;
+dep.value=new Date(Date.now()+86400000*7).toISOString().slice(0,10);
+dep.onchange=()=>{ret.min=dep.value;if(ret.value&&ret.value<dep.value)ret.value=dep.value};
+ret.min=dep.value;
+
+$("flightForm").onsubmit=e=>{
+  e.preventDefault();
+  if(!$("fromCode").value||!$("toCode").value)return toast("Please select your departure and destination airports.");
+  if($("fromCode").value===$("toCode").value)return toast("Departure and destination cannot be the same.");
+  toast("Search submitted — connect this form to /api/flights/search.");
+};
+
+function toast(message){
+  const t=$("toast");t.textContent=message;t.classList.add("show");
+  clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.classList.remove("show"),3500);
+}
+
+$("menuBtn").onclick=()=>$("mobileMenu").classList.add("open");
+$("closeMenu").onclick=()=>$("mobileMenu").classList.remove("open");
+document.querySelectorAll(".mobile-menu a").forEach(a=>a.onclick=()=>$("mobileMenu").classList.remove("open"));
+
+  </script>
+</body>
 </html>

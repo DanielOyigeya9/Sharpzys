@@ -86,7 +86,7 @@ function PassengerSelect({
     if (infants > 0) {
       parts.push(infants + ' ' + (infants === 1 ? 'Infant' : 'Infants'));
     }
-    return parts.join(', ') + ' \u00B7 ' + cabinClass;
+    return parts.join(', ') + ', ' + cabinClass;
   };
 
   return (

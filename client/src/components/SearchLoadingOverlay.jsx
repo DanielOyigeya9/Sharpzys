@@ -1,4 +1,3 @@
-import React from 'react';
 import '../styles/loading-overlay.css';
 
 function SearchLoadingOverlay({ isVisible }) {

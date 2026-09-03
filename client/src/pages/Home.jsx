@@ -1,434 +1,686 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
-import TripTabs from '../components/TripTabs';
-import PassengerSelect from '../components/PassengerSelect';
 import Footer from '../components/Footer';
-import AirportSelect from '../components/AirportSelect';
 import SearchLoadingOverlay from '../components/SearchLoadingOverlay';
-import { getAirlineLogo, FALLBACK_AIRLINE_LOGO } from '../utils/airlineLogos';
 import { searchFlights } from '../services/api';
 import '../styles/home.css';
 
-// ─── Static data ──────────────────────────────────────────────────────────────
-
-const popularRoutes = [
-  { from: 'Lagos', to: 'Abuja',         code: 'LOS–ABV', desc: 'Nigeria\'s most-travelled corridor. Daily frequencies from multiple carriers.' },
-  { from: 'Lagos', to: 'Port Harcourt', code: 'LOS–PHC', desc: 'Key business and leisure route in the south.' },
-  { from: 'Lagos', to: 'Kano',          code: 'LOS–KAN', desc: 'Northern hub connecting commerce and culture.' },
-  { from: 'Abuja', to: 'Enugu',         code: 'ABV–ENU', desc: 'Quick city-to-city connection in under an hour.' },
-  { from: 'Enugu', to: 'Lagos',         code: 'ENU–LOS', desc: 'Regular domestic route with live fare checks.' },
-  { from: 'Lagos', to: 'Owerri',        code: 'LOS–QOW', desc: 'Southeast gateway served by major carriers.' },
+const AIRPORTS = [
+  { city: 'Lagos', name: 'Murtala Muhammed International Airport', code: 'LOS' },
+  { city: 'Abuja', name: 'Nnamdi Azikiwe International Airport', code: 'ABV' },
+  { city: 'Uyo', name: 'Victor Attah International Airport', code: 'QUO' },
+  { city: 'Enugu', name: 'Akanu Ibiam International Airport', code: 'ENU' },
+  { city: 'Calabar', name: 'Margaret Ekpo International Airport', code: 'CBQ' },
+  { city: 'Port Harcourt', name: 'Port Harcourt International Airport', code: 'PHC' },
+  { city: 'Owerri', name: 'Sam Mbakwe Airport', code: 'QOW' },
+  { city: 'Benin City', name: 'Benin Airport', code: 'BNI' },
 ];
-
-const airlines = [
-  { name: 'Air Peace',        code: 'AP', color: '#16a34a' },
-  { name: 'Ibom Air',         code: 'IA', color: '#0284c7' },
-  { name: 'United Nigeria',   code: 'UN', color: '#7c3aed' },
-  { name: 'Green Africa',     code: 'GA', color: '#15803d' },
-  { name: 'Overland Airways', code: 'OA', color: '#b45309' },
-];
-
-const benefits = [
-  {
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
-        <path d="M8 12l3 3 5-5"/>
-      </svg>
-    ),
-    title: 'Best available prices',
-    text: 'We query live provider inventory so you always see the most current fares.',
-  },
-  {
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <rect x="3" y="11" width="18" height="11" rx="2"/>
-        <path d="M7 11V7a5 5 0 0110 0v4"/>
-      </svg>
-    ),
-    title: 'Secure booking flow',
-    text: 'Your personal details and payment data are handled with end-to-end protection.',
-  },
-  {
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <circle cx="12" cy="12" r="10"/>
-        <path d="M12 6v6l4 2"/>
-      </svg>
-    ),
-    title: 'Real-time results',
-    text: 'Flight data is fetched live from the provider at the moment you search.',
-  },
-  {
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 2.18h3.09a2 2 0 012 1.72c.13 1.01.36 2 .7 2.95a2 2 0 01-.45 2.11L6.09 10a16 16 0 006.92 6.92l1.04-1.25a2 2 0 012.11-.45c.95.34 1.94.57 2.95.7a2 2 0 011.72 2.03z"/>
-      </svg>
-    ),
-    title: '24/7 support',
-    text: 'Our team is available around the clock to help before and after your trip.',
-  },
-];
-
-const steps = [
-  { n: '01', title: 'Search',  desc: 'Enter your route, dates, and passenger details.' },
-  { n: '02', title: 'Compare', desc: 'Review live fares side-by-side from verified carriers.' },
-  { n: '03', title: 'Book',    desc: 'Complete the secure booking form in under two minutes.' },
-  { n: '04', title: 'Fly',     desc: 'Receive your itinerary and travel with confidence.' },
-];
-
-const destinations = [
-  { name: 'Lagos',         tag: 'Commercial hub',  image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Abuja',         tag: 'Federal capital',  image: 'https://images.unsplash.com/photo-1590674899484-d5640e854abe?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Port Harcourt', tag: 'Oil city',          image: 'https://images.unsplash.com/photo-1518548419970-58e3b53332da?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Enugu',         tag: 'Coal city',          image: 'https://images.unsplash.com/photo-1499856871958-2b5f3caa3f4d?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Kano',          tag: 'Ancient city',       image: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Owerri',        tag: 'Southeast gateway',  image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80' },
-];
-
-const faqs = [
-  {
-    question: 'How does flight search work?',
-    answer: 'Enter your origin, destination, travel date, and passenger count. SharpzyTravels queries the provider in real time and returns available fares.',
-  },
-  {
-    question: 'Which routes does SharpzyTravels cover?',
-    answer: 'We cover popular domestic routes across Nigeria including Lagos, Abuja, Port Harcourt, Kano, Enugu, Owerri, and more.',
-  },
-  {
-    question: 'Is my booking information secure?',
-    answer: 'Yes. Bookings are submitted through a secure flow and your data is never shared with third parties.',
-  },
-  {
-    question: 'What if no flights are found?',
-    answer: 'This can happen if the provider has no inventory for that date or route. Try a different date or nearby airport.',
-  },
-];
-
-// ─── Component ────────────────────────────────────────────────────────────────
 
 function Home() {
   const navigate = useNavigate();
 
-  // ── Search form state ─────────────────────────────────────────────────────
-  const [tripType, setTripType]           = useState('round');
-  const [adults, setAdults]               = useState(1);
-  const [children, setChildren]           = useState(0);
-  const [infants, setInfants]             = useState(0);
-  const [from, setFrom]                   = useState({ label: '', code: '' });
-  const [to, setTo]                       = useState({ label: '', code: '' });
-  const [departureDate, setDepartureDate] = useState('');
-  const [returnDate, setReturnDate]       = useState('');
-  const [travelClass, setTravelClass]     = useState('Economy');
-  const [flexibleDates, setFlexibleDates] = useState(false);
-  const [isSearching, setIsSearching]     = useState(false);
-  const [errorMessage, setErrorMessage]   = useState('');
+  // ── State ─────────────────────────────────────────────────────────────────
+  const [trip, setTrip] = useState('oneway'); // 'oneway' | 'return' | 'multi'
+  const [fromQuery, setFromQuery] = useState('Lagos (LOS)');
+  const [fromCode, setFromCode] = useState('LOS');
+  const [fromSuggestionsOpen, setFromSuggestionsOpen] = useState(false);
 
-  const handleSwapAirports = () => {
-    setFrom(to);
-    setTo(from);
+  const [toQuery, setToQuery] = useState('Abuja (ABV)');
+  const [toCode, setToCode] = useState('ABV');
+  const [toSuggestionsOpen, setToSuggestionsOpen] = useState(false);
+
+  const [departureDate, setDepartureDate] = useState(() => {
+    return new Date(Date.now() + 86400000 * 7).toISOString().slice(0, 10);
+  });
+  const [returnDate, setReturnDate] = useState('');
+
+  // Passengers & Class
+  const [adults, setAdults] = useState(1);
+  const [children, setChildren] = useState(0);
+  const [infants, setInfants] = useState(0);
+  const [cabin, setCabin] = useState('Economy');
+  const [passengerPopoverOpen, setPassengerPopoverOpen] = useState(false);
+
+  // Multi-city leg manager
+  const [multiCitySegments, setMultiCitySegments] = useState(() => [
+    { fromQuery: 'Lagos (LOS)', fromCode: 'LOS', toQuery: 'Abuja (ABV)', toCode: 'ABV', departureDate: new Date(Date.now() + 86400000 * 7).toISOString().slice(0, 10) },
+    { fromQuery: 'Abuja (ABV)', fromCode: 'ABV', toQuery: 'Port Harcourt (PHC)', toCode: 'PHC', departureDate: new Date(Date.now() + 86400000 * 10).toISOString().slice(0, 10) },
+  ]);
+
+  // Loading & Toast
+  const [isSearching, setIsSearching] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
+
+  const today = new Date().toISOString().slice(0, 10);
+
+  const fromRef = useRef(null);
+  const toRef = useRef(null);
+
+  // Show Toast helper
+  const showToast = (msg) => {
+    setToastMessage(msg);
+    setTimeout(() => {
+      setToastMessage('');
+    }, 3500);
   };
 
-  const handleSearch = async (event) => {
-    event.preventDefault();
-    if (!from.code || !to.code || !departureDate) {
-      setErrorMessage('Please select departure and destination airports from suggestions and choose a departure date.');
-      return;
+  // Close airport suggestions when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (fromRef.current && !fromRef.current.contains(e.target)) {
+        setFromSuggestionsOpen(false);
+      }
+      if (toRef.current && !toRef.current.contains(e.target)) {
+        setToSuggestionsOpen(false);
+      }
+    };
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, []);
+
+  // Filter airports for autocomplete
+  const getMatches = (q) => {
+    const query = (q || '').trim().toLowerCase();
+    return AIRPORTS.filter(
+      (a) =>
+        !query ||
+        a.city.toLowerCase().includes(query) ||
+        a.name.toLowerCase().includes(query) ||
+        a.code.toLowerCase().includes(query)
+    ).slice(0, 6);
+  };
+
+  // Swap airports
+  const handleSwap = () => {
+    const tempQ = fromQuery;
+    const tempC = fromCode;
+    setFromQuery(toQuery);
+    setFromCode(toCode);
+    setToQuery(tempQ);
+    setToCode(tempC);
+  };
+
+  // Counter change handler
+  const handleCounter = (type, dir) => {
+    if (type === 'adults') {
+      const next = Math.max(1, adults + dir);
+      if (infants > next) {
+        showToast('Infants cannot exceed adults.');
+        return;
+      }
+      setAdults(next);
+    } else if (type === 'children') {
+      setChildren(Math.max(0, children + dir));
+    } else if (type === 'infants') {
+      const next = Math.max(0, infants + dir);
+      if (next > adults) {
+        showToast('Infants cannot exceed adults.');
+        return;
+      }
+      setInfants(next);
     }
-    if (from.code === to.code) {
-      setErrorMessage('Origin and destination cannot be the same.');
-      return;
+  };
+
+  // Format passenger summary
+  const getPassengerSummary = () => {
+    const parts = [`${adults} Adult${adults !== 1 ? 's' : ''}`];
+    if (children > 0) parts.push(`${children} Child${children !== 1 ? 'ren' : ''}`);
+    if (infants > 0) parts.push(`${infants} Infant${infants !== 1 ? 's' : ''}`);
+    return `${parts.join(', ')}, ${cabin}`;
+  };
+
+  // Form submit search handler
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+
+    if (trip === 'multi') {
+      const firstSeg = multiCitySegments[0];
+      if (!firstSeg.fromCode || !firstSeg.toCode || !firstSeg.departureDate) {
+        showToast('Please complete all fields for your first multi-city flight leg.');
+        return;
+      }
+      if (firstSeg.fromCode === firstSeg.toCode) {
+        showToast('Departure and destination cannot be the same airport.');
+        return;
+      }
+    } else {
+      if (!fromCode || !toCode) {
+        showToast('Please select your departure and destination airports.');
+        return;
+      }
+      if (fromCode === toCode) {
+        showToast('Departure and destination cannot be the same.');
+        return;
+      }
+      if (!departureDate) {
+        showToast('Please select a valid departure date.');
+        return;
+      }
     }
+
+    const searchPayload = {
+      tripType: trip === 'oneway' ? 'oneWay' : (trip === 'return' ? 'roundTrip' : 'multiCity'),
+      origin: trip === 'multi' ? multiCitySegments[0].fromCode : fromCode,
+      destination: trip === 'multi' ? multiCitySegments[0].toCode : toCode,
+      departureDate: trip === 'multi' ? multiCitySegments[0].departureDate : departureDate,
+      returnDate: trip === 'return' ? returnDate : undefined,
+      adults,
+      children,
+      infants,
+      travelClass: cabin,
+      multiCitySegments: trip === 'multi' ? multiCitySegments : undefined,
+    };
 
     setIsSearching(true);
-    setErrorMessage('');
 
     try {
-      const response = await searchFlights({
-        origin:        from.code,
-        destination:   to.code,
-        departureDate,
-        returnDate:    tripType === 'oneway' ? '' : returnDate,
-        adults,
-        children,
-        infants,
-        cabinClass:    travelClass,
-        flexibleDates,
-        tripType,
-      });
-
+      const resultsData = await searchFlights(searchPayload);
+      setIsSearching(false);
+      navigate('/results', { state: resultsData });
+    } catch (err) {
+      setIsSearching(false);
       navigate('/results', {
         state: {
-          search: {
-            origin:       from.label,
-            destination:  to.label,
-            departureDate,
-            returnDate:   tripType === 'oneway' ? '' : returnDate,
-            adults,
-            children,
-            infants,
-            cabinClass:   travelClass,
-          },
-          flights: response.flights || [],
+          searchQuery: searchPayload,
+          flights: [],
+          error: err.response?.data?.message || 'Unable to load flight search results. Please try again.',
         },
       });
-    } catch (error) {
-      const detail = error.response?.data?.message || 'Unable to search for flights right now. Please try again.';
-      setErrorMessage(detail);
-    } finally {
-      setIsSearching(false);
     }
   };
 
-  // ── Render ────────────────────────────────────────────────────────────────
   return (
     <div className="home">
       <Navbar />
-      <SearchLoadingOverlay isVisible={isSearching} />
 
-      {/* ── Hero ─────────────────────────────────────────────────────────── */}
-      <section className="hero" aria-label="Flight search">
-        <div className="hero-backdrop" aria-hidden="true" />
+      <main>
+        {/* Hero Section */}
+        <section className="hero" id="search">
+          <div className="hero-overlay"></div>
+          <div className="hero-content">
+            <p className="eyebrow">YOUR JOURNEY STARTS HERE</p>
+            <h1>
+              Book flights.<br />
+              <span>Travel your way.</span>
+            </h1>
+            <p className="hero-copy">
+              Search flights, compare options and send your booking directly to the SharpzyTravels team.
+            </p>
 
-        <div className="hero-content">
-          <div className="hero-heading">
-            <p className="eyebrow">Domestic flights · Nigeria</p>
-            <h1>Search, compare and book smarter.</h1>
-            <p className="hero-sub">Live fares from trusted Nigerian carriers — Lagos, Abuja, Port Harcourt and beyond.</p>
-          </div>
-
-          <div className="booking-card">
-            <TripTabs activeTrip={tripType} onChange={setTripType} />
-
-            <form onSubmit={handleSearch}>
-              <div className="grid">
-                <div className="location-group">
-                  <AirportSelect
-                    label="From"
-                    value={from.label}
-                    onChange={(selection) => setFrom(selection)}
-                    placeholder="Search departure airport"
-                    excludeValue={to.code}
-                  />
-
-                  <button type="button" className="swap-btn-inline" onClick={handleSwapAirports} aria-label="Swap airports">
-                    ⇌
-                  </button>
-
-                  <AirportSelect
-                    label="To"
-                    value={to.label}
-                    onChange={(selection) => setTo(selection)}
-                    placeholder="Search destination airport"
-                    excludeValue={from.code}
-                  />
-                </div>
-
-                <div className="input-box">
-                  <label>Departure</label>
-                  <input
-                    type="date"
-                    value={departureDate}
-                    onChange={(event) => setDepartureDate(event.target.value)}
-                    required
-                  />
-                </div>
-
-                <div className="input-box">
-                  <label>Return</label>
-                  <input
-                    type="date"
-                    value={returnDate}
-                    onChange={(event) => setReturnDate(event.target.value)}
-                    disabled={tripType === 'oneway'}
-                    style={{ opacity: tripType === 'oneway' ? 0.55 : 1 }}
-                  />
-                </div>
-
-                <PassengerSelect
-                  adults={adults}
-                  setAdults={setAdults}
-                  children={children}
-                  setChildren={setChildren}
-                  infants={infants}
-                  setInfants={setInfants}
-                  cabinClass={travelClass}
-                  setCabinClass={setTravelClass}
-                />
-
-                <div className="input-box checkbox">
-                  <label>
-                    <input
-                      type="checkbox"
-                      checked={flexibleDates}
-                      onChange={(event) => setFlexibleDates(event.target.checked)}
-                    />
-                    Flexible with dates
-                  </label>
-                </div>
+            <div className="search-shell">
+              {/* Trip Tabs */}
+              <div className="trip-tabs" role="tablist">
+                <button
+                  type="button"
+                  className={`trip-tab ${trip === 'oneway' ? 'active' : ''}`}
+                  onClick={() => setTrip('oneway')}
+                >
+                  One way
+                </button>
+                <button
+                  type="button"
+                  className={`trip-tab ${trip === 'return' ? 'active' : ''}`}
+                  onClick={() => setTrip('return')}
+                >
+                  Return
+                </button>
+                <button
+                  type="button"
+                  className={`trip-tab ${trip === 'multi' ? 'active' : ''}`}
+                  onClick={() => setTrip('multi')}
+                >
+                  Multi-city
+                </button>
               </div>
 
-              {errorMessage && <p className="form-status error">{errorMessage}</p>}
+              {/* Standard Search Form */}
+              {trip !== 'multi' ? (
+                <form id="flightForm" className="flight-form" onSubmit={handleFormSubmit}>
+                  {/* From Field */}
+                  <div className="field airport-field" id="fromField" ref={fromRef}>
+                    <label htmlFor="fromInput">Where from?</label>
+                    <input
+                      id="fromInput"
+                      type="text"
+                      autoComplete="off"
+                      placeholder="City or airport"
+                      value={fromQuery}
+                      onChange={(e) => {
+                        setFromQuery(e.target.value);
+                        setFromSuggestionsOpen(true);
+                      }}
+                      onFocus={() => setFromSuggestionsOpen(true)}
+                      required
+                    />
+                    <input type="hidden" id="fromCode" value={fromCode} />
+                    {fromSuggestionsOpen && (
+                      <div className="suggestions" style={{ display: 'block' }}>
+                        {getMatches(fromQuery).map((a) => (
+                          <div
+                            key={a.code}
+                            className="suggestion"
+                            onClick={() => {
+                              setFromQuery(`${a.city} (${a.code})`);
+                              setFromCode(a.code);
+                              setFromSuggestionsOpen(false);
+                            }}
+                          >
+                            <b>{a.city} ({a.code})</b>
+                            <span>{a.name}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
 
-              <button className="search-btn" type="submit" disabled={isSearching}>
-                {isSearching ? 'Searching flights...' : 'Search flights'}
-              </button>
-            </form>
-          </div>
-          {/* ── END search box ─────────────────────────────────────────── */}
+                  {/* Swap Button */}
+                  <button
+                    type="button"
+                    className="swap-btn"
+                    id="swapBtn"
+                    aria-label="Swap airports"
+                    onClick={handleSwap}
+                  >
+                    ↕
+                  </button>
 
-          <div className="hero-trust">
-            <span>Trusted carriers</span>
-            {airlines.map((a) => (
-              <span key={a.name} className="trust-badge" style={{ '--badge-color': a.color }}>{a.code}</span>
-            ))}
-          </div>
-        </div>
-      </section>
+                  {/* To Field */}
+                  <div className="field airport-field" id="toField" ref={toRef}>
+                    <label htmlFor="toInput">Where to?</label>
+                    <input
+                      id="toInput"
+                      type="text"
+                      autoComplete="off"
+                      placeholder="City or airport"
+                      value={toQuery}
+                      onChange={(e) => {
+                        setToQuery(e.target.value);
+                        setToSuggestionsOpen(true);
+                      }}
+                      onFocus={() => setToSuggestionsOpen(true)}
+                      required
+                    />
+                    <input type="hidden" id="toCode" value={toCode} />
+                    {toSuggestionsOpen && (
+                      <div className="suggestions" style={{ display: 'block' }}>
+                        {getMatches(toQuery).map((a) => (
+                          <div
+                            key={a.code}
+                            className="suggestion"
+                            onClick={() => {
+                              setToQuery(`${a.city} (${a.code})`);
+                              setToCode(a.code);
+                              setToSuggestionsOpen(false);
+                            }}
+                          >
+                            <b>{a.city} ({a.code})</b>
+                            <span>{a.name}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
 
-      {/* ── Page body ──────────────────────────────────────────────────────── */}
-      <main className="page-body">
+                  {/* Departure Date */}
+                  <div className="field date-field">
+                    <label htmlFor="departureDate">Departure</label>
+                    <input
+                      type="date"
+                      id="departureDate"
+                      min={today}
+                      value={departureDate}
+                      onChange={(e) => {
+                        setDepartureDate(e.target.value);
+                        if (returnDate && returnDate < e.target.value) {
+                          setReturnDate(e.target.value);
+                        }
+                      }}
+                      required
+                    />
+                  </div>
 
-        {/* Popular routes */}
-        <section className="section" aria-labelledby="routes-heading">
-          <div className="section-header">
-            <p className="label-tag">Popular routes</p>
-            <h2 id="routes-heading">Top Nigerian domestic routes</h2>
-            <p className="section-sub">High-frequency corridors with live inventory from verified carriers.</p>
-          </div>
-          <div className="routes-grid">
-            {popularRoutes.map((r) => (
-              <article className="route-card" key={r.code}>
-                <div className="route-card-airports">
-                  <span className="route-city">{r.from}</span>
-                  <span className="route-arrow" aria-hidden="true">→</span>
-                  <span className="route-city">{r.to}</span>
+                  {/* Return Date */}
+                  {trip === 'return' && (
+                    <div className="field date-field return-date" id="returnWrap">
+                      <label htmlFor="returnDate">Return</label>
+                      <input
+                        type="date"
+                        id="returnDate"
+                        min={departureDate || today}
+                        value={returnDate}
+                        onChange={(e) => setReturnDate(e.target.value)}
+                        required={trip === 'return'}
+                      />
+                    </div>
+                  )}
+
+                  {/* Passengers & Class Trigger */}
+                  <button
+                    type="button"
+                    className="field passenger-field"
+                    id="passengerBtn"
+                    onClick={() => setPassengerPopoverOpen((v) => !v)}
+                  >
+                    <span>
+                      <small>Passengers & class</small>
+                      <strong id="passengerSummary">{getPassengerSummary()}</strong>
+                    </span>
+                    <span>⌄</span>
+                  </button>
+
+                  {/* Search Submit Button */}
+                  <button className="search-btn" type="submit">
+                    Search flights <span>→</span>
+                  </button>
+                </form>
+              ) : (
+                /* Multi-city Search Form Layout */
+                <form className="multicity-form" onSubmit={handleFormSubmit}>
+                  {multiCitySegments.map((seg, idx) => (
+                    <div key={`seg-${idx}`} className="multicity-segment-box">
+                      <span className="segment-badge">Leg {idx + 1}</span>
+                      <div className="flight-form multicity-leg-form">
+                        <div className="field airport-field">
+                          <label>Where from?</label>
+                          <input
+                            type="text"
+                            placeholder="City or airport"
+                            value={seg.fromQuery}
+                            onChange={(e) => {
+                              const val = e.target.value;
+                              setMultiCitySegments((prev) => {
+                                const copy = [...prev];
+                                copy[idx] = { ...copy[idx], fromQuery: val };
+                                return copy;
+                              });
+                            }}
+                          />
+                        </div>
+                        <div className="field airport-field">
+                          <label>Where to?</label>
+                          <input
+                            type="text"
+                            placeholder="City or airport"
+                            value={seg.toQuery}
+                            onChange={(e) => {
+                              const val = e.target.value;
+                              setMultiCitySegments((prev) => {
+                                const copy = [...prev];
+                                copy[idx] = { ...copy[idx], toQuery: val };
+                                return copy;
+                              });
+                            }}
+                          />
+                        </div>
+                        <div className="field date-field">
+                          <label>Departure</label>
+                          <input
+                            type="date"
+                            min={today}
+                            value={seg.departureDate}
+                            onChange={(e) => {
+                              const val = e.target.value;
+                              setMultiCitySegments((prev) => {
+                                const copy = [...prev];
+                                copy[idx] = { ...copy[idx], departureDate: val };
+                                return copy;
+                              });
+                            }}
+                          />
+                        </div>
+                        {multiCitySegments.length > 2 && (
+                          <button
+                            type="button"
+                            className="remove-segment-btn"
+                            onClick={() =>
+                              setMultiCitySegments((prev) => prev.filter((_, i) => i !== idx))
+                            }
+                          >
+                            ✕
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+
+                  <div className="multicity-actions">
+                    <button
+                      type="button"
+                      className="add-flight-leg-btn"
+                      onClick={() =>
+                        setMultiCitySegments((prev) => [
+                          ...prev,
+                          { fromQuery: '', fromCode: '', toQuery: '', toCode: '', departureDate: today },
+                        ])
+                      }
+                    >
+                      + Add Flight Leg
+                    </button>
+                    <button className="search-btn" type="submit">
+                      Search Multi-city Fares <span>→</span>
+                    </button>
+                  </div>
+                </form>
+              )}
+
+              {/* Passenger Popover */}
+              <div className={`passenger-popover ${passengerPopoverOpen ? 'open' : ''}`} id="passengerPopover">
+                <div className="popover-head">
+                  <strong>Passengers</strong>
+                  <button type="button" id="closePassengers" onClick={() => setPassengerPopoverOpen(false)}>
+                    ×
+                  </button>
                 </div>
-                <p className="route-code">{r.code}</p>
-                <p className="route-desc">{r.desc}</p>
-                <button type="button" className="card-btn" onClick={() => navigate('/')}>Search route</button>
-              </article>
-            ))}
-          </div>
-        </section>
 
-        {/* How it works */}
-        <section className="section section--tinted" aria-labelledby="steps-heading">
-          <div className="section-header">
-            <p className="label-tag">How it works</p>
-            <h2 id="steps-heading">Book a flight in four steps</h2>
-          </div>
-          <div className="steps-grid">
-            {steps.map((s) => (
-              <article className="step-card" key={s.n}>
-                <span className="step-n" aria-hidden="true">{s.n}</span>
-                <h3>{s.title}</h3>
-                <p>{s.desc}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        {/* Destinations */}
-        <section className="section" aria-labelledby="dest-heading">
-          <div className="section-header">
-            <p className="label-tag">Destinations</p>
-            <h2 id="dest-heading">Cities travellers fly to most</h2>
-          </div>
-          <div className="dest-grid">
-            {destinations.map((d) => (
-              <article
-                key={d.name}
-                className="dest-card"
-                style={{ backgroundImage: `url(${d.image})` }}
-                aria-label={`${d.name} — ${d.tag}`}
-              >
-                <div className="dest-overlay" aria-hidden="true" />
-                <div className="dest-info">
-                  <p className="dest-tag">{d.tag}</p>
-                  <h3>{d.name}</h3>
+                <div className="counter-row">
+                  <div>
+                    <strong>Adults</strong>
+                    <small>12+</small>
+                  </div>
+                  <div className="counter">
+                    <button type="button" onClick={() => handleCounter('adults', -1)}>−</button>
+                    <b id="adultCount">{adults}</b>
+                    <button type="button" onClick={() => handleCounter('adults', 1)}>+</button>
+                  </div>
                 </div>
-              </article>
-            ))}
-          </div>
-        </section>
 
-        {/* Why SharpzyTravels */}
-        <section className="section section--tinted" aria-labelledby="benefits-heading">
-          <div className="section-header">
-            <p className="label-tag">Why SharpzyTravels</p>
-            <h2 id="benefits-heading">Built for Nigerian travellers</h2>
-            <p className="section-sub">Everything you need to find and book domestic flights with confidence.</p>
-          </div>
-          <div className="benefits-grid">
-            {benefits.map((b) => (
-              <article className="benefit-card" key={b.title}>
-                <div className="benefit-icon" aria-hidden="true">{b.icon}</div>
-                <h3>{b.title}</h3>
-                <p>{b.text}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        {/* Carriers */}
-        <section className="section" aria-labelledby="carriers-heading">
-          <div className="section-header">
-            <p className="label-tag">Carriers</p>
-            <h2 id="carriers-heading">Airlines we search</h2>
-          </div>
-          <div className="carriers-grid">
-            {airlines.map((a) => (
-              <article className="carrier-card" key={a.name}>
-                <div className="carrier-logo-box">
-                  <img
-                    src={getAirlineLogo(a.name, a.code)}
-                    alt={a.name}
-                    className="carrier-logo-img"
-                    onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.src = FALLBACK_AIRLINE_LOGO;
-                    }}
-                  />
+                <div className="counter-row">
+                  <div>
+                    <strong>Children</strong>
+                    <small>2–11</small>
+                  </div>
+                  <div className="counter">
+                    <button type="button" onClick={() => handleCounter('children', -1)}>−</button>
+                    <b id="childCount">{children}</b>
+                    <button type="button" onClick={() => handleCounter('children', 1)}>+</button>
+                  </div>
                 </div>
-                <p className="carrier-name">{a.name}</p>
-              </article>
-            ))}
+
+                <div className="counter-row">
+                  <div>
+                    <strong>Infants</strong>
+                    <small>0–1</small>
+                  </div>
+                  <div className="counter">
+                    <button type="button" onClick={() => handleCounter('infants', -1)}>−</button>
+                    <b id="infantCount">{infants}</b>
+                    <button type="button" onClick={() => handleCounter('infants', 1)}>+</button>
+                  </div>
+                </div>
+
+                <label className="class-select">
+                  Cabin class
+                  <select id="cabin" value={cabin} onChange={(e) => setCabin(e.target.value)}>
+                    <option>Economy</option>
+                    <option>Premium Economy</option>
+                    <option>Business</option>
+                    <option>First</option>
+                  </select>
+                </label>
+
+                <button type="button" className="done-btn" id="donePassengers" onClick={() => setPassengerPopoverOpen(false)}>
+                  Done
+                </button>
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* FAQ */}
-        <section className="section section--tinted" aria-labelledby="faq-heading">
-          <div className="section-header">
-            <p className="label-tag">FAQ</p>
-            <h2 id="faq-heading">Common questions</h2>
+        {/* Trust Strip */}
+        <section className="trust-strip">
+          <div>
+            <strong>Simple booking</strong>
+            <span>Clear flight choices</span>
           </div>
-          <div className="faq-list">
-            {faqs.map((f) => (
-              <details className="faq-item" key={f.question}>
-                <summary className="faq-summary">{f.question}</summary>
-                <p className="faq-answer">{f.answer}</p>
-              </details>
-            ))}
+          <div>
+            <strong>Human support</strong>
+            <span>Your booking goes to SharpzyTravels</span>
           </div>
-        </section>
-
-        {/* CTA */}
-        <section className="section cta-section" aria-labelledby="cta-heading">
-          <div className="cta-inner">
-            <p className="label-tag">Get started</p>
-            <h2 id="cta-heading">Ready to find your next flight?</h2>
-            <p>Search live fares across Nigeria's domestic network right now.</p>
-            <button type="button" className="cta-btn" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-              Search flights
-            </button>
+          <div>
+            <strong>Flexible payment</strong>
+            <span>Pay on site or bank transfer</span>
           </div>
         </section>
 
+        {/* Feature Section */}
+        <section className="feature-section">
+          <div className="section-heading">
+            <p className="eyebrow">SHARPZYTRAVELS</p>
+            <h2>Everything you need to plan your trip.</h2>
+          </div>
+          <div className="feature-grid">
+            <article>
+              <div className="icon">✈</div>
+              <h3>Search flights</h3>
+              <p>Find available flights through the existing SharpzyTravels search system.</p>
+            </article>
+            <article>
+              <div className="icon">✓</div>
+              <h3>Book with confidence</h3>
+              <p>Enter passenger details and submit your booking to the SharpzyTravels team.</p>
+            </article>
+            <article>
+              <div className="icon">☎</div>
+              <h3>Real support</h3>
+              <p>Get help when you need it, from booking through your journey.</p>
+            </article>
+          </div>
+        </section>
+
+        {/* Popular Destinations */}
+        <section className="destinations" id="destinations">
+          <div className="section-heading">
+            <p className="eyebrow">EXPLORE</p>
+            <h2>Popular destinations</h2>
+          </div>
+          <div className="destination-grid">
+            <article
+              className="destination-card lagos"
+              onClick={() => {
+                setFromQuery('Abuja (ABV)');
+                setFromCode('ABV');
+                setToQuery('Lagos (LOS)');
+                setToCode('LOS');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              style={{ cursor: 'pointer' }}
+            >
+              <span>Lagos</span>
+              <small>LOS</small>
+            </article>
+            <article
+              className="destination-card abuja"
+              onClick={() => {
+                setFromQuery('Lagos (LOS)');
+                setFromCode('LOS');
+                setToQuery('Abuja (ABV)');
+                setToCode('ABV');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              style={{ cursor: 'pointer' }}
+            >
+              <span>Abuja</span>
+              <small>ABV</small>
+            </article>
+            <article
+              className="destination-card uyo"
+              onClick={() => {
+                setFromQuery('Lagos (LOS)');
+                setFromCode('LOS');
+                setToQuery('Uyo (QUO)');
+                setToCode('QUO');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              style={{ cursor: 'pointer' }}
+            >
+              <span>Uyo</span>
+              <small>QUO</small>
+            </article>
+            <article
+              className="destination-card enugu"
+              onClick={() => {
+                setFromQuery('Abuja (ABV)');
+                setFromCode('ABV');
+                setToQuery('Enugu (ENU)');
+                setToCode('ENU');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              style={{ cursor: 'pointer' }}
+            >
+              <span>Enugu</span>
+              <small>ENU</small>
+            </article>
+          </div>
+        </section>
+
+        {/* Airlines We Work With */}
+        <section className="airlines" id="airlines">
+          <div className="section-heading">
+            <p className="eyebrow">AIRLINES</p>
+            <h2>Airlines we work with</h2>
+          </div>
+          <div className="airline-row">
+            <div className="airline-pill">AIR PEACE</div>
+            <div className="airline-pill">IBOM AIR</div>
+            <div className="airline-pill">AERO</div>
+            <div className="airline-pill">VALUEJET</div>
+            <div className="airline-pill">ENUGU AIR</div>
+          </div>
+        </section>
+
+        {/* Frequently Asked Questions */}
+        <section className="faq" id="help">
+          <div className="section-heading">
+            <p className="eyebrow">HELP</p>
+            <h2>Frequently asked questions</h2>
+          </div>
+          <details>
+            <summary>How does SharpzyTravels booking work?</summary>
+            <p>
+              Search for a flight, select an option, enter passenger details and submit the booking. The SharpzyTravels team handles the next steps.
+            </p>
+          </details>
+          <details>
+            <summary>How can I pay?</summary>
+            <p>SharpzyTravels currently supports pay on site and direct bank transfer.</p>
+          </details>
+          <details>
+            <summary>Where can I find my booking?</summary>
+            <p>Use the Manage Booking area with your SharpzyTravels booking reference.</p>
+          </details>
+        </section>
       </main>
 
       <Footer />
+
+      {/* Toast Notification */}
+      <div className={`toast ${toastMessage ? 'show' : ''}`} id="toast">
+        {toastMessage}
+      </div>
+
+      {/* Search Overlay */}
+      <SearchLoadingOverlay isVisible={isSearching} />
     </div>
   );
 }

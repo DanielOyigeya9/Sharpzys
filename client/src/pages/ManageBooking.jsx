@@ -42,7 +42,7 @@ function ManageBooking() {
         <div className="manage-container">
           <div className="manage-header">
             <h1>Manage Your Booking</h1>
-            <p>Retrieve, review, or update your SharpzyTravels flight booking request.</p>
+            <p>Retrieve and view details of your SharpzyTravels flight booking request.</p>
           </div>
 
           {/* Search Form Card */}
@@ -57,7 +57,7 @@ function ManageBooking() {
                   onChange={(e) => setBookingRef(e.target.value.toUpperCase())}
                   required
                 />
-                <span className="help-text">6-character code from your e-ticket confirmation</span>
+                <span className="help-text">Your 6-character SharpzyTravels Booking Reference</span>
               </div>
 
               <div className="form-group">
@@ -83,7 +83,7 @@ function ManageBooking() {
             <div className="retrieved-booking-card">
               <div className="booking-status-header">
                 <div>
-                  <span className="ref-tag">SharpzyTravels Booking ID: {retrievedBooking.bookingReference}</span>
+                  <span className="ref-tag">SharpzyTravels Booking Reference: {retrievedBooking.bookingReference}</span>
                   <h2>{retrievedBooking.flight?.origin} → {retrievedBooking.flight?.destination}</h2>
                 </div>
                 <span className={`status-pill ${(retrievedBooking.status || 'pending').toLowerCase()}`}>
@@ -93,18 +93,18 @@ function ManageBooking() {
 
               <div className="details-grid">
                 <div className="detail-item">
-                  <span>SharpzyTravels Booking ID</span>
+                  <span>SharpzyTravels Booking Reference</span>
                   <strong className="ref-code">{retrievedBooking.bookingReference}</strong>
                 </div>
 
                 <div className="detail-item">
                   <span>Airline PNR</span>
-                  <strong>{retrievedBooking.airlinePnr ? retrievedBooking.airlinePnr : 'Not yet assigned'}</strong>
+                  <strong>{retrievedBooking.airlinePnr ? retrievedBooking.airlinePnr : 'Not assigned yet'}</strong>
                 </div>
 
                 <div className="detail-item">
                   <span>Airline & Flight</span>
-                  <strong>{retrievedBooking.flight?.airline} ({retrievedBooking.flight?.flightNumber})</strong>
+                  <strong>{retrievedBooking.flight?.airline} ({retrievedBooking.flight?.flightNumber || 'Direct'})</strong>
                 </div>
 
                 <div className="detail-item">
@@ -113,7 +113,7 @@ function ManageBooking() {
                 </div>
 
                 <div className="detail-item">
-                  <span>Primary Passenger</span>
+                  <span>Booking Contact</span>
                   <strong>{retrievedBooking.passengerName}</strong>
                 </div>
 
@@ -123,13 +123,13 @@ function ManageBooking() {
                 </div>
 
                 <div className="detail-item">
-                  <span>Total Fare</span>
-                  <strong>{retrievedBooking.currency === 'NGN' ? '₦' : '$'}{Number(retrievedBooking.price || 0).toLocaleString()}</strong>
+                  <span>Payment Status / Method</span>
+                  <strong>{retrievedBooking.paymentMethod === 'bank_transfer' || retrievedBooking.paymentMethod === 'bank' ? 'Direct Bank Transfer' : 'Pay on Site'}</strong>
                 </div>
 
                 <div className="detail-item">
-                  <span>Request Created</span>
-                  <strong>{new Date(retrievedBooking.createdAt).toLocaleDateString()}</strong>
+                  <span>Total Fare</span>
+                  <strong>{retrievedBooking.currency === 'NGN' ? '₦' : '$'}{Number(retrievedBooking.price || 0).toLocaleString()}</strong>
                 </div>
               </div>
 

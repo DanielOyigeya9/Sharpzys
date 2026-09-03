@@ -1,7 +1,8 @@
 function TripTabs({ activeTrip, onChange }) {
   const tabs = [
-    { key: 'round', label: 'Round Trip' },
-    { key: 'oneway', label: 'One Way' },
+    { key: 'round', label: 'Round trip' },
+    { key: 'oneway', label: 'One way' },
+    { key: 'multicity', label: 'Multi-city' },
   ];
 
   return (
@@ -21,3 +22,4 @@ function TripTabs({ activeTrip, onChange }) {
 }
 
 export default TripTabs;
+

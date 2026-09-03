@@ -13,7 +13,7 @@ function Admin() {
   const [searchFilter, setSearchFilter] = useState('');
   const [updatingRef, setUpdatingRef] = useState(null);
 
-  // PNR Edit inline modal/prompt state
+  // PNR Edit inline modal state
   const [pnrModalBooking, setPnrModalBooking] = useState(null);
   const [pnrInput, setPnrInput] = useState('');
 
@@ -31,7 +31,24 @@ function Admin() {
   };
 
   useEffect(() => {
-    fetchDashboardData();
+    let ignore = false;
+    getBookings()
+      .then((response) => {
+        if (!ignore) {
+          setBookings(response.bookings || []);
+          setIsLoading(false);
+        }
+      })
+      .catch((err) => {
+        if (!ignore) {
+          setError(err.response?.data?.message || err.message || 'Failed to load booking requests from database.');
+          setIsLoading(false);
+        }
+      });
+
+    return () => {
+      ignore = true;
+    };
   }, []);
 
   const handleStatusChange = async (ref, newStatus) => {
@@ -169,7 +186,7 @@ function Admin() {
             onClick={() => { setActiveTab('searches'); setSidebarOpen(false); }}
           >
             <span className="nav-icon">🔍</span>
-            <span>Flights / Supported</span>
+            <span>Supported Airlines</span>
           </button>
 
           <button
@@ -186,11 +203,11 @@ function Admin() {
           <div className="ops-status">
             <span className="status-dot green"></span>
             <div>
-              <strong>Operations Desk</strong>
-              <p>Server DB Synced</p>
+              <strong>SharpzyTravels Ops Desk</strong>
+              <p>Database Synced</p>
             </div>
           </div>
-          <Link to="/" className="exit-admin-btn">← Back to Site</Link>
+          <Link to="/" className="exit-admin-btn">← Back to SharpzyTravels</Link>
         </div>
       </aside>
 
@@ -226,7 +243,7 @@ function Admin() {
               🔄 {isLoading ? 'Syncing...' : 'Refresh DB'}
             </button>
             <div className="admin-user-badge">
-              <div className="avatar">OP</div>
+              <div className="avatar">ST</div>
               <div className="user-info">
                 <strong>SharpzyTravels Ops</strong>
                 <span>Administrator</span>
@@ -242,7 +259,7 @@ function Admin() {
             <div className="admin-loading-state">
               <div className="admin-spinner"></div>
               <h3>Loading dashboard...</h3>
-              <p>Fetching server-persisted booking records</p>
+              <p>Fetching server-persisted database records</p>
             </div>
           )}
 
@@ -297,7 +314,7 @@ function Admin() {
                   <div className="stat-content">
                     <span className="stat-label">Confirmed (PNR)</span>
                     <strong className="stat-value">{stats.confirmed}</strong>
-                    <span className="stat-sub">Real PNR assigned</span>
+                    <span className="stat-sub">Airline PNR assigned</span>
                   </div>
                 </div>
               </section>
@@ -308,7 +325,7 @@ function Admin() {
                   <div className="table-header-bar">
                     <div>
                       <h2>Booking Requests & Airline PNR Management</h2>
-                      <p>Review booking requests, approve requests, and enter real carrier Airline PNRs.</p>
+                      <p>Review booking requests, approve requests, and assign real Airline PNRs.</p>
                     </div>
 
                     <div className="table-search-box">
@@ -339,6 +356,7 @@ function Admin() {
                             <th>Airline</th>
                             <th>Route</th>
                             <th>Travel Date</th>
+                            <th>Payment</th>
                             <th>Status</th>
                             <th>Airline PNR</th>
                             <th>Created</th>
@@ -346,7 +364,7 @@ function Admin() {
                           </tr>
                         </thead>
                         <tbody>
-                          {filteredBookings.map((b) => {
+                          {filteredBookings.map((b, idx) => {
                             const statusLower = (b.status || '').toLowerCase();
                             const isPending = statusLower === 'pending';
                             const isApproved = statusLower === 'approved';
@@ -355,7 +373,7 @@ function Admin() {
                             const isUpdating = updatingRef === b.bookingReference;
 
                             return (
-                              <tr key={b.bookingReference || Math.random()}>
+                              <tr key={b.bookingReference || idx}>
                                 <td>
                                   <span className="ref-code">{b.bookingReference}</span>
                                 </td>
@@ -370,6 +388,11 @@ function Admin() {
                                   <span className="airport-badge">{b.flight?.origin || 'N/A'} → {b.flight?.destination || 'N/A'}</span>
                                 </td>
                                 <td>{b.flight?.departureTime || b.flight?.departureDate || 'N/A'}</td>
+                                <td>
+                                  <span className="sub-text">
+                                    {b.paymentMethod === 'bank_transfer' || b.paymentMethod === 'bank' ? 'Bank Transfer' : 'Pay on Site'}
+                                  </span>
+                                </td>
                                 <td>
                                   <span className={`status-pill ${statusLower}`}>
                                     ● {b.status || 'Pending'}
@@ -475,25 +498,25 @@ function Admin() {
                 <section className="table-section-card">
                   <div className="table-header-bar">
                     <div>
-                      <h2>Supported Airlines System</h2>
-                      <p>Flight search results are strictly restricted to these 5 supported carriers.</p>
+                      <h2>SharpzyTravels Supported Airlines Focus</h2>
+                      <p>Domestic carrier focus configured for SharpzyTravels.</p>
                     </div>
                   </div>
                   <div className="supported-airlines-grid">
                     <div className="airline-card-supported">
                       <div className="icon">✈</div>
                       <h3>Air Peace (P4 / AP)</h3>
-                      <p>Full support for domestic routes across Nigeria.</p>
+                      <p>Air Peace domestic route network.</p>
                     </div>
                     <div className="airline-card-supported">
                       <div className="icon">✈</div>
                       <h3>Ibom Air (QI / IA)</h3>
-                      <p>Uyo, Lagos, Abuja, Calabar, Enugu, Port Harcourt hubs.</p>
+                      <p>Ibom Air Uyo, Lagos, Abuja regional routes.</p>
                     </div>
                     <div className="airline-card-supported">
                       <div className="icon">✈</div>
                       <h3>Aero Contractors (N2 / MN)</h3>
-                      <p>Aero regional and domestic flight networks.</p>
+                      <p>Aero domestic passenger flights.</p>
                     </div>
                     <div className="airline-card-supported">
                       <div className="icon">✈</div>
@@ -503,7 +526,7 @@ function Admin() {
                     <div className="airline-card-supported">
                       <div className="icon">✈</div>
                       <h3>Enugu Air (E3 / EG)</h3>
-                      <p>Enugu regional connection flights.</p>
+                      <p>Enugu regional regional flight routes.</p>
                     </div>
                   </div>
                 </section>
@@ -522,7 +545,7 @@ function Admin() {
                     <div className="admin-empty-state">
                       <div className="empty-illustration">👥</div>
                       <h3>No customer records found.</h3>
-                      <p>Customer contact details will be automatically compiled as bookings are created.</p>
+                      <p>Customer contact details will be compiled automatically as bookings are created.</p>
                     </div>
                   ) : (
                     <div className="table-responsive">
@@ -567,7 +590,7 @@ function Admin() {
           <div className="modal-card" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
               <div>
-                <span className="ref-tag">SharpzyTravels Booking ID: {selectedBooking.bookingReference}</span>
+                <span className="ref-tag">SharpzyTravels Booking Reference: {selectedBooking.bookingReference}</span>
                 <h2>Booking Detail Record</h2>
               </div>
               <button
@@ -582,7 +605,7 @@ function Admin() {
             <div className="modal-body">
               <div className="detail-grid">
                 <div className="detail-item highlighted-field">
-                  <span className="detail-label">SHARPZYTRAVELS BOOKING ID</span>
+                  <span className="detail-label">SHARPZYTRAVELS BOOKING REFERENCE</span>
                   <strong className="detail-val ref-code-lg">{selectedBooking.bookingReference}</strong>
                 </div>
 
@@ -611,7 +634,7 @@ function Admin() {
                 </div>
 
                 <div className="detail-item">
-                  <span className="detail-label">Primary Passenger</span>
+                  <span className="detail-label">Booking Contact</span>
                   <strong className="detail-val">{selectedBooking.passengerName}</strong>
                 </div>
 
@@ -646,7 +669,7 @@ function Admin() {
 
               {(selectedBooking.passengers?.length || 0) > 0 && (
                 <div className="modal-note-box">
-                  <strong>Passengers:</strong>
+                  <strong>Passenger Forms ({selectedBooking.passengers.length}):</strong>
                   <div className="passenger-list-admin">
                     {selectedBooking.passengers.map((passenger, idx) => (
                       <div key={`${passenger.roleLabel || passenger.type || 'passenger'}-${idx}`} className="admin-passenger-entry">
@@ -716,7 +739,7 @@ function Admin() {
             <form onSubmit={handlePnrSubmit}>
               <div className="modal-body">
                 <p className="pnr-modal-desc">
-                  Enter the official reservation <strong>Airline PNR</strong> code received from <strong>{pnrModalBooking.flight?.airline || 'the carrier'}</strong> for SharpzyTravels Booking ID <code>{pnrModalBooking.bookingReference}</code>.
+                  Enter the official reservation <strong>Airline PNR</strong> code received from <strong>{pnrModalBooking.flight?.airline || 'the carrier'}</strong> for SharpzyTravels Booking Reference <code>{pnrModalBooking.bookingReference}</code>.
                 </p>
 
                 <div className="form-group">

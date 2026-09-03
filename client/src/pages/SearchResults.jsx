@@ -9,6 +9,9 @@ import SearchLoadingOverlay from '../components/SearchLoadingOverlay';
 import { searchFlights } from '../services/api';
 import '../styles/search-results.css';
 
+// Configurable focus list of supported airlines
+const SUPPORTED_AIRLINE_FOCUS = ['Air Peace', 'Ibom Air', 'Aero Contractors', 'Aero', 'ValueJet', 'Enugu Air'];
+
 function SearchResults() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -148,8 +151,8 @@ function SearchResults() {
 
       setFlights(response.flights || []);
       setIsModifying(false);
-    } catch (err) {
-      setSearchError(err.response?.data?.message || err.message || 'Flight search failed. Please try again.');
+    } catch {
+      setSearchError('Flights are temporarily unavailable.');
     } finally {
       setIsSearching(false);
     }
@@ -162,6 +165,9 @@ function SearchResults() {
     setMaxPriceFilter(0);
   };
 
+  const originDisplay = searchParams.originCode || extractCode(searchParams.origin) || 'LOS';
+  const destDisplay = searchParams.destinationCode || extractCode(searchParams.destination) || 'ABV';
+
   return (
     <div className="results-wrapper">
       <Navbar />
@@ -172,16 +178,16 @@ function SearchResults() {
         <section className="search-summary-section">
           <div className="summary-content">
             <div className="summary-text-col">
-              <h1>{searchState.originCode} <span className="arrow">→</span> {searchState.destinationCode}</h1>
+              <h1>{originDisplay} <span className="arrow">→</span> {destDisplay}</h1>
               <p>
-                {searchState.departureDate}
-                {searchState.returnDate ? ` - ${searchState.returnDate}` : ''}
+                {searchParams.departureDate}
+                {searchParams.returnDate ? ` - ${searchParams.returnDate}` : ''}
                 <span className="divider">•</span>
-                {searchState.adults} Adult{searchState.adults > 1 ? 's' : ''}
-                {searchState.children > 0 ? `, ${searchState.children} Child${searchState.children > 1 ? 'ren' : ''}` : ''}
-                {searchState.infants > 0 ? `, ${searchState.infants} Infant${searchState.infants > 1 ? 's' : ''}` : ''}
+                {searchParams.adults} Adult{searchParams.adults > 1 ? 's' : ''}
+                {searchParams.children > 0 ? `, ${searchParams.children} Child${searchParams.children > 1 ? 'ren' : ''}` : ''}
+                {searchParams.infants > 0 ? `, ${searchParams.infants} Infant${searchParams.infants > 1 ? 's' : ''}` : ''}
                 <span className="divider">•</span>
-                {searchState.cabinClass}
+                {searchParams.cabinClass || 'Economy'}
               </p>
             </div>
             <button
@@ -199,10 +205,10 @@ function SearchResults() {
               <form onSubmit={handleModifySubmit} className="modify-form-grid">
                 <div className="location-group">
                   <AirportSelect
-                    label="From"
+                    label="Where from?"
                     value={searchParams.origin}
                     onChange={(val) => setSearchParams((prev) => ({ ...prev, origin: val.label, originCode: val.code }))}
-                    placeholder="Departure airport"
+                    placeholder="Departure airport or city"
                   />
 
                   <button type="button" className="swap-btn-inline" onClick={handleSwapAirports} aria-label="Swap airports">
@@ -210,15 +216,15 @@ function SearchResults() {
                   </button>
 
                   <AirportSelect
-                    label="To"
+                    label="Where to?"
                     value={searchParams.destination}
                     onChange={(val) => setSearchParams((prev) => ({ ...prev, destination: val.label, destinationCode: val.code }))}
-                    placeholder="Destination airport"
+                    placeholder="Destination airport or city"
                   />
                 </div>
 
                 <div className="input-box">
-                  <label>Departure Date</label>
+                  <label>Departure date</label>
                   <input
                     type="date"
                     value={searchParams.departureDate}
@@ -227,16 +233,16 @@ function SearchResults() {
                   />
                 </div>
 
-                  <PassengerSelect
-                    adults={searchParams.adults || 1}
-                    setAdults={(val) => setSearchParams((prev) => ({ ...prev, adults: typeof val === 'function' ? val(prev.adults || 1) : val }))}
-                    children={searchParams.children || 0}
-                    setChildren={(val) => setSearchParams((prev) => ({ ...prev, children: typeof val === 'function' ? val(prev.children || 0) : val }))}
-                    infants={searchParams.infants || 0}
-                    setInfants={(val) => setSearchParams((prev) => ({ ...prev, infants: typeof val === 'function' ? val(prev.infants || 0) : val }))}
-                    cabinClass={searchParams.cabinClass || 'Economy'}
-                    setCabinClass={(val) => setSearchParams((prev) => ({ ...prev, cabinClass: typeof val === 'function' ? val(prev.cabinClass || 'Economy') : val }))}
-                  />
+                <PassengerSelect
+                  adults={searchParams.adults || 1}
+                  setAdults={(val) => setSearchParams((prev) => ({ ...prev, adults: typeof val === 'function' ? val(prev.adults || 1) : val }))}
+                  children={searchParams.children || 0}
+                  setChildren={(val) => setSearchParams((prev) => ({ ...prev, children: typeof val === 'function' ? val(prev.children || 0) : val }))}
+                  infants={searchParams.infants || 0}
+                  setInfants={(val) => setSearchParams((prev) => ({ ...prev, infants: typeof val === 'function' ? val(prev.infants || 0) : val }))}
+                  cabinClass={searchParams.cabinClass || 'Economy'}
+                  setCabinClass={(val) => setSearchParams((prev) => ({ ...prev, cabinClass: typeof val === 'function' ? val(prev.cabinClass || 'Economy') : val }))}
+                />
 
                 <div className="modify-actions">
                   <button type="submit" className="update-search-btn" disabled={isSearching}>
@@ -323,17 +329,20 @@ function SearchResults() {
                       />
                       <span>All Carriers ({availableAirlines.length})</span>
                     </label>
-                    {availableAirlines.map((airline) => (
-                      <label className="filter-radio" key={airline}>
-                        <input
-                          type="radio"
-                          name="airline"
-                          checked={selectedAirline === airline}
-                          onChange={() => setSelectedAirline(airline)}
-                        />
-                        <span>{airline}</span>
-                      </label>
-                    ))}
+                    {availableAirlines.map((airline) => {
+                      const isSupported = SUPPORTED_AIRLINE_FOCUS.some((a) => a.toLowerCase() === airline.toLowerCase());
+                      return (
+                        <label className="filter-radio" key={airline}>
+                          <input
+                            type="radio"
+                            name="airline"
+                            checked={selectedAirline === airline}
+                            onChange={() => setSelectedAirline(airline)}
+                          />
+                          <span>{airline} {isSupported ? '⭐' : ''}</span>
+                        </label>
+                      );
+                    })}
                   </div>
                 </div>
               )}
@@ -453,8 +462,19 @@ function SearchResults() {
                 </div>
               )}
 
-              {/* No Flights Found State */}
-              {!isSearching && filteredFlights.length === 0 && (
+              {/* Error banner if search fails */}
+              {searchError && (
+                <div className="results-error-banner">
+                  <div className="error-icon">⚠️</div>
+                  <div className="error-body">
+                    <h3>Flights are temporarily unavailable.</h3>
+                    <p>We could not fetch live flight inventory right now. Please try again in a few moments.</p>
+                  </div>
+                </div>
+              )}
+
+              {/* No Flights Found State (Requirement 17) */}
+              {!isSearching && !searchError && filteredFlights.length === 0 && (
                 <div className="results-empty-card">
                   <div className="empty-icon-wrap">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="empty-svg">
@@ -462,11 +482,20 @@ function SearchResults() {
                       <path d="M8 12h8M12 8v8"/>
                     </svg>
                   </div>
-                  <h3>No flights found for this route and date</h3>
-                  <p>Try searching different travel dates or nearby airports to see available carrier inventory.</p>
-                  <button type="button" className="primary-action-btn" onClick={resetFilters}>
-                    Reset All Filters
-                  </button>
+                  <h3>No flights found</h3>
+                  <p>There are no available flights matching your selected origin, destination, or date.</p>
+
+                  <div className="empty-suggestions-list">
+                    <button type="button" className="empty-suggestion-btn" onClick={() => setIsModifying(true)}>
+                      📅 Try another date
+                    </button>
+                    <button type="button" className="empty-suggestion-btn" onClick={() => setIsModifying(true)}>
+                      📍 Change your destination
+                    </button>
+                    <button type="button" className="empty-suggestion-btn" onClick={() => setIsModifying(true)}>
+                      🔍 Modify your search
+                    </button>
+                  </div>
                 </div>
               )}
 
@@ -490,11 +519,6 @@ function SearchResults() {
       <Footer />
     </div>
   );
-}
-
-function getCity(airportStr) {
-  if (!airportStr) return 'Airport';
-  return airportStr.split('—')[0].trim() || airportStr;
 }
 
 function extractCode(str) {
