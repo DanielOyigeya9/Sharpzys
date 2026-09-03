@@ -3,7 +3,7 @@ services:
     name: flynow-flight-booking
     env: node
     plan: free
-    buildCommand: npm install && npm run build
+    buildCommand: npm install && npx playwright install chromium && npm run build
     startCommand: npm start
     envVars:
       - key: NODE_ENV
@@ -12,3 +12,7 @@ services:
         value: 10000
       - key: FRONTEND_URL
         value: https://sharpzys.onrender.com
+      - key: PLAYWRIGHT_BROWSERS_PATH
+        value: /opt/render/project/src/.playwright-browsers
+      - key: PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD
+        value: 0
