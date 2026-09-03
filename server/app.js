@@ -48,6 +48,10 @@ const PORT = parseInt(process.env.PORT || '5000', 10);
 const ENV  = process.env.NODE_ENV || 'development';
 
 // ─── Trusted origins (for API CORS only) ──────────────────────────────────────
+//
+// Build from env vars first, then add a hard-coded production fallback so that
+// the Render deployment always allows its own frontend even when the env var is
+// not yet set.  localhost origins are included for local development only.
 const configuredOrigins = [
   process.env.FRONTEND_URL,
   process.env.ALLOWED_ORIGINS,
@@ -55,6 +59,12 @@ const configuredOrigins = [
 
 const allowedOrigins = configuredOrigins
   .flatMap((value) => value.split(',').map((origin) => origin.trim()).filter(Boolean));
+
+// Production fallback — always allow the deployed frontend.
+// This is safe because it is a specific origin, not a wildcard.
+if (!allowedOrigins.includes('https://sharpzys.onrender.com')) {
+  allowedOrigins.push('https://sharpzys.onrender.com');
+}
 
 if (ENV !== 'production') {
   // Vite dev server + common local ports
@@ -66,11 +76,15 @@ if (ENV !== 'production') {
 }
 
 const corsOptions = {
-  origin(origin, callback) {
+  origin(requestOrigin, callback) {
     // Requests with no Origin header (same-origin, curl, Postman) are allowed.
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.includes(origin)) return callback(null, true);
-    callback(new Error(`CORS: Origin "${origin}" is not allowed.`));
+    if (!requestOrigin) return callback(null, true);
+
+    // Normalise: strip any trailing slash the browser might send.
+    const normalisedOrigin = requestOrigin.replace(/\/$/, '');
+
+    if (allowedOrigins.includes(normalisedOrigin)) return callback(null, true);
+    callback(new Error(`CORS: Origin "${requestOrigin}" is not allowed.`));
   },
   methods:              ['GET', 'POST', 'OPTIONS'],
   allowedHeaders:       ['Content-Type', 'Authorization'],
