@@ -708,7 +708,7 @@ async function runSearch(searchParams) {
       logger.info('searchBot: Waiting For Network Responses');
 
       const resultsStartedAt = Date.now();
-      const maxWaitWindowMs  = Math.min(15000, Math.max(8000, remaining()));
+      const maxWaitWindowMs  = Math.min(30000, Math.max(15000, remaining()));
       const deadline         = resultsStartedAt + maxWaitWindowMs;
 
       const hasFlights = (payloads) => payloads.some((p) => {
@@ -731,9 +731,9 @@ async function runSearch(searchParams) {
           break;
         }
 
-        // If results are quiet for 6s even if empty, exit loop
-        if (resultResponseCount > 0 && quietMs >= 6000) {
-          logger.info('searchBot: results quiet for 6s — proceeding to parse', {
+        // If results are quiet for 12s even if empty, exit loop
+        if (resultResponseCount > 0 && quietMs >= 12000) {
+          logger.info('searchBot: results quiet for 12s — proceeding to parse', {
             resultResponseCount,
             foundFlights,
           });
@@ -809,7 +809,7 @@ async function runSearch(searchParams) {
     logger.info('searchBot: waiting for results...');
     logger.info('searchBot: Waiting For Network Responses');
     const resultsStartedAt = Date.now();
-    const maxWaitWindowMs  = Math.min(15000, Math.max(8000, remaining()));
+    const maxWaitWindowMs  = Math.min(30000, Math.max(15000, remaining()));
     const deadline         = resultsStartedAt + maxWaitWindowMs;
 
     const hasFlights = (payloads) => payloads.some((p) => {
@@ -831,8 +831,8 @@ async function runSearch(searchParams) {
         break;
       }
 
-      if (resultResponseCount > 0 && quietMs >= 6000) {
-        logger.info('searchBot: results quiet for 6s — proceeding to parse', {
+      if (resultResponseCount > 0 && quietMs >= 12000) {
+        logger.info('searchBot: results quiet for 12s — proceeding to parse', {
           resultResponseCount,
           foundFlights,
         });
