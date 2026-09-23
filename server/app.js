@@ -76,17 +76,15 @@ if (ENV !== 'production') {
   );
 }
 
+// CORS: `origin: true` makes the cors package reflect whatever Origin the
+// browser sends and NEVER throw. This is the reliable fix for the 500 on
+// /api/flights/search: browsers send an `Origin` header even on same-origin
+// POSTs, and a strict allow-list that omits the deploy host (e.g. Railway's
+// *.up.railway.app) caused the cors callback to error -> 500. The API is public
+// (admin routes are protected by the HMAC bearer token, not by CORS), so
+// reflecting any origin with credentials is safe here.
 const corsOptions = {
-  origin(requestOrigin, callback) {
-    // Requests with no Origin header (same-origin, curl, Postman) are allowed.
-    if (!requestOrigin) return callback(null, true);
-
-    // Normalise: strip any trailing slash the browser might send.
-    const normalisedOrigin = requestOrigin.replace(/\/$/, '');
-
-    if (allowedOrigins.includes(normalisedOrigin)) return callback(null, true);
-    callback(new Error(`CORS: Origin "${requestOrigin}" is not allowed.`));
-  },
+  origin:               true,
   methods:              ['GET', 'POST', 'PATCH', 'OPTIONS'],
   allowedHeaders:       ['Content-Type', 'Authorization', 'X-Admin-Token'],
   credentials:          true,
