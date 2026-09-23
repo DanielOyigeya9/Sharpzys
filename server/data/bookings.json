@@ -1,5 +1,137 @@
 [
   {
+    "airlinePnr": "PPNDYGDG9Y",
+    "bookingReference": "FN-WLDEH6",
+    "status": "Confirmed",
+    "statusMessage": "Your flight reservation has been confirmed with Enugu Air. Airline PNR: PPNDYGDG9Y.",
+    "passengerName": "Daniel Oyigeya",
+    "email": "play96878@gmail.com",
+    "phone": "+234 8103764268746",
+    "passengers": [
+      {
+        "type": "Adult",
+        "roleLabel": "Adult 1",
+        "title": "Mr",
+        "firstName": "Daniel",
+        "middleName": "",
+        "lastName": "Oyigeya",
+        "dateOfBirth": "2026-09-24",
+        "gender": "Male",
+        "nationality": "Nigerian",
+        "passportNumber": "",
+        "phone": "",
+        "email": ""
+      }
+    ],
+    "flight": {
+      "id": "flynaija-enugu_EE1424_2026-09-24_1x6z8a",
+      "provider": "EnuguAir",
+      "source": "flynaija-enugu",
+      "airline": "Enugu Air",
+      "airlineCode": "EU",
+      "flightNumber": "EE1424",
+      "origin": "LOS",
+      "destination": "ABV",
+      "departureAirport": "LOS",
+      "arrivalAirport": "ABV",
+      "departureDate": "2026-09-24",
+      "departureTime": "19:10",
+      "arrivalDate": "2026-09-24",
+      "arrivalTime": "20:25",
+      "duration": 75,
+      "stops": 0,
+      "cabinClass": "Economy",
+      "price": 105001,
+      "totalPrice": null,
+      "seatsAvailable": null,
+      "currency": "NGN",
+      "aircraft": "",
+      "bookingUrl": "https://booking.enuguairlines.ng/?from=LOS&to=ABV&date=2026-09-24&passengers=1",
+      "availabilityStatus": "AVAILABLE",
+      "rawOfferId": "synced-cmucz8jp507crr2qk7ytosoet",
+      "metadata": {
+        "flynaijaAirlineId": "enugu-air",
+        "flynaijaSource": "mock",
+        "lastUpdated": "2026-09-23T05:57:57.920Z",
+        "deepLink": "https://booking.enuguairlines.ng/?from=LOS&to=ABV&date=2026-09-24&passengers=1",
+        "segments": [
+          {
+            "flightNumber": "EE1424",
+            "carrierCode": "EU",
+            "from": "LOS",
+            "to": "ABV",
+            "depTime": "2026-09-24T19:10:00",
+            "arrTime": "2026-09-24T20:25:00"
+          }
+        ]
+      }
+    },
+    "price": 105001,
+    "currency": "NGN",
+    "extras": {
+      "seatPreference": "Any available seat",
+      "mealPreference": "Standard meal",
+      "specialAssistance": "None"
+    },
+    "paymentMethod": "bank_transfer",
+    "createdAt": "2026-09-23T06:05:38.665Z",
+    "updatedAt": "2026-09-23T06:10:12.163Z"
+  },
+  {
+    "airlinePnr": null,
+    "bookingReference": "FN-6JP3PX",
+    "status": "Pending",
+    "statusMessage": "Your booking request has been received. Our operations team is confirming seat availability and ticketing.",
+    "passengerName": "Daniel Oyigeya",
+    "email": "oyigeyadan@gmail.com",
+    "phone": "+234 89198762876683",
+    "passengers": [
+      {
+        "type": "Adult",
+        "roleLabel": "Adult 1",
+        "title": "Mr",
+        "firstName": "Daniel",
+        "middleName": "",
+        "lastName": "Oyigeya",
+        "dateOfBirth": "2026-09-04",
+        "gender": "Male",
+        "nationality": "Nigerian",
+        "passportNumber": "",
+        "phone": "",
+        "email": ""
+      }
+    ],
+    "flight": {
+      "id": "1_0_1002",
+      "airline": "United Nigeria Airlines",
+      "airlineCode": "UN",
+      "flightNumber": "UN 594",
+      "origin": "LOS",
+      "destination": "ABV",
+      "departureAirport": "LOS",
+      "arrivalAirport": "ABV",
+      "departureTime": "Fri 4 Sep 18:00",
+      "arrivalTime": "Fri 4 Sep 19:15",
+      "duration": "01h 15m",
+      "stops": 0,
+      "price": 210012,
+      "currency": "NGN",
+      "aircraft": "Boeing 737",
+      "cabinClass": "Economy",
+      "provider": "AlternativeAirlines"
+    },
+    "price": 210012,
+    "currency": "NGN",
+    "extras": {
+      "seatPreference": "Any available seat",
+      "mealPreference": "Standard meal",
+      "specialAssistance": "None"
+    },
+    "paymentMethod": "bank_transfer",
+    "createdAt": "2026-09-03T00:02:10.738Z",
+    "updatedAt": "2026-09-03T00:02:11.060Z"
+  },
+  {
     "airlinePnr": null,
     "bookingReference": "FN-QYZ5RK",
     "status": "Pending",

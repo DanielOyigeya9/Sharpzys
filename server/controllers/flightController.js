@@ -7,6 +7,7 @@
 import cacheService from '../services/cacheService.js';
 import queueService from '../services/queueService.js';
 import providerManager from '../providers/providerManager.js';
+import { recordSearch } from '../services/searchMetrics.js';
 import logger from '../utils/logger.js';
 
 const IATA_REGEX = /^[A-Za-z]{3}$/;
@@ -133,7 +134,16 @@ async function searchFlights(req, res, next) {
       adults,
       children = 0,
       infants = 0,
+      provider,
+      excludeProviders,
     } = req.body;
+
+    // Provider targeting (used by the client to run the Air Peace session search
+    // separately from the non-session providers). When targeting is active we must
+    // NOT read or write the shared cache, because the result set is a partial view.
+    const hasProviderTargeting =
+      (typeof provider === 'string' && provider.trim().length > 0) ||
+      (Array.isArray(excludeProviders) && excludeProviders.length > 0);
 
     // ── 1. Validate ───────────────────────────────────────────────────────────
     const { valid, errors } = validate({ origin, destination, departureDate, returnDate, adults, children, infants });
@@ -157,7 +167,9 @@ async function searchFlights(req, res, next) {
 
     // ── 2. Cache check ────────────────────────────────────────────────────────
     const cacheStartedAt = Date.now();
-    const cached = cacheService.get(normOrigin, normDestination, normDepDate, normAdults, normRetDate);
+    const cached = hasProviderTargeting
+      ? undefined
+      : cacheService.get(normOrigin, normDestination, normDepDate, normAdults, normRetDate, normChildren, normInfants);
     logStage('Cache Checked', cacheStartedAt);
 
     if (cached !== undefined) {
@@ -167,6 +179,7 @@ async function searchFlights(req, res, next) {
         count: cached.length,
       });
 
+      recordSearch({ ok: true, totalFlights: cached.length });
       logStage('Return Response', requestStartedAt);
       return res.status(200).json({
         success:  true,
@@ -192,6 +205,13 @@ async function searchFlights(req, res, next) {
       infants:       normInfants,
     };
 
+    if (typeof provider === 'string' && provider.trim()) {
+      searchParams.provider = provider.trim();
+    }
+    if (Array.isArray(excludeProviders) && excludeProviders.length > 0) {
+      searchParams.excludeProviders = excludeProviders;
+    }
+
     const queueStartedAt = Date.now();
     logger.info('flightController: Queue Entered', { queueSize: queueService.size(), queuePending: queueService.pending() });
     const rawFlights = await withTimeout(queueService.enqueue(() => {
@@ -206,6 +226,7 @@ async function searchFlights(req, res, next) {
     if (!flights || flights.length === 0) {
       logger.warn('flightController: provider returned no flights', searchParams);
       // Return a 200-style response with empty flights array
+      recordSearch({ ok: true, totalFlights: 0 });
       logStage('Return Response', requestStartedAt);
       return res.status(200).json({
         success: true,
@@ -218,13 +239,16 @@ async function searchFlights(req, res, next) {
 
     // ── 5. Cache and respond ──────────────────────────────────────────────────
     const cacheWriteStartedAt = Date.now();
-    cacheService.set(normOrigin, normDestination, normDepDate, normAdults, flights, normRetDate);
+    if (!hasProviderTargeting) {
+      cacheService.set(normOrigin, normDestination, normDepDate, normAdults, flights, normRetDate, normChildren, normInfants);
+    }
     logStage('Cache Write', cacheWriteStartedAt);
     logger.info('flightController: returning live results', {
       count: flights.length,
     });
 
     logStage('Return Response', requestStartedAt);
+    recordSearch({ ok: true, totalFlights: flights.length });
     return res.status(200).json({
       success: true,
       source:  'live',
@@ -233,6 +257,7 @@ async function searchFlights(req, res, next) {
     });
 
   } catch (err) {
+    recordSearch({ ok: false, totalFlights: 0 });
     // Playwright TimeoutError
     if (err.name === 'TimeoutError' || /timeout/i.test(err.message)) {
       err.statusCode = 504;
@@ -241,5 +266,7 @@ async function searchFlights(req, res, next) {
   }
 }
 
-export default { searchFlights };
+export default {
+  searchFlights,
+};
 
