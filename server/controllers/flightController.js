@@ -258,11 +258,32 @@ async function searchFlights(req, res, next) {
 
   } catch (err) {
     recordSearch({ ok: false, totalFlights: 0 });
-    // Playwright TimeoutError
-    if (err.name === 'TimeoutError' || /timeout/i.test(err.message)) {
-      err.statusCode = 504;
+
+    // Preserve genuine client errors (bad input) so they still return 4xx.
+    if (err && Number.isInteger(err.statusCode) && err.statusCode >= 400 && err.statusCode < 500) {
+      return next(err);
     }
-    next(err);
+
+    // A provider/server/timeout failure must NEVER surface to a customer as a raw
+    // 5xx. Degrade gracefully to an empty result set (the UI already handles
+    // "no flights" cleanly), while logging the real cause for diagnosis.
+    const isTimeout = err.name === 'TimeoutError' || /timeout/i.test(err.message || '');
+    logger.error('flightController: search failed, returning graceful empty result', {
+      message: err.message,
+      code:    err.code,
+      ...(process.env.NODE_ENV !== 'production' && { stack: err.stack }),
+    });
+    logStage('Return Response (graceful)', requestStartedAt);
+    return res.status(200).json({
+      success:  true,
+      source:   'live',
+      count:    0,
+      flights:  [],
+      degraded: true,
+      message:  isTimeout
+        ? 'Flight providers are taking too long right now. Please try again in a moment.'
+        : 'We could not reach the flight providers right now. Please try again shortly.',
+    });
   }
 }
 
