@@ -164,8 +164,18 @@
   </div>
 
   <div class="toast" id="toast"></div>
-  <script>
-    const airports=[
+
+<!-- ── Flight results section ─────────────────────────────────────────────── -->
+<section id="flightResults" style="display:none;max-width:1120px;margin:40px auto;padding:0 30px">
+  <div id="resultsHeader" style="margin-bottom:20px">
+    <h2 style="font-size:22px;font-weight:800;color:#17143d;margin:0 0 4px" id="resultsTitle">Available Flights</h2>
+    <p style="color:#777;font-size:13px;margin:0" id="resultsSubtitle"></p>
+  </div>
+  <div id="flightCards"></div>
+</section>
+
+<script>
+const airports=[
   {city:"Lagos",name:"Murtala Muhammed International Airport",code:"LOS"},
   {city:"Abuja",name:"Nnamdi Azikiwe International Airport",code:"ABV"},
   {city:"Uyo",name:"Victor Attah International Airport",code:"QUO"},
@@ -245,11 +255,151 @@ dep.value=new Date(Date.now()+86400000*7).toISOString().slice(0,10);
 dep.onchange=()=>{ret.min=dep.value;if(ret.value&&ret.value<dep.value)ret.value=dep.value};
 ret.min=dep.value;
 
-$("flightForm").onsubmit=e=>{
+/* ── Format currency ──────────────────────────────────────────────────────── */
+function formatPrice(price, currency){
+  if(price == null) return 'Price unavailable';
+  const sym = currency === 'NGN' ? '₦' : (currency || '');
+  return sym + Number(price).toLocaleString('en-NG');
+}
+
+/* ── Format time — show only HH:MM portion safely ────────────────────────── */
+function formatTime(dt){
+  if(!dt) return '—';
+  // "2026-09-10 08:30" or "08:30" or ISO string
+  const m = String(dt).match(/(\d{1,2}:\d{2})/);
+  return m ? m[1] : dt;
+}
+
+/* ── Airline logo placeholder ─────────────────────────────────────────────── */
+const AIRLINE_COLORS = {
+  'Air Peace':         '#e8002d',
+  'AirPeace':          '#e8002d',
+  'Ibom Air':          '#004b87',
+  'IbomAir':           '#004b87',
+  'ValueJet':          '#f7941d',
+  'Aero Contractors':  '#003366',
+  'Aero':              '#003366',
+  'Enugu Air':         '#007a33',
+  'EnuguAir':          '#007a33',
+};
+function airlineBadge(airline){
+  const color = AIRLINE_COLORS[airline] || '#5746dd';
+  const initials = (airline||'').replace(/\s+/g,' ').split(' ').map(w=>w[0]||'').join('').slice(0,2).toUpperCase();
+  return `<div style="width:40px;height:40px;border-radius:10px;background:${color};color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;flex-shrink:0">${initials}</div>`;
+}
+
+/* ── Render a single flight card ─────────────────────────────────────────── */
+function renderCard(f){
+  const dep = formatTime(f.departureTime);
+  const arr = formatTime(f.arrivalTime);
+  const dur = f.duration || '—';
+  const stops = f.stops === 0 ? 'Non-stop' : `${f.stops} stop${f.stops>1?'s':''}`;
+  const priceHtml = f.price != null
+    ? `<div style="font-size:22px;font-weight:900;color:#5746dd">${formatPrice(f.price, f.currency)}</div><div style="font-size:11px;color:#888;margin-top:2px">per booking</div>`
+    : `<div style="font-size:13px;color:#aaa;font-style:italic">Price unavailable</div>`;
+
+  return `
+    <div style="background:#fff;border:1px solid #e9e8f0;border-radius:16px;padding:20px 24px;margin-bottom:12px;display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+      ${airlineBadge(f.airline)}
+      <div style="flex:1;min-width:180px">
+        <div style="font-size:12px;color:#888;margin-bottom:2px">${f.airline || f.provider} · ${f.flightNumber || ''} · ${f.cabinClass||'Economy'}</div>
+        <div style="display:flex;align-items:center;gap:16px">
+          <div style="text-align:center">
+            <div style="font-size:22px;font-weight:900;color:#17143d">${dep}</div>
+            <div style="font-size:12px;color:#888">${f.origin}</div>
+          </div>
+          <div style="flex:1;text-align:center">
+            <div style="font-size:11px;color:#888">${dur}</div>
+            <div style="height:1px;background:#ddd;margin:4px 0;position:relative"><span style="position:absolute;top:-5px;right:0;color:#555;font-size:12px">✈</span></div>
+            <div style="font-size:11px;color:${f.stops===0?'#2e7d32':'#e65100'}">${stops}</div>
+          </div>
+          <div style="text-align:center">
+            <div style="font-size:22px;font-weight:900;color:#17143d">${arr}</div>
+            <div style="font-size:12px;color:#888">${f.destination}</div>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:right;min-width:140px">
+        ${priceHtml}
+        ${f.bookingUrl ? `<a href="${f.bookingUrl}" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;padding:9px 18px;background:#5746dd;color:#fff;border-radius:10px;font-size:13px;font-weight:700;text-decoration:none">Book</a>` : ''}
+      </div>
+    </div>`;
+}
+
+/* ── Main API search ──────────────────────────────────────────────────────── */
+$("flightForm").onsubmit=async e=>{
   e.preventDefault();
-  if(!$("fromCode").value||!$("toCode").value)return toast("Please select your departure and destination airports.");
-  if($("fromCode").value===$("toCode").value)return toast("Departure and destination cannot be the same.");
-  toast("Search submitted — connect this form to /api/flights/search.");
+  const originCode = $("fromCode").value;
+  const destinationCode = $("toCode").value;
+  if(!originCode||!destinationCode) return toast("Please select your departure and destination airports.");
+  if(originCode===destinationCode) return toast("Departure and destination cannot be the same.");
+
+  const departureDate = $("departureDate").value;
+  const returnDate = state.trip==="return" ? ($("returnDate").value||"") : "";
+
+  if(!departureDate) return toast("Please select a departure date.");
+
+  // Show results section with loading state
+  const resultsSection = $("flightResults");
+  const cardsDiv = $("flightCards");
+  const subtitle = $("resultsSubtitle");
+  const title = $("resultsTitle");
+
+  resultsSection.style.display="block";
+  cardsDiv.innerHTML=`<div style="text-align:center;padding:60px 20px;color:#777"><div style="font-size:32px;margin-bottom:10px">✈</div><div style="font-size:15px;font-weight:600">Searching flights…</div><div style="font-size:13px;margin-top:6px">This may take up to 60 seconds</div></div>`;
+  title.textContent="Searching…";
+  subtitle.textContent=`${originCode} → ${destinationCode} · ${departureDate}${returnDate?" → "+returnDate:""}`;
+  resultsSection.scrollIntoView({behavior:"smooth",block:"start"});
+
+  // Disable search button during search
+  const searchBtn = document.querySelector(".search-btn");
+  if(searchBtn){searchBtn.disabled=true;searchBtn.textContent="Searching…";}
+
+  try{
+    const body = {
+      origin: originCode,
+      destination: destinationCode,
+      departureDate,
+      returnDate,
+      adults: state.adults,
+      children: state.children,
+      infants: state.infants,
+    };
+
+    const resp = await fetch("/api/flights/search",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify(body),
+    });
+
+    const data = await resp.json();
+
+    if(!resp.ok){
+      const msg = data?.error || data?.message || `Server error ${resp.status}`;
+      cardsDiv.innerHTML=`<div style="text-align:center;padding:40px;color:#c62828;font-weight:600">⚠ ${msg}</div>`;
+      title.textContent="Search failed";
+      return;
+    }
+
+    const flights = data.flights || [];
+    const fromCity = airports.find(a=>a.code===originCode)?.city || originCode;
+    const toCity = airports.find(a=>a.code===destinationCode)?.city || destinationCode;
+
+    title.textContent=`${flights.length} Flight${flights.length!==1?"s":""} Found`;
+    subtitle.textContent=`${fromCity} (${originCode}) → ${toCity} (${destinationCode}) · ${departureDate} · ${state.adults} Adult${state.adults!==1?"s":""}${state.children?` · ${state.children} Child${state.children!==1?"ren":""}` :""}${state.infants?` · ${state.infants} Infant${state.infants!==1?"s":""}` :""}`;
+
+    if(flights.length===0){
+      cardsDiv.innerHTML=`<div style="text-align:center;padding:60px 20px;color:#777;border:1px dashed #ddd;border-radius:16px"><div style="font-size:32px;margin-bottom:12px">🔍</div><div style="font-size:16px;font-weight:700;color:#17143d;margin-bottom:6px">No flights found</div><div style="font-size:13px">No flights are currently available for this route and date.<br>Try a different date or route.</div></div>`;
+    } else {
+      cardsDiv.innerHTML=flights.map(renderCard).join("");
+    }
+
+  }catch(err){
+    cardsDiv.innerHTML=`<div style="text-align:center;padding:40px;color:#c62828;font-weight:600">⚠ Could not connect to the search service. Please try again.</div>`;
+    title.textContent="Search error";
+  }finally{
+    if(searchBtn){searchBtn.disabled=false;searchBtn.textContent="Search flights →";}
+  }
 };
 
 function toast(message){

@@ -10,7 +10,8 @@
     "server": "node server/app.js",
     "server:dev": "node --watch server/app.js",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "postinstall": "npx playwright install chromium"
   },
   "dependencies": {
     "axios": "^1.19.0",

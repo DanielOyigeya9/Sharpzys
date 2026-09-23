@@ -12,6 +12,10 @@ services:
         value: 10000
       - key: FRONTEND_URL
         value: https://sharpzys.onrender.com
+      # Replace with your Vercel app URL (the origin the frontend is served from).
+      # Comma-separated entries are allowed, e.g. for Vercel preview deploys.
+      - key: ALLOWED_ORIGINS
+        value: https://your-vercel-app.vercel.app
       - key: PLAYWRIGHT_BROWSERS_PATH
         value: /opt/render/project/src/.playwright-browsers
       - key: PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD
