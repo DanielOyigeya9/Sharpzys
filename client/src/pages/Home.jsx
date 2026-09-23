@@ -48,7 +48,7 @@ function Home() {
     { fromQuery: 'Abuja (ABV)', fromCode: 'ABV', toQuery: 'Port Harcourt (PHC)', toCode: 'PHC', departureDate: new Date(Date.now() + 86400000 * 10).toISOString().slice(0, 10) },
   ]);
 
-  // Loading & Toast
+  // Loading and Toast state
   const [isSearching, setIsSearching] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
 
@@ -130,7 +130,7 @@ function Home() {
     return `${parts.join(', ')}, ${cabin}`;
   };
 
-  // Form submit search handler
+  // Form submit search handler — orchestrates the search transaction
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
@@ -159,12 +159,17 @@ function Home() {
       }
     }
 
+    const originCode = trip === 'multi' ? multiCitySegments[0].fromCode : fromCode;
+    const destCode = trip === 'multi' ? multiCitySegments[0].toCode : toCode;
+    const depDate = trip === 'multi' ? multiCitySegments[0].departureDate : departureDate;
+    const retDate = trip === 'return' ? returnDate : undefined;
+
     const searchPayload = {
       tripType: trip === 'oneway' ? 'oneWay' : (trip === 'return' ? 'roundTrip' : 'multiCity'),
-      origin: trip === 'multi' ? multiCitySegments[0].fromCode : fromCode,
-      destination: trip === 'multi' ? multiCitySegments[0].toCode : toCode,
-      departureDate: trip === 'multi' ? multiCitySegments[0].departureDate : departureDate,
-      returnDate: trip === 'return' ? returnDate : undefined,
+      origin: originCode,
+      destination: destCode,
+      departureDate: depDate,
+      returnDate: retDate,
       adults,
       children,
       infants,
@@ -172,21 +177,36 @@ function Home() {
       multiCitySegments: trip === 'multi' ? multiCitySegments : undefined,
     };
 
+    const searchStateData = {
+      origin: originCode,
+      originCode,
+      destination: destCode,
+      destinationCode: destCode,
+      departureDate: depDate,
+      returnDate: retDate || '',
+      adults,
+      children,
+      infants,
+      cabinClass: cabin,
+    };
+
     setIsSearching(true);
 
     try {
-      const resultsData = await searchFlights(searchPayload);
-      setIsSearching(false);
-      navigate('/results', { state: resultsData });
-    } catch (err) {
+      // Air Peace is now a normal provider — search all providers in a single call.
+      const res = await searchFlights(searchPayload);
+      const flights = res?.flights || [];
       setIsSearching(false);
       navigate('/results', {
         state: {
-          searchQuery: searchPayload,
-          flights: [],
-          error: err.response?.data?.message || 'Unable to load flight search results. Please try again.',
+          flights,
+          search: searchStateData,
         },
       });
+    } catch (err) {
+      console.warn('[Sharpzy] Flight search error:', err);
+      setIsSearching(false);
+      showToast('We could not complete the search. Please try again.');
     }
   };
 
@@ -370,8 +390,8 @@ function Home() {
                   </button>
 
                   {/* Search Submit Button */}
-                  <button className="search-btn" type="submit">
-                    Search flights <span>→</span>
+                  <button className="search-btn" type="submit" disabled={isSearching}>
+                    {isSearching ? 'Searching...' : 'Search flights'} <span>→</span>
                   </button>
                 </form>
               ) : (
@@ -457,8 +477,8 @@ function Home() {
                     >
                       + Add Flight Leg
                     </button>
-                    <button className="search-btn" type="submit">
-                      Search Multi-city Fares <span>→</span>
+                    <button className="search-btn" type="submit" disabled={isSearching}>
+                      {isSearching ? 'Searching...' : 'Search Multi-city Fares'} <span>→</span>
                     </button>
                   </div>
                 </form>
@@ -679,8 +699,8 @@ function Home() {
         {toastMessage}
       </div>
 
-      {/* Search Overlay */}
-      <SearchLoadingOverlay isVisible={isSearching} />
+      {/* Standard Search Loading Overlay */}
+      <SearchLoadingOverlay isVisible={isSearching} sessionState={null} />
     </div>
   );
 }

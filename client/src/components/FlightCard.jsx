@@ -46,8 +46,8 @@ function FlightCard({ flight, onSelect }) {
 
   const depTimeFormatted = formatTime(flight.departureTime);
   const arrTimeFormatted = formatTime(flight.arrivalTime);
-  const depDateFormatted = formatDate(flight.departureTime);
-  const arrDateFormatted = formatDate(flight.arrivalTime);
+  const depDateFormatted = flight.departureDate || formatDate(flight.departureTime);
+  const arrDateFormatted = flight.arrivalDate || formatDate(flight.arrivalTime);
 
   const stopsText = flight.stops === 0 ? 'Non-stop' : `${flight.stops} Stop${flight.stops > 1 ? 's' : ''}`;
   const airlineCode = flight.airlineCode || flight.airline?.substring(0, 2).toUpperCase() || 'FL';

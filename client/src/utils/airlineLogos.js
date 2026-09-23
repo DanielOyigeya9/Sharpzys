@@ -42,17 +42,23 @@ const AIRLINE_LOGO_MAP = {
   VM: 'https://pics.avs.io/200/60/VM.png', // Max Air
   'MAX AIR': 'https://pics.avs.io/200/60/VM.png',
 
-  VK: 'https://pics.avs.io/200/60/VK.png', // ValueJet
-  VALUEJET: 'https://pics.avs.io/200/60/VK.png',
+  // ValueJet (Nigeria) — IATA VK / ICAO FVJ. pics.avs.io VK is unreliable, so use
+  // the curated Wikimedia Commons logo via the stable Special:FilePath redirect.
+  VK: 'https://commons.wikimedia.org/wiki/Special:FilePath/ValueJet_Approved_logo_png.png?width=200',
+  VALUEJET: 'https://commons.wikimedia.org/wiki/Special:FilePath/ValueJet_Approved_logo_png.png?width=200',
 
-  N2: 'https://pics.avs.io/200/60/N2.png', // Aero Contractors
-  MN: 'https://pics.avs.io/200/60/N2.png',
-  AERO: 'https://pics.avs.io/200/60/N2.png',
-  'AERO CONTRACTORS': 'https://pics.avs.io/200/60/N2.png',
+  // Aero Contractors — real IATA is AJ (Duffel-curated logo); backend may emit N2/MN.
+  AJ: 'https://assets.duffel.com/img/airlines/for-light-background/full-color-logo/AJ.svg',
+  N2: 'https://assets.duffel.com/img/airlines/for-light-background/full-color-logo/AJ.svg',
+  MN: 'https://assets.duffel.com/img/airlines/for-light-background/full-color-logo/AJ.svg',
+  AERO: 'https://assets.duffel.com/img/airlines/for-light-background/full-color-logo/AJ.svg',
+  'AERO CONTRACTORS': 'https://assets.duffel.com/img/airlines/for-light-background/full-color-logo/AJ.svg',
 
-  E3: 'https://pics.avs.io/200/60/E3.png', // Enugu Air
-  EG: 'https://pics.avs.io/200/60/E3.png',
-  'ENUGU AIR': 'https://pics.avs.io/200/60/E3.png',
+  // Enugu Air — backend emits carrier code EU; Duffel-curated logo lives under EU.
+  EU: 'https://assets.duffel.com/img/airlines/for-light-background/full-color-logo/EU.svg',
+  E3: 'https://assets.duffel.com/img/airlines/for-light-background/full-color-logo/EU.svg',
+  EG: 'https://assets.duffel.com/img/airlines/for-light-background/full-color-logo/EU.svg',
+  'ENUGU AIR': 'https://assets.duffel.com/img/airlines/for-light-background/full-color-logo/EU.svg',
 
   RN: 'https://pics.avs.io/200/60/RN.png', // Rano Air
   'RANO AIR': 'https://pics.avs.io/200/60/RN.png',

@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { getBookings, updateBookingStatus, updateAirlinePnr } from '../services/api';
+import { getBookings, updateBookingStatus, updateAirlinePnr, getAdminHealth, adminLogin, getAdminToken, clearAdminToken, verifyBookingPayment } from '../services/api';
 import '../styles/admin.css';
 
 function Admin() {
@@ -13,9 +13,42 @@ function Admin() {
   const [searchFilter, setSearchFilter] = useState('');
   const [updatingRef, setUpdatingRef] = useState(null);
 
+  // Provider health + search analytics (admin-only diagnostics)
+  const [metrics, setMetrics] = useState(null);
+  const [healthError, setHealthError] = useState(null);
+
   // PNR Edit inline modal state
   const [pnrModalBooking, setPnrModalBooking] = useState(null);
   const [pnrInput, setPnrInput] = useState('');
+
+  // ── Admin auth (hardcoded login; no third-party DB/provider) ──
+  const [isAuthed, setIsAuthed] = useState(() => !!getAdminToken());
+  const [loginUsername, setLoginUsername] = useState('');
+  const [loginPassword, setLoginPassword] = useState('');
+  const [loginError, setLoginError] = useState(null);
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
+
+  const forceLogout = () => {
+    clearAdminToken();
+    setIsAuthed(false);
+    setBookings([]);
+    setMetrics(null);
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setLoginError(null);
+    setIsLoggingIn(true);
+    try {
+      await adminLogin(loginUsername, loginPassword);
+      setIsAuthed(true);
+      setLoginPassword('');
+    } catch (err) {
+      setLoginError(err.response?.data?.message || 'Login failed. Please check your credentials.');
+    } finally {
+      setIsLoggingIn(false);
+    }
+  };
 
   const fetchDashboardData = async () => {
     setIsLoading(true);
@@ -24,32 +57,38 @@ function Admin() {
       const response = await getBookings();
       setBookings(response.bookings || []);
     } catch (err) {
+      if (err.response?.status === 401) { forceLogout(); return; }
       setError(err.response?.data?.message || err.message || 'Failed to load booking requests from database.');
     } finally {
       setIsLoading(false);
     }
   };
 
-  useEffect(() => {
-    let ignore = false;
-    getBookings()
-      .then((response) => {
-        if (!ignore) {
-          setBookings(response.bookings || []);
-          setIsLoading(false);
-        }
-      })
-      .catch((err) => {
-        if (!ignore) {
-          setError(err.response?.data?.message || err.message || 'Failed to load booking requests from database.');
-          setIsLoading(false);
-        }
-      });
+  const fetchHealthData = async () => {
+    setHealthError(null);
+    try {
+      const response = await getAdminHealth();
+      setMetrics(response.metrics || null);
+    } catch (err) {
+      if (err.response?.status === 401) { forceLogout(); return; }
+      setHealthError(err.response?.data?.message || err.message || 'Failed to load provider health metrics.');
+    }
+  };
 
-    return () => {
-      ignore = true;
-    };
-  }, []);
+  useEffect(() => {
+    if (!isAuthed) {
+      setIsLoading(false);
+      return;
+    }
+    fetchDashboardData();
+  }, [isAuthed]);
+
+  useEffect(() => {
+    if (!isAuthed) return;
+    fetchHealthData();
+    const timer = setInterval(fetchHealthData, 30000);
+    return () => clearInterval(timer);
+  }, [isAuthed]);
 
   const handleStatusChange = async (ref, newStatus) => {
     setUpdatingRef(ref);
@@ -89,6 +128,24 @@ function Admin() {
       setPnrInput('');
     } catch (err) {
       alert(err.response?.data?.message || 'Failed to update Airline PNR in database.');
+    } finally {
+      setUpdatingRef(null);
+    }
+  };
+
+  const handleVerifyPayment = async (ref, verified = true) => {
+    setUpdatingRef(ref);
+    try {
+      const response = await verifyBookingPayment(ref, verified);
+      const updated = response.booking;
+      setBookings((prev) =>
+        prev.map((b) => (b.bookingReference === ref ? updated : b))
+      );
+      if (selectedBooking && selectedBooking.bookingReference === ref) {
+        setSelectedBooking(updated);
+      }
+    } catch (err) {
+      alert(err.response?.data?.message || 'Failed to update payment verification.');
     } finally {
       setUpdatingRef(null);
     }
@@ -138,6 +195,35 @@ function Admin() {
     });
   }, [bookings, searchFilter]);
 
+  if (!isAuthed) {
+    return (
+      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#0f172a', padding: '1rem' }}>
+        <form onSubmit={handleLogin} style={{ width: '100%', maxWidth: '380px', background: '#ffffff', borderRadius: '16px', padding: '2rem', boxShadow: '0 20px 60px rgba(0,0,0,0.35)' }}>
+          <div style={{ textAlign: 'center', marginBottom: '1.25rem' }}>
+            <span style={{ fontSize: '1.75rem' }}>✈</span>
+            <h1 style={{ margin: '0.25rem 0 0', fontSize: '1.25rem', color: '#0f172a' }}>SharpzyTravels Admin</h1>
+            <p style={{ margin: '0.25rem 0 0', fontSize: '0.85rem', color: '#64748b' }}>Restricted — authorized staff only</p>
+          </div>
+          <label style={{ display: 'block', marginBottom: '0.75rem', fontSize: '0.85rem', color: '#334155' }}>
+            Username
+            <input type="text" value={loginUsername} onChange={(e) => setLoginUsername(e.target.value)} autoComplete="username" required style={{ width: '100%', marginTop: '0.25rem', padding: '0.6rem 0.75rem', borderRadius: '8px', border: '1px solid #cbd5e1', fontSize: '0.95rem' }} />
+          </label>
+          <label style={{ display: 'block', marginBottom: '1rem', fontSize: '0.85rem', color: '#334155' }}>
+            Password
+            <input type="password" value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)} autoComplete="current-password" required style={{ width: '100%', marginTop: '0.25rem', padding: '0.6rem 0.75rem', borderRadius: '8px', border: '1px solid #cbd5e1', fontSize: '0.95rem' }} />
+          </label>
+          {loginError && <p style={{ color: '#b91c1c', fontSize: '0.85rem', margin: '0 0 0.75rem' }}>{loginError}</p>}
+          <button type="submit" disabled={isLoggingIn} style={{ width: '100%', padding: '0.7rem', borderRadius: '8px', border: 'none', background: '#1d4ed8', color: '#fff', fontSize: '0.95rem', fontWeight: 600, cursor: isLoggingIn ? 'not-allowed' : 'pointer', opacity: isLoggingIn ? 0.7 : 1 }}>
+            {isLoggingIn ? 'Signing in…' : 'Sign In'}
+          </button>
+          <div style={{ textAlign: 'center', marginTop: '1rem' }}>
+            <Link to="/" style={{ fontSize: '0.8rem', color: '#64748b', textDecoration: 'none' }}>← Back to site</Link>
+          </div>
+        </form>
+      </div>
+    );
+  }
+
   return (
     <div className="admin-layout">
       {/* ── Sidebar Navigation ────────────────────────────────────────── */}
@@ -150,6 +236,14 @@ function Admin() {
               <span className="admin-tag">Admin Panel</span>
             </div>
           </Link>
+          <button
+            type="button"
+            onClick={forceLogout}
+            aria-label="Sign out of admin"
+            style={{ background: 'transparent', border: '1px solid rgba(255,255,255,0.35)', color: '#fff', borderRadius: '8px', padding: '4px 10px', fontSize: '0.72rem', cursor: 'pointer', marginLeft: 'auto' }}
+          >
+            Sign out
+          </button>
           <button
             type="button"
             className="sidebar-close-btn"
@@ -191,6 +285,15 @@ function Admin() {
 
           <button
             type="button"
+            className={`nav-item ${activeTab === 'health' ? 'active' : ''}`}
+            onClick={() => { setActiveTab('health'); setSidebarOpen(false); fetchHealthData(); }}
+          >
+            <span className="nav-icon">🩺</span>
+            <span>Provider Health</span>
+          </button>
+
+          <button
+            type="button"
             className={`nav-item ${activeTab === 'customers' ? 'active' : ''}`}
             onClick={() => { setActiveTab('customers'); setSidebarOpen(false); }}
           >
@@ -228,6 +331,7 @@ function Admin() {
               {activeTab === 'dashboard' && 'Dashboard Overview'}
               {activeTab === 'bookings' && 'Flight Booking Requests'}
               {activeTab === 'searches' && 'Supported Airlines & Routes'}
+              {activeTab === 'health' && 'Provider Health & Search Analytics'}
               {activeTab === 'customers' && 'Customer Records'}
             </h1>
           </div>
@@ -236,7 +340,7 @@ function Admin() {
             <button
               type="button"
               className="refresh-btn"
-              onClick={fetchDashboardData}
+              onClick={() => { fetchDashboardData(); fetchHealthData(); }}
               title="Refresh Data from Server DB"
               disabled={isLoading}
             >
@@ -319,6 +423,46 @@ function Admin() {
                 </div>
               </section>
 
+              {/* ── Search Analytics (Dashboard only) ─────────────────────── */}
+              {activeTab === 'dashboard' && metrics && (
+                <section className="stats-grid">
+                  <div className="stat-card">
+                    <div className="stat-icon blue">🔎</div>
+                    <div className="stat-content">
+                      <span className="stat-label">Total Searches</span>
+                      <strong className="stat-value">{metrics.searches.total}</strong>
+                      <span className="stat-sub">Since server start</span>
+                    </div>
+                  </div>
+                  <div className="stat-card">
+                    <div className="stat-icon green">✅</div>
+                    <div className="stat-content">
+                      <span className="stat-label">Successful Searches</span>
+                      <strong className="stat-value">{metrics.searches.successful}</strong>
+                      <span className="stat-sub">{metrics.searches.withResults} with results · {metrics.searches.empty} empty</span>
+                    </div>
+                  </div>
+                  <div className="stat-card">
+                    <div className="stat-icon orange">⚠️</div>
+                    <div className="stat-content">
+                      <span className="stat-label">Failed Searches</span>
+                      <strong className="stat-value">{metrics.searches.failed}</strong>
+                      <span className="stat-sub">Errors / timeouts</span>
+                    </div>
+                  </div>
+                  <div className="stat-card">
+                    <div className="stat-icon blue">🩺</div>
+                    <div className="stat-content">
+                      <span className="stat-label">Providers Healthy</span>
+                      <strong className="stat-value">
+                        {metrics.providers.filter((p) => p.health === 'HEALTHY').length}/{metrics.providers.length}
+                      </strong>
+                      <span className="stat-sub">See Provider Health tab</span>
+                    </div>
+                  </div>
+                </section>
+              )}
+
               {/* ── Tab Views: Dashboard & Booking Requests ───────────────── */}
               {(activeTab === 'dashboard' || activeTab === 'bookings') && (
                 <section className="table-section-card">
@@ -392,6 +536,11 @@ function Admin() {
                                   <span className="sub-text">
                                     {b.paymentMethod === 'bank_transfer' || b.paymentMethod === 'bank' ? 'Bank Transfer' : 'Pay on Site'}
                                   </span>
+                                  {b.paymentStatus === 'submitted' && (
+                                    <div style={{ marginTop: 2 }}>
+                                      <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#b45309' }}>💰 Verify txn: {b.paymentTransactionId}</span>
+                                    </div>
+                                  )}
                                 </td>
                                 <td>
                                   <span className={`status-pill ${statusLower}`}>
@@ -410,6 +559,29 @@ function Admin() {
                                 </td>
                                 <td>
                                   <div className="action-buttons-cell">
+                                    {b.paymentStatus === 'submitted' && (
+                                      <button
+                                        type="button"
+                                        className="approve-btn"
+                                        style={{ background: '#0ea5e9' }}
+                                        onClick={() => handleVerifyPayment(b.bookingReference, true)}
+                                        disabled={isUpdating}
+                                        title="Confirm the bank transfer matches your statement"
+                                      >
+                                        {isUpdating ? '...' : '✓ Verify Payment'}
+                                      </button>
+                                    )}
+                                    {b.paymentStatus === 'verified' && (
+                                      <button
+                                        type="button"
+                                        className="pnr-btn"
+                                        onClick={() => handleVerifyPayment(b.bookingReference, false)}
+                                        disabled={isUpdating}
+                                        title="Payment verified — click to revert"
+                                      >
+                                        ✓ Paid
+                                      </button>
+                                    )}
                                     {isPending && (
                                       <>
                                         <button
@@ -532,6 +704,106 @@ function Admin() {
                 </section>
               )}
 
+              {/* ── Tab View: Provider Health & Search Analytics ─────────── */}
+              {activeTab === 'health' && (
+                <section className="table-section-card">
+                  <div className="table-header-bar">
+                    <div>
+                      <h2>Live Provider Health Monitoring</h2>
+                      <p>Per-provider operational status. Technical diagnostics are visible to admins only — customers always see friendly messages.</p>
+                    </div>
+                    <div className="table-search-box">
+                      <button type="button" className="retry-btn" onClick={fetchHealthData}>Refresh</button>
+                    </div>
+                  </div>
+
+                  {healthError && (
+                    <div className="admin-error-banner">
+                      <div className="error-icon">⚠️</div>
+                      <div className="error-text"><h3>Provider health unavailable</h3><p>{healthError}</p></div>
+                    </div>
+                  )}
+
+                  {metrics && (
+                    <>
+                      <div className="supported-airlines-grid" style={{ marginBottom: '1.5rem' }}>
+                        <div className="airline-card-supported">
+                          <div className="icon">🔎</div>
+                          <h3>{metrics.searches.total} searches</h3>
+                          <p>{metrics.searches.successful} successful · {metrics.searches.failed} failed · {metrics.searches.withResults} returned flights</p>
+                        </div>
+                      </div>
+
+                      {metrics.providers.length === 0 ? (
+                        <div className="admin-empty-state">
+                          <div className="empty-illustration">🩺</div>
+                          <h3>No provider activity recorded yet.</h3>
+                          <p>Provider health will appear once flight searches have been run against the live carriers.</p>
+                        </div>
+                      ) : (
+                        <div className="table-responsive">
+                          <table className="admin-table">
+                            <thead>
+                              <tr>
+                                <th>Provider</th>
+                                <th>Health</th>
+                                <th>Last Status</th>
+                                <th>Success / Errors</th>
+                                <th>Avg Response</th>
+                                <th>Last Success</th>
+                                <th>Last Error (admin)</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {metrics.providers.map((p) => (
+                                <tr key={p.provider}>
+                                  <td><strong>{p.provider}</strong><div className="sub-text">{p.total} invocations</div></td>
+                                  <td>
+                                    <span className={`status-pill ${(p.health || 'unknown').toLowerCase()}`}>
+                                      ● {p.health}
+                                    </span>
+                                  </td>
+                                  <td>
+                                    {p.lastStatus || '—'}
+                                    {p.lastCount != null && p.lastStatus === 'SUCCESS' && (
+                                      <div className="sub-text">{p.lastCount} flights</div>
+                                    )}
+                                  </td>
+                                  <td>
+                                    <span style={{ color: '#16a34a' }}>{p.success}</span> /{' '}
+                                    <span style={{ color: '#dc2626' }}>{p.error}</span>
+                                    <div className="sub-text">{p.noResults} empty · {p.verification} awaiting verification</div>
+                                  </td>
+                                  <td>{p.avgResponseTimeMs != null ? `${p.avgResponseTimeMs} ms` : '—'}</td>
+                                  <td>{p.lastSuccessAt ? new Date(p.lastSuccessAt).toLocaleString() : '—'}</td>
+                                  <td>
+                                    {p.lastErrorAt ? (
+                                      <>
+                                        <div>{new Date(p.lastErrorAt).toLocaleString()}</div>
+                                        <div className="sub-text">{p.lastErrorType}{p.lastErrorMessage ? ` · ${p.lastErrorMessage}` : ''}</div>
+                                      </>
+                                    ) : (
+                                      '—'
+                                    )}
+                                  </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      )}
+                    </>
+                  )}
+
+                  {!metrics && !healthError && (
+                    <div className="admin-empty-state">
+                      <div className="admin-spinner"></div>
+                      <p>Loading provider health…</p>
+                    </div>
+                  )}
+                </section>
+              )}
+
               {/* ── Tab View: Customers ───────────────────────────────────── */}
               {activeTab === 'customers' && (
                 <section className="table-section-card">
@@ -634,6 +906,31 @@ function Admin() {
                 </div>
 
                 <div className="detail-item">
+                  <span className="detail-label">Payment Status</span>
+                  <strong className="detail-val">
+                    {selectedBooking.paymentStatus === 'submitted'
+                      ? 'Payment submitted — VERIFY'
+                      : selectedBooking.paymentStatus === 'verified'
+                        ? 'Payment verified ✓'
+                        : selectedBooking.paymentStatus === 'awaiting_payment'
+                          ? 'Awaiting payment'
+                          : selectedBooking.paymentStatus === 'pay_on_site'
+                            ? 'Pay on site (cash)'
+                            : (selectedBooking.paymentStatus || '—')}
+                  </strong>
+                </div>
+
+                {selectedBooking.paymentTransactionId && (
+                  <div className="detail-item highlighted-field">
+                    <span className="detail-label">BANK TRANSACTION REFERENCE (verify against your statement)</span>
+                    <strong className="detail-val" style={{ fontFamily: 'monospace' }}>{selectedBooking.paymentTransactionId}</strong>
+                    {selectedBooking.paymentSubmittedAt && (
+                      <span className="sub-text">Submitted {new Date(selectedBooking.paymentSubmittedAt).toLocaleString()}</span>
+                    )}
+                  </div>
+                )}
+
+                <div className="detail-item">
                   <span className="detail-label">Booking Contact</span>
                   <strong className="detail-val">{selectedBooking.passengerName}</strong>
                 </div>
@@ -690,6 +987,27 @@ function Admin() {
             </div>
 
             <div className="modal-footer">
+              {selectedBooking.paymentStatus === 'submitted' && (
+                <button
+                  type="button"
+                  className="approve-btn modal-btn"
+                  style={{ background: '#0ea5e9' }}
+                  onClick={() => handleVerifyPayment(selectedBooking.bookingReference, true)}
+                  disabled={isUpdating}
+                >
+                  {isUpdating ? '...' : '✓ Verify Payment'}
+                </button>
+              )}
+              {selectedBooking.paymentStatus === 'verified' && (
+                <button
+                  type="button"
+                  className="pnr-btn modal-btn"
+                  onClick={() => handleVerifyPayment(selectedBooking.bookingReference, false)}
+                  disabled={isUpdating}
+                >
+                  {isUpdating ? '...' : '✓ Payment Verified (revert)'}
+                </button>
+              )}
               <button
                 type="button"
                 className="pnr-btn modal-btn"

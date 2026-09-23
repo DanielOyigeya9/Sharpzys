@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -30,11 +30,47 @@ function SearchResults() {
   };
 
   const initialFlights = location.state?.flights || [];
+
   const [flights, setFlights] = useState(initialFlights);
   const [searchParams, setSearchParams] = useState(searchState);
   const [isModifying, setIsModifying] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
   const [searchError, setSearchError] = useState('');
+
+  // On mount, load flights from other providers if initialFlights is empty
+  useEffect(() => {
+    if (initialFlights.length > 0) return;
+
+    const fetchOtherFlights = async () => {
+      setIsSearching(true);
+      try {
+        const originCode = searchParams.originCode || extractCode(searchParams.origin) || 'LOS';
+        const destCode = searchParams.destinationCode || extractCode(searchParams.destination) || 'ABV';
+        const res = await searchFlights({
+          origin: originCode,
+          destination: destCode,
+          departureDate: searchParams.departureDate,
+          returnDate: searchParams.returnDate,
+          adults: searchParams.adults || 1,
+          children: searchParams.children || 0,
+          infants: searchParams.infants || 0,
+        });
+        if (res.flights && res.flights.length > 0) {
+          setFlights((prev) => {
+            const existingIds = new Set(prev.map((f) => f.id));
+            const newFlights = res.flights.filter((f) => !existingIds.has(f.id));
+            return [...prev, ...newFlights];
+          });
+        }
+      } catch (err) {
+        console.warn('[Sharpzy] Other flight providers search error:', err);
+      } finally {
+        setIsSearching(false);
+      }
+    };
+
+    fetchOtherFlights();
+  }, []);
 
   // ── Filters State ────────────────────────────────────────────────────────
   const [selectedStops, setSelectedStops] = useState('all'); // 'all', '0', '1+'
@@ -67,24 +103,20 @@ function SearchResults() {
   const filteredFlights = useMemo(() => {
     let list = [...flights];
 
-    // Filter by stops
     if (selectedStops === '0') {
       list = list.filter((f) => f.stops === 0);
     } else if (selectedStops === '1+') {
       list = list.filter((f) => f.stops > 0);
     }
 
-    // Filter by airline
     if (selectedAirline !== 'all') {
       list = list.filter((f) => f.airline === selectedAirline);
     }
 
-    // Filter by price
     if (maxPriceFilter > 0) {
       list = list.filter((f) => (Number(f.price) || 0) <= maxPriceFilter);
     }
 
-    // Filter by departure time range
     if (selectedTimeRange !== 'all') {
       list = list.filter((f) => {
         const timeStr = f.departureTime || '';
@@ -98,7 +130,6 @@ function SearchResults() {
       });
     }
 
-    // Sort list
     if (sortBy === 'cheapest') {
       list.sort((a, b) => (Number(a.price) || 0) - (Number(b.price) || 0));
     } else if (sortBy === 'fastest') {
@@ -171,7 +202,9 @@ function SearchResults() {
   return (
     <div className="results-wrapper">
       <Navbar />
-      <SearchLoadingOverlay isVisible={isSearching} />
+
+      {/* Standard loading overlay during modify search */}
+      <SearchLoadingOverlay isVisible={isSearching} sessionState={null} />
 
       <main className="results-page">
         {/* ── Top Bar (Search Summary & Modify Toggle) ── */}
