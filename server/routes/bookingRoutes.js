@@ -5,12 +5,15 @@
 
 import { Router } from 'express';
 import logger from '../utils/logger.js';
+import { requireAdmin } from '../services/adminAuth.js';
 import {
   getAllBookings,
   getBookingByRef,
   saveBooking,
   updateBookingStatus,
   updateAirlinePnr,
+  updatePaymentTransaction,
+  verifyPayment,
 } from '../services/dbService.js';
 
 const router = Router();
@@ -69,6 +72,11 @@ router.post('/book', (req, res, next) => {
       currency: currency || flight.currency || 'NGN',
       extras,
       paymentMethod: finalPaymentMethod,
+      // Payment tracking: bank transfers await a customer-submitted transaction
+      // reference; pay-on-site needs no online verification step.
+      paymentTransactionId: null,
+      paymentStatus: finalPaymentMethod === 'bank_transfer' ? 'awaiting_payment' : 'pay_on_site',
+      paymentSubmittedAt: null,
       airlinePnr: null,
       createdAt: new Date().toISOString(),
     };
@@ -96,9 +104,10 @@ router.post('/book', (req, res, next) => {
 
 /**
  * GET /api/bookings
- * Returns persistent list of bookings from database.
+ * Admin-only. Returns the full list of bookings (contains customer PII), so it is
+ * guarded by requireAdmin. Customer self-service uses GET /api/bookings/:ref below.
  */
-router.get('/bookings', (req, res, next) => {
+router.get('/bookings', requireAdmin, (req, res, next) => {
   try {
     const all = getAllBookings();
     return res.status(200).json({
@@ -137,7 +146,7 @@ router.get('/bookings/:ref', (req, res, next) => {
  * PATCH /api/bookings/:ref/status
  * Update booking status (Pending, Approved, Confirmed, Rejected, Cancelled) in database.
  */
-router.patch('/bookings/:ref/status', (req, res, next) => {
+router.patch('/bookings/:ref/status', requireAdmin, (req, res, next) => {
   try {
     const { status, statusMessage } = req.body;
     if (!status) {
@@ -167,7 +176,7 @@ router.patch('/bookings/:ref/status', (req, res, next) => {
  * PATCH /api/bookings/:ref/pnr
  * Add, edit, or clear real Airline PNR in database.
  */
-router.patch('/bookings/:ref/pnr', (req, res, next) => {
+router.patch('/bookings/:ref/pnr', requireAdmin, (req, res, next) => {
   try {
     const { airlinePnr } = req.body;
     const updated = updateAirlinePnr(req.params.ref, airlinePnr);
@@ -181,6 +190,58 @@ router.patch('/bookings/:ref/pnr', (req, res, next) => {
     return res.status(200).json({
       success: true,
       message: updated.airlinePnr ? `Airline PNR updated to ${updated.airlinePnr}.` : 'Airline PNR cleared.',
+      booking: updated,
+    });
+  } catch (err) {
+    next(err);
+  }
+});
+
+/**
+ * POST /api/bookings/:ref/payment
+ * Public (customer self-service). Records the bank-transfer transaction reference
+ * the customer entered after clicking "I have paid", so the admin panel can see
+ * it and verify the payment. Does not change the overall booking status.
+ */
+router.post('/bookings/:ref/payment', (req, res, next) => {
+  try {
+    const { transactionId } = req.body;
+    const updated = updatePaymentTransaction(req.params.ref, transactionId);
+
+    logger.info('bookingRoutes: customer submitted payment transaction reference', {
+      bookingReference: updated.bookingReference,
+      paymentTransactionId: updated.paymentTransactionId,
+      paymentStatus: updated.paymentStatus,
+    });
+
+    return res.status(200).json({
+      success: true,
+      message: 'Payment reference received. Our team is verifying your transfer.',
+      booking: updated,
+    });
+  } catch (err) {
+    next(err);
+  }
+});
+
+/**
+ * PATCH /api/bookings/:ref/verify-payment
+ * Admin-only. Marks a submitted bank-transfer payment as verified (or reverts it).
+ * Only changes paymentStatus — the booking status (Approve/Confirm) is handled separately.
+ */
+router.patch('/bookings/:ref/verify-payment', requireAdmin, (req, res, next) => {
+  try {
+    const verified = req.body?.verified !== false; // default true
+    const updated = verifyPayment(req.params.ref, verified);
+
+    logger.info('bookingRoutes: admin verified payment', {
+      bookingReference: updated.bookingReference,
+      paymentStatus: updated.paymentStatus,
+    });
+
+    return res.status(200).json({
+      success: true,
+      message: verified ? 'Payment marked as verified.' : 'Payment verification reverted.',
       booking: updated,
     });
   } catch (err) {

@@ -187,10 +187,92 @@ export function updateAirlinePnr(ref, pnr) {
   return saveBooking(booking);
 }
 
+/**
+ * Record a customer-submitted bank-transfer transaction reference for verification.
+ * Public (customer self-service): attaches the reference and flips the payment
+ * status to 'submitted' so the admin panel can verify it. Does NOT change the
+ * overall booking status (that stays Pending/Confirmed by admin action).
+ * @param {string} ref Booking reference code
+ * @param {string} transactionId Bank transfer transaction/reference id from the customer
+ * @returns {Object} Updated booking record
+ */
+export function updatePaymentTransaction(ref, transactionId) {
+  ensureDatabase();
+  const booking = getBookingByRef(ref);
+  if (!booking) {
+    const err = new Error(`No booking found matching reference "${ref}".`);
+    err.statusCode = 404;
+    throw err;
+  }
+
+  const cleaned = String(transactionId || '').trim();
+  if (!cleaned) {
+    const err = new Error('A transaction reference is required.');
+    err.statusCode = 400;
+    throw err;
+  }
+
+  booking.paymentTransactionId = cleaned;
+  booking.paymentStatus = 'submitted';
+  booking.paymentSubmittedAt = new Date().toISOString();
+  booking.updatedAt = booking.paymentSubmittedAt;
+  // Only prepend a payment note to the customer-facing message; leave status as-is.
+  booking.statusMessage =
+    `Payment reference "${cleaned}" received. Our team is verifying the transfer and will confirm shortly.`;
+
+  logger.info('dbService: recorded payment transaction', {
+    bookingReference: booking.bookingReference,
+    paymentTransactionId: cleaned,
+    paymentStatus: booking.paymentStatus,
+  });
+
+  return saveBooking(booking);
+}
+
+export function verifyPayment(ref, verified = true) {
+  ensureDatabase();
+  const booking = getBookingByRef(ref);
+  if (!booking) {
+    const err = new Error(`No booking found matching reference "${ref}".`);
+    err.statusCode = 404;
+    throw err;
+  }
+
+  if (verified) {
+    if (!booking.paymentTransactionId) {
+      const err = new Error('No payment transaction reference has been submitted for this booking.');
+      err.statusCode = 400;
+      throw err;
+    }
+    booking.paymentStatus = 'verified';
+    booking.paymentVerifiedAt = new Date().toISOString();
+    booking.statusMessage = 'Payment verified by our team. Your booking is being processed.';
+  } else {
+    // Revert to the pre-verification state so admin can flag a bad reference.
+    booking.paymentStatus = booking.paymentTransactionId ? 'submitted' : 'awaiting_payment';
+    booking.paymentVerifiedAt = null;
+    booking.statusMessage = booking.paymentTransactionId
+      ? `Payment reference "${booking.paymentTransactionId}" is pending verification.`
+      : 'Awaiting your bank transfer payment.';
+  }
+
+  booking.updatedAt = new Date().toISOString();
+
+  logger.info('dbService: admin updated payment verification status', {
+    bookingReference: booking.bookingReference,
+    paymentStatus: booking.paymentStatus,
+    paymentTransactionId: booking.paymentTransactionId,
+  });
+
+  return saveBooking(booking);
+}
+
 export default {
   getAllBookings,
   getBookingByRef,
   saveBooking,
   updateBookingStatus,
   updateAirlinePnr,
+  updatePaymentTransaction,
+  verifyPayment,
 };

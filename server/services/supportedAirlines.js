@@ -31,8 +31,8 @@ export const SUPPORTED_AIRLINES = [
   },
   {
     name: 'Enugu Air',
-    codes: ['E3', 'EG'],
-    keywords: ['enugu air', 'enuguair', 'e3', 'eg'],
+    codes: ['E3', 'EG', 'EU', 'EE'],
+    keywords: ['enugu air', 'enuguair', 'enugu-air', 'enugu airlines', 'e3', 'eg', 'eu'],
   },
 ];
 

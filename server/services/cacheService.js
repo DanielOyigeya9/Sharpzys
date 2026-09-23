@@ -22,13 +22,15 @@ const cache = new NodeCache({ stdTTL: TTL, useClones: false });
  * @param {number} adults
  * @returns {string}
  */
-function buildKey(origin, destination, departureDate, adults, returnDate = '') {
+function buildKey(origin, destination, departureDate, adults, returnDate = '', children = 0, infants = 0) {
   return [
     origin.trim().toUpperCase(),
     destination.trim().toUpperCase(),
     departureDate.trim(),
     returnDate.trim(),
     String(adults),
+    String(children),
+    String(infants),
   ].join('::');
 }
 
@@ -40,8 +42,8 @@ function buildKey(origin, destination, departureDate, adults, returnDate = '') {
  * @param {number} adults
  * @returns {Array|undefined}
  */
-function get(origin, destination, departureDate, adults, returnDate = '') {
-  const key = buildKey(origin, destination, departureDate, adults, returnDate);
+function get(origin, destination, departureDate, adults, returnDate = '', children = 0, infants = 0) {
+  const key = buildKey(origin, destination, departureDate, adults, returnDate, children, infants);
   const value = cache.get(key);
   if (value !== undefined) {
     logger.info('Cache hit', { key });
@@ -59,8 +61,8 @@ function get(origin, destination, departureDate, adults, returnDate = '') {
  * @param {number} adults
  * @param {Array}  results
  */
-function set(origin, destination, departureDate, adults, results, returnDate = '') {
-  const key = buildKey(origin, destination, departureDate, adults, returnDate);
+function set(origin, destination, departureDate, adults, results, returnDate = '', children = 0, infants = 0) {
+  const key = buildKey(origin, destination, departureDate, adults, returnDate, children, infants);
   cache.set(key, results);
   logger.debug('Cache set', { key, ttl: TTL, count: results.length });
 }
@@ -68,8 +70,8 @@ function set(origin, destination, departureDate, adults, results, returnDate = '
 /**
  * Manually invalidate a cache entry.
  */
-function del(origin, destination, departureDate, adults, returnDate = '') {
-  const key = buildKey(origin, destination, departureDate, adults, returnDate);
+function del(origin, destination, departureDate, adults, returnDate = '', children = 0, infants = 0) {
+  const key = buildKey(origin, destination, departureDate, adults, returnDate, children, infants);
   cache.del(key);
   logger.debug('Cache invalidated', { key });
 }

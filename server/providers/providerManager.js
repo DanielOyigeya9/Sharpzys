@@ -1,36 +1,36 @@
 /**
  * providers/providerManager.js
  *
- * Central registry for all flight data providers.
- * Adding a new provider (OAG, Amadeus, Duffel, etc.) requires only:
- *   1. Implement a class with search(params) and a name getter.
- *   2. Register it here via registerProvider().
- *   3. Zero frontend or controller changes needed.
+ * Central registry for all direct flight data providers:
+ *   1. Air Peace (AirPeaceProvider)
+ *   2. Ibom Air (IbomAirProvider)
+ *   3. ValueJet (ValueJetProvider)
+ *   4. Aero Contractors (AeroProvider)
+ *   5. Enugu Air (EnuguAirProvider)
  *
- * Search strategy:
- *   - All enabled providers are queried in parallel.
- *   - Results are merged and deduplicated.
- *   - If ALL providers fail, an error is thrown so the controller
- *     can return a 503 to the client.
- *   - If SOME providers fail, partial results are returned and failures
- *     are logged — the frontend still gets data.
+ * AlternativeAirlinesProvider remains in the repository as a fallback implementation
+ * but is disabled from active production search list per requirements.
  */
 
-import AlternativeAirlinesProvider from './alternativeAirlinesProvider.js';
+import AirPeaceProvider from './airPeaceProvider.js';
+import IbomAirProvider from './ibomAirProvider.js';
+import ValueJetProvider from './valueJetProvider.js';
+import AeroProvider from './aeroProvider.js';
+import EnuguAirProvider from './enuguAirProvider.js';
 import logger from '../utils/logger.js';
+import { recordProviderResult, STATUS } from '../services/searchMetrics.js';
 
 class ProviderManager {
   constructor() {
     /** @type {Map<string, object>} name → provider instance */
     this._providers = new Map();
 
-    // Register default providers
-    this.registerProvider(new AlternativeAirlinesProvider());
-
-    // Future providers can be registered here:
-    // this.registerProvider(new OAGProvider());
-    // this.registerProvider(new AmadeusProvider());
-    // this.registerProvider(new DuffelProvider());
+    // Register active direct airline providers
+    this.registerProvider(new AirPeaceProvider());
+    this.registerProvider(new IbomAirProvider());
+    this.registerProvider(new ValueJetProvider());
+    this.registerProvider(new AeroProvider());
+    this.registerProvider(new EnuguAirProvider());
   }
 
   /**
@@ -53,7 +53,7 @@ class ProviderManager {
   }
 
   /**
-   * Deregister a provider by name (useful for testing or dynamic toggling).
+   * Deregister a provider by name.
    * @param {string} name
    */
   deregisterProvider(name) {
@@ -67,19 +67,20 @@ class ProviderManager {
   }
 
   /**
-   * Search across all registered providers in parallel.
-   * Returns the merged, deduplicated list of normalised flights.
+   * Search across all registered direct providers.
+   * Returns merged normalised flights.
    *
    * @param {{
    *   origin: string,
    *   destination: string,
    *   departureDate: string,
    *   returnDate?: string,
-   *   adults: number
+   *   adults: number,
+   *   children?: number,
+   *   infants?: number
    * }} params
    *
    * @returns {Promise<Array>}
-   * @throws {Error} with code 503 if all providers fail.
    */
   async search(params) {
     if (this._providers.size === 0) {
@@ -88,60 +89,98 @@ class ProviderManager {
       throw err;
     }
 
-    logger.info('ProviderManager: dispatching search to providers', {
-      providers: this.providerNames,
+    let entries = [...this._providers.values()];
+
+    // Provider targeting filter
+    if (params.provider) {
+      const target = entries.find((p) => p.name.toLowerCase() === params.provider.toLowerCase());
+      if (target) {
+        entries = [target];
+      }
+    } else if (params.excludeProviders && Array.isArray(params.excludeProviders)) {
+      const excludeSet = new Set(params.excludeProviders.map((p) => p.toLowerCase()));
+      entries = entries.filter((p) => !excludeSet.has(p.name.toLowerCase()));
+    }
+
+    logger.info('ProviderManager: dispatching search to direct providers', {
+      providers: entries.map((p) => p.name),
       params,
     });
-
-    const entries = [...this._providers.values()];
-
-    // Run all providers in parallel; capture results and errors separately.
-    const outcomes = await Promise.allSettled(
-      entries.map((provider) => provider.search(params))
-    );
 
     const allFlights = [];
     let failCount = 0;
 
+    // Execute provider searches with provider isolation (one failure does not break
+    // others). Each provider is individually timed so the admin health view can show
+    // a true per-provider response time rather than the shared wall-clock.
+    const outcomes = await Promise.allSettled(
+      entries.map(async (provider) => {
+        const t0 = Date.now();
+        try {
+          const flights = await provider.search(params);
+          return { flights: flights || [], durationMs: Date.now() - t0 };
+        } catch (err) {
+          if (err && typeof err === 'object') err._durationMs = Date.now() - t0;
+          throw err;
+        }
+      })
+    );
+
     for (let i = 0; i < entries.length; i++) {
-      const outcome  = outcomes[i];
+      const outcome = outcomes[i];
       const provider = entries[i];
 
       if (outcome.status === 'fulfilled') {
-        const flights = outcome.value;
+        const flights = outcome.value.flights || [];
+        const durationMs = outcome.value.durationMs;
         logger.info('ProviderManager: provider returned results', {
           provider: provider.name,
           count: flights.length,
+          durationMs,
+        });
+        recordProviderResult({
+          provider: provider.name,
+          status: flights.length > 0 ? STATUS.SUCCESS : STATUS.NO_RESULTS,
+          count: flights.length,
+          durationMs,
         });
         allFlights.push(...flights);
       } else {
         failCount++;
+        const reason = outcome.reason || {};
+        const isVerification =
+          reason.providerStatus === STATUS.VERIFICATION_REQUIRED ||
+          reason.code === 'VERIFICATION_REQUIRED';
         logger.error('ProviderManager: provider search failed', {
           provider: provider.name,
-          error: outcome.reason?.message,
-          stack: outcome.reason?.stack,
-          code: outcome.reason?.code,
-          statusCode: outcome.reason?.statusCode,
+          error: reason.message,
+          stack: reason.stack,
+        });
+        recordProviderResult({
+          provider: provider.name,
+          status: isVerification ? STATUS.VERIFICATION_REQUIRED : STATUS.ERROR,
+          count: 0,
+          durationMs: reason._durationMs || 0,
+          errorType: reason.errorType || reason.code || 'ERROR',
+          error: reason.message,
         });
       }
     }
 
-    // All providers failed → 503
-    if (failCount === entries.length) {
-      const failedIndex = outcomes.findIndex((outcome) => outcome.status === 'rejected');
-      const failure = failedIndex >= 0 ? outcomes[failedIndex].reason : null;
-      const botName = failedIndex >= 0 ? entries[failedIndex].name : 'Flight search';
-      const err = new Error(`${botName} bot failed: ${failure?.message || 'unknown scraping error'}`);
-      err.code = failure?.code || 'BOT_SCRAPE_FAILED';
-      err.statusCode = failure?.statusCode || 502;
-      throw err;
-    }
-
-    // Deduplicate across providers (same airline + flightNumber + departureTime)
-    const seen   = new Set();
+    // Deduplicate identical flights across providers using a stable key that
+    // intentionally EXCLUDES price (two different flights can share a price).
+    const seen = new Set();
     const merged = [];
     for (const flight of allFlights) {
-      const key = `${flight.airline}|${flight.flightNumber}|${flight.departureTime}`;
+      const key = [
+        flight.source || flight.provider,
+        flight.airline,
+        flight.flightNumber,
+        flight.origin,
+        flight.destination,
+        flight.departureDate,
+        flight.departureTime,
+      ].join('|').toLowerCase();
       if (!seen.has(key)) {
         seen.add(key);
         merged.push(flight);
@@ -151,11 +190,11 @@ class ProviderManager {
     logger.info('ProviderManager: search complete', {
       totalFlights: merged.length,
       providersFailed: failCount,
+      totalProviders: entries.length,
     });
 
     return merged;
   }
 }
 
-// Export a singleton — the same manager is shared across all requests.
 export default new ProviderManager();

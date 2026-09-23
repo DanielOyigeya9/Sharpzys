@@ -28,6 +28,7 @@ import { dirname, join }  from 'path';
 
 import flightRoutes  from './routes/flights.js';
 import bookingRoutes from './routes/bookingRoutes.js';
+import adminRoutes   from './routes/adminRoutes.js';
 import errorHandler  from './middleware/errorHandler.js';
 import cacheService  from './services/cacheService.js';
 import queueService  from './services/queueService.js';
@@ -86,8 +87,8 @@ const corsOptions = {
     if (allowedOrigins.includes(normalisedOrigin)) return callback(null, true);
     callback(new Error(`CORS: Origin "${requestOrigin}" is not allowed.`));
   },
-  methods:              ['GET', 'POST', 'OPTIONS'],
-  allowedHeaders:       ['Content-Type', 'Authorization'],
+  methods:              ['GET', 'POST', 'PATCH', 'OPTIONS'],
+  allowedHeaders:       ['Content-Type', 'Authorization', 'X-Admin-Token'],
   credentials:          true,
   optionsSuccessStatus: 204,
 };
@@ -117,7 +118,8 @@ app.use(
         styleSrc:   ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
         scriptSrc:  ["'self'", "'unsafe-inline'"],
         imgSrc:     ["'self'", 'data:', 'blob:', 'https:'],
-        connectSrc: ["'self'"],
+        // Allow EventSource (SSE) and XHR back to self + localhost dev server
+        connectSrc: ["'self'", 'ws://localhost:*', 'http://localhost:*'],
         fontSrc:    ["'self'", 'data:', 'https://fonts.gstatic.com'],
       },
     },
@@ -168,6 +170,7 @@ app.get('/api/health', (req, res) => {
 // ─── API routes ───────────────────────────────────────────────────────────────
 app.use('/api/flights', flightRoutes);
 app.use('/api', bookingRoutes);
+app.use('/api/admin', adminRoutes);
 
 // ─── React catch-all ──────────────────────────────────────────────────────────
 // Any request that didn't match /health or /api/* is a React Router path.
