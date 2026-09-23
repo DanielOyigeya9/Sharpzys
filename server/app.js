@@ -118,8 +118,13 @@ app.use(
         styleSrc:   ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
         scriptSrc:  ["'self'", "'unsafe-inline'"],
         imgSrc:     ["'self'", 'data:', 'blob:', 'https:'],
-        // Allow EventSource (SSE) and XHR back to self + localhost dev server
-        connectSrc: ["'self'", 'ws://localhost:*', 'http://localhost:*'],
+        // connect-src governs fetch/XHR/WebSocket from the SPA. Allow:
+        //   'self'            → same-origin API (single-host Railway deploy)
+        //   https:            → any remote API host (split frontend/backend)
+        //   http://localhost:* + ws/wss → the Vite dev server + HMR + local API
+        // Without https:/wss: a bundle built with a remote VITE_API_URL gets
+        // blocked by the browser ("Network Error"), breaking flight search.
+        connectSrc: ["'self'", 'https:', 'http://localhost:*', 'ws://localhost:*', 'wss:', 'ws:'],
         fontSrc:    ["'self'", 'data:', 'https://fonts.gstatic.com'],
       },
     },
