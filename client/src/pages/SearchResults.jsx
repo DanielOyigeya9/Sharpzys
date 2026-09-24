@@ -37,6 +37,15 @@ function SearchResults() {
   const [isSearching, setIsSearching] = useState(false);
   const [searchError, setSearchError] = useState('');
 
+  // ── Round-trip two-step selection state ──
+  const isRoundTrip = searchParams.tripType === 'roundTrip';
+  const [step, setStep] = useState('outbound'); // 'outbound' | 'return'
+  const [selectedOutbound, setSelectedOutbound] = useState(null);
+  const [returnFlights, setReturnFlights] = useState([]);
+  const [returnLoading, setReturnLoading] = useState(false);
+  const [returnError, setReturnError] = useState('');
+  const [returnDateRetry, setReturnDateRetry] = useState(searchParams.returnDate || '');
+
   // On mount, load flights from other providers if initialFlights is empty
   useEffect(() => {
     if (initialFlights.length > 0) return;
@@ -151,13 +160,87 @@ function SearchResults() {
     }));
   };
 
+  const routeOriginCode = () => searchParams.originCode || extractCode(searchParams.origin) || 'LOS';
+  const routeDestCode = () => searchParams.destinationCode || extractCode(searchParams.destination) || 'ABV';
+
+  // Return leg = a second one-way search with the route swapped and the return date.
+  // (Provider bots stay one-way; no bot changes needed.)
+  const runReturnSearch = async (retDate) => {
+    if (!retDate) {
+      setReturnError('Please choose a return date.');
+      setReturnFlights([]);
+      return;
+    }
+    setReturnLoading(true);
+    setReturnError('');
+    setReturnFlights([]);
+    try {
+      const res = await searchFlights({
+        origin: routeDestCode(),
+        destination: routeOriginCode(),
+        departureDate: retDate,
+        adults: searchParams.adults || 1,
+        children: searchParams.children || 0,
+        infants: searchParams.infants || 0,
+      });
+      const list = res?.flights || [];
+      setReturnFlights(list);
+      if (list.length === 0) setReturnError('No return flights were found for this date.');
+    } catch (err) {
+      console.warn('[Sharpzy] Return leg search error:', err);
+      setReturnError('We could not load return flights right now. Please try again.');
+    } finally {
+      setReturnLoading(false);
+    }
+  };
+
   const handleSelectFlight = (flight) => {
+    if (!isRoundTrip) {
+      navigate('/booking', {
+        state: {
+          flight,
+          search: searchParams,
+        },
+      });
+      return;
+    }
+    // Round trip: lock the outbound selection, then load the return leg.
+    setSelectedOutbound(flight);
+    const retDate = searchParams.returnDate || returnDateRetry;
+    setReturnDateRetry(retDate);
+    setStep('return');
+    runReturnSearch(retDate);
+  };
+
+  const handleChangeOutbound = () => {
+    setStep('outbound');
+    setSelectedOutbound(null);
+    setReturnFlights([]);
+    setReturnError('');
+    setReturnLoading(false);
+  };
+
+  const handleSelectReturn = (returnFlight) => {
     navigate('/booking', {
       state: {
-        flight,
-        search: searchParams,
+        flight: selectedOutbound,
+        returnFlight,
+        search: { ...searchParams, tripType: 'roundTrip', returnDate: returnDateRetry },
       },
     });
+  };
+
+  const handleContinueOutboundOnly = () => {
+    navigate('/booking', {
+      state: {
+        flight: selectedOutbound,
+        search: { ...searchParams, tripType: 'oneWay' },
+      },
+    });
+  };
+
+  const handleRetryReturnSearch = () => {
+    runReturnSearch(returnDateRetry);
   };
 
   const handleModifySubmit = async (e) => {
@@ -289,7 +372,81 @@ function SearchResults() {
           )}
         </section>
 
-        {/* ── Main Results Content Layout ─────────────────────────────── */}
+        {/* ── Round-trip Step 2: choose the return leg ── */}
+        {isRoundTrip && step === 'return' ? (
+          <div className="results-container">
+            <div className="results-main-content" style={{ maxWidth: '100%' }}>
+              <div className="return-step">
+                <div className="return-step-banner">
+                  <div>
+                    <span className="return-step-eyebrow">Step 2 of 2 — Return flight</span>
+                    <h2>Choose your return · {destDisplay} → {originDisplay}</h2>
+                    {selectedOutbound && (
+                      <p className="return-step-outbound">
+                        Outbound selected: {selectedOutbound.airline} {selectedOutbound.flightNumber} · {selectedOutbound.origin}→{selectedOutbound.destination} · {selectedOutbound.departureDate || selectedOutbound.departureTime}
+                      </p>
+                    )}
+                  </div>
+                  <button type="button" className="change-outbound-btn" onClick={handleChangeOutbound}>
+                    ← Change outbound
+                  </button>
+                </div>
+
+                <div className="return-date-retry">
+                  <label htmlFor="returnDateRetry">Return date</label>
+                  <input
+                    id="returnDateRetry"
+                    type="date"
+                    value={returnDateRetry}
+                    min={searchParams.departureDate}
+                    onChange={(e) => setReturnDateRetry(e.target.value)}
+                  />
+                  <button type="button" className="update-search-btn" onClick={handleRetryReturnSearch} disabled={returnLoading}>
+                    {returnLoading ? 'Searching…' : 'Search returns'}
+                  </button>
+                </div>
+
+                {returnLoading && (
+                  <div className="skeleton-cards-list">
+                    {[1, 2, 3].map((n) => (
+                      <div key={n} className="skeleton-card">
+                        <div className="skeleton-line shimmer"></div>
+                        <div className="skeleton-line short shimmer"></div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {!returnLoading && returnFlights.length > 0 && (
+                  <div className="flights-cards-list">
+                    {returnFlights.map((flight, index) => (
+                      <FlightCard
+                        key={flight.id || `${flight.airline}-${flight.flightNumber}-${index}`}
+                        flight={flight}
+                        onSelect={handleSelectReturn}
+                      />
+                    ))}
+                  </div>
+                )}
+
+                {!returnLoading && returnFlights.length === 0 && (
+                  <div className="results-empty-card">
+                    <h3>No return flights found</h3>
+                    <p>{returnError || 'We could not find return flights for this date. Try another date, or continue with the outbound flight only.'}</p>
+                    <div className="empty-suggestions-list">
+                      <button type="button" className="empty-suggestion-btn" onClick={handleRetryReturnSearch}>
+                        🔁 Search this date again
+                      </button>
+                      <button type="button" className="empty-suggestion-btn" onClick={handleContinueOutboundOnly}>
+                        ✈ Continue with outbound only
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        ) : (
         <div className="results-container">
           {/* Mobile Filter Button */}
           <div className="mobile-filter-bar">
@@ -547,6 +704,7 @@ function SearchResults() {
             </div>
           </div>
         </div>
+        )}
       </main>
 
       <Footer />

@@ -110,7 +110,7 @@ function FlightCard({ flight, onSelect }) {
         {/* Pricing & Selection */}
         <div className="card-pricing-col">
           <div className="price-tag">
-            <span className="price-sub">Total fare</span>
+            <span className="price-sub">Per person</span>
             <span className="price-amount">{formattedPrice}</span>
           </div>
           <button

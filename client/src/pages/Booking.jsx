@@ -11,7 +11,9 @@ function Booking() {
   const navigate = useNavigate();
 
   const selectedFlight = location.state?.flight;
+  const returnFlight = location.state?.returnFlight || null;
   const searchParams = location.state?.search;
+  const isRoundTrip = !!returnFlight;
 
   const totalPassengerCount = useMemo(() => {
     const adults = Number(searchParams?.adults || 1);
@@ -110,6 +112,8 @@ function Booking() {
     try {
       const response = await createBooking({
         flight: selectedFlight,
+        returnFlight: returnFlight || null,
+        tripType: isRoundTrip ? 'roundTrip' : 'oneWay',
         passengerName: primaryPassengerName,
         email: contactInfo.email.trim(),
         phone: `${contactInfo.countryCode} ${contactInfo.phone.trim()}`,
@@ -117,11 +121,12 @@ function Booking() {
         contactInfo,
         extras,
         paymentMethod: normalizedPaymentMethod,
-        price: Math.round(Number(selectedFlight.price || 0) * (Number(totalPassengerCount) || 1)),
+        price: Math.round((Number(selectedFlight.price || 0) + Number(returnFlight?.price || 0)) * (Number(totalPassengerCount) || 1)),
         currency: selectedFlight.currency || 'NGN',
       });
 
-      navigate('/confirmation', {
+      const isBankTransfer = normalizedPaymentMethod === 'bank_transfer' || normalizedPaymentMethod === 'bank';
+      navigate(isBankTransfer ? '/payment' : '/confirmation', {
         state: {
           booking: response.booking,
         },
@@ -152,7 +157,9 @@ function Booking() {
 
   const currencySymbol = selectedFlight.currency === 'NGN' ? '₦' : (selectedFlight.currency === 'USD' ? '$' : `${selectedFlight.currency} `);
   const paxCount = Number(totalPassengerCount) || 1;
-  const farePerPerson = Number(selectedFlight.price || 0);
+  const outboundFare = Number(selectedFlight.price || 0);
+  const returnFare = Number(returnFlight?.price || 0);
+  const farePerPerson = outboundFare + returnFare;
   const totalPrice = Math.round(farePerPerson * paxCount);
   const formatMoney = (n) => `${currencySymbol}${Number(n || 0).toLocaleString()}`;
   const formattedPrice = formatMoney(farePerPerson);
@@ -598,12 +605,30 @@ function Booking() {
             <aside className="booking-summary-sidebar">
               <div className="sticky-sidebar-card">
                 <h3>Price Summary</h3>
+                <div className="sidebar-trip-type">{isRoundTrip ? 'Round trip · 2 flights' : 'One-way trip'}</div>
                 <div className="sidebar-airline-badge">
-                  <span>{selectedFlight.airline}</span>
+                  <span>Outbound · {selectedFlight.airline} {selectedFlight.flightNumber || ''} · {selectedFlight.origin}→{selectedFlight.destination}</span>
                 </div>
+                {returnFlight && (
+                  <div className="sidebar-airline-badge">
+                    <span>Return · {returnFlight.airline} {returnFlight.flightNumber || ''} · {returnFlight.origin}→{returnFlight.destination}</span>
+                  </div>
+                )}
 
+                {isRoundTrip && (
+                  <>
+                    <div className="sidebar-price-row">
+                      <span>Outbound fare</span>
+                      <span>{formatMoney(outboundFare)}</span>
+                    </div>
+                    <div className="sidebar-price-row">
+                      <span>Return fare</span>
+                      <span>{formatMoney(returnFare)}</span>
+                    </div>
+                  </>
+                )}
                 <div className="sidebar-price-row">
-                  <span>Fare per person</span>
+                  <span>Fare per person{isRoundTrip ? ' (outbound + return)' : ''}</span>
                   <span>{formattedPrice}</span>
                 </div>
                 <div className="sidebar-price-row">

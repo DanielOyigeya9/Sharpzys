@@ -21,7 +21,7 @@ function Home() {
   const navigate = useNavigate();
 
   // ── State ─────────────────────────────────────────────────────────────────
-  const [trip, setTrip] = useState('oneway'); // 'oneway' | 'return' | 'multi'
+  const [trip, setTrip] = useState('oneway'); // 'oneway' | 'return'
   const [fromQuery, setFromQuery] = useState('Lagos (LOS)');
   const [fromCode, setFromCode] = useState('LOS');
   const [fromSuggestionsOpen, setFromSuggestionsOpen] = useState(false);
@@ -42,11 +42,6 @@ function Home() {
   const [cabin, setCabin] = useState('Economy');
   const [passengerPopoverOpen, setPassengerPopoverOpen] = useState(false);
 
-  // Multi-city leg manager
-  const [multiCitySegments, setMultiCitySegments] = useState(() => [
-    { fromQuery: 'Lagos (LOS)', fromCode: 'LOS', toQuery: 'Abuja (ABV)', toCode: 'ABV', departureDate: new Date(Date.now() + 86400000 * 7).toISOString().slice(0, 10) },
-    { fromQuery: 'Abuja (ABV)', fromCode: 'ABV', toQuery: 'Port Harcourt (PHC)', toCode: 'PHC', departureDate: new Date(Date.now() + 86400000 * 10).toISOString().slice(0, 10) },
-  ]);
 
   // Loading and Toast state
   const [isSearching, setIsSearching] = useState(false);
@@ -134,38 +129,26 @@ function Home() {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    if (trip === 'multi') {
-      const firstSeg = multiCitySegments[0];
-      if (!firstSeg.fromCode || !firstSeg.toCode || !firstSeg.departureDate) {
-        showToast('Please complete all fields for your first multi-city flight leg.');
-        return;
-      }
-      if (firstSeg.fromCode === firstSeg.toCode) {
-        showToast('Departure and destination cannot be the same airport.');
-        return;
-      }
-    } else {
-      if (!fromCode || !toCode) {
-        showToast('Please select your departure and destination airports.');
-        return;
-      }
-      if (fromCode === toCode) {
-        showToast('Departure and destination cannot be the same.');
-        return;
-      }
-      if (!departureDate) {
-        showToast('Please select a valid departure date.');
-        return;
-      }
+    if (!fromCode || !toCode) {
+      showToast('Please select your departure and destination airports.');
+      return;
+    }
+    if (fromCode === toCode) {
+      showToast('Departure and destination cannot be the same.');
+      return;
+    }
+    if (!departureDate) {
+      showToast('Please select a valid departure date.');
+      return;
     }
 
-    const originCode = trip === 'multi' ? multiCitySegments[0].fromCode : fromCode;
-    const destCode = trip === 'multi' ? multiCitySegments[0].toCode : toCode;
-    const depDate = trip === 'multi' ? multiCitySegments[0].departureDate : departureDate;
+    const originCode = fromCode;
+    const destCode = toCode;
+    const depDate = departureDate;
     const retDate = trip === 'return' ? returnDate : undefined;
 
     const searchPayload = {
-      tripType: trip === 'oneway' ? 'oneWay' : (trip === 'return' ? 'roundTrip' : 'multiCity'),
+      tripType: trip === 'oneway' ? 'oneWay' : 'roundTrip',
       origin: originCode,
       destination: destCode,
       departureDate: depDate,
@@ -174,7 +157,6 @@ function Home() {
       children,
       infants,
       travelClass: cabin,
-      multiCitySegments: trip === 'multi' ? multiCitySegments : undefined,
     };
 
     const searchStateData = {
@@ -188,6 +170,7 @@ function Home() {
       children,
       infants,
       cabinClass: cabin,
+      tripType: searchPayload.tripType,
     };
 
     setIsSearching(true);
@@ -245,18 +228,10 @@ function Home() {
                 >
                   Return
                 </button>
-                <button
-                  type="button"
-                  className={`trip-tab ${trip === 'multi' ? 'active' : ''}`}
-                  onClick={() => setTrip('multi')}
-                >
-                  Multi-city
-                </button>
               </div>
 
               {/* Standard Search Form */}
-              {trip !== 'multi' ? (
-                <form id="flightForm" className="flight-form" onSubmit={handleFormSubmit}>
+              <form id="flightForm" className="flight-form" onSubmit={handleFormSubmit}>
                   {/* From Field */}
                   <div className="field airport-field" id="fromField" ref={fromRef}>
                     <label htmlFor="fromInput">Where from?</label>
@@ -394,95 +369,6 @@ function Home() {
                     {isSearching ? 'Searching...' : 'Search flights'} <span>→</span>
                   </button>
                 </form>
-              ) : (
-                /* Multi-city Search Form Layout */
-                <form className="multicity-form" onSubmit={handleFormSubmit}>
-                  {multiCitySegments.map((seg, idx) => (
-                    <div key={`seg-${idx}`} className="multicity-segment-box">
-                      <span className="segment-badge">Leg {idx + 1}</span>
-                      <div className="flight-form multicity-leg-form">
-                        <div className="field airport-field">
-                          <label>Where from?</label>
-                          <input
-                            type="text"
-                            placeholder="City or airport"
-                            value={seg.fromQuery}
-                            onChange={(e) => {
-                              const val = e.target.value;
-                              setMultiCitySegments((prev) => {
-                                const copy = [...prev];
-                                copy[idx] = { ...copy[idx], fromQuery: val };
-                                return copy;
-                              });
-                            }}
-                          />
-                        </div>
-                        <div className="field airport-field">
-                          <label>Where to?</label>
-                          <input
-                            type="text"
-                            placeholder="City or airport"
-                            value={seg.toQuery}
-                            onChange={(e) => {
-                              const val = e.target.value;
-                              setMultiCitySegments((prev) => {
-                                const copy = [...prev];
-                                copy[idx] = { ...copy[idx], toQuery: val };
-                                return copy;
-                              });
-                            }}
-                          />
-                        </div>
-                        <div className="field date-field">
-                          <label>Departure</label>
-                          <input
-                            type="date"
-                            min={today}
-                            value={seg.departureDate}
-                            onChange={(e) => {
-                              const val = e.target.value;
-                              setMultiCitySegments((prev) => {
-                                const copy = [...prev];
-                                copy[idx] = { ...copy[idx], departureDate: val };
-                                return copy;
-                              });
-                            }}
-                          />
-                        </div>
-                        {multiCitySegments.length > 2 && (
-                          <button
-                            type="button"
-                            className="remove-segment-btn"
-                            onClick={() =>
-                              setMultiCitySegments((prev) => prev.filter((_, i) => i !== idx))
-                            }
-                          >
-                            ✕
-                          </button>
-                        )}
-                      </div>
-                    </div>
-                  ))}
-
-                  <div className="multicity-actions">
-                    <button
-                      type="button"
-                      className="add-flight-leg-btn"
-                      onClick={() =>
-                        setMultiCitySegments((prev) => [
-                          ...prev,
-                          { fromQuery: '', fromCode: '', toQuery: '', toCode: '', departureDate: today },
-                        ])
-                      }
-                    >
-                      + Add Flight Leg
-                    </button>
-                    <button className="search-btn" type="submit" disabled={isSearching}>
-                      {isSearching ? 'Searching...' : 'Search Multi-city Fares'} <span>→</span>
-                    </button>
-                  </div>
-                </form>
-              )}
 
               {/* Passenger Popover */}
               <div className={`passenger-popover ${passengerPopoverOpen ? 'open' : ''}`} id="passengerPopover">

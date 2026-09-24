@@ -1,0 +1,359 @@
+/* client/src/styles/payment.css — Dedicated bank-transfer payment page */
+
+.payment-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f1f5f9;
+}
+
+.payment-page {
+  flex: 1;
+  padding: 2.5rem 1.25rem 4rem;
+}
+
+.payment-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Header */
+.payment-hero {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: linear-gradient(135deg, #1d4ed8, #4338ca);
+  color: #fff;
+  border-radius: 18px;
+  padding: 1.75rem 1.9rem;
+  box-shadow: 0 12px 30px -12px rgba(29, 78, 216, 0.5);
+}
+
+.payment-hero-icon {
+  font-size: 2.4rem;
+  line-height: 1;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 14px;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.payment-hero h1 {
+  margin: 0 0 0.35rem;
+  font-size: 1.6rem;
+  font-weight: 800;
+}
+
+.payment-hero p {
+  margin: 0;
+  color: #dbeafe;
+  font-size: 0.98rem;
+  line-height: 1.5;
+  max-width: 620px;
+}
+
+/* Amount banner */
+.payment-amount-banner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 4px 14px -8px rgba(15, 23, 42, 0.15);
+}
+
+.amount-left,
+.amount-right {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.amount-right {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.amount-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #64748b;
+}
+
+.amount-value {
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: #16a34a;
+}
+
+.amount-ref {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: monospace;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #0f172a;
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 8px;
+  padding: 0.35rem 0.7rem;
+  cursor: pointer;
+}
+
+.copy-hint {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #2563eb;
+  font-family: inherit;
+}
+
+/* Grid of two cards */
+.payment-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 1.5rem;
+}
+
+.payment-card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 1.6rem;
+  box-shadow: 0 4px 14px -10px rgba(15, 23, 42, 0.18);
+}
+
+.payment-card-title {
+  margin: 0 0 0.35rem;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.payment-card-sub {
+  margin: 0 0 1.15rem;
+  color: #475569;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+/* Bank details */
+.bank-details {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.bank-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid #eef2f7;
+}
+
+.bank-row:last-child {
+  border-bottom: none;
+}
+
+.bank-key {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #64748b;
+}
+
+.bank-val {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0f172a;
+  text-align: right;
+}
+
+.bank-val.mono {
+  font-family: monospace;
+}
+
+.bank-val.acct-num {
+  font-family: monospace;
+  font-size: 1.25rem;
+  letter-spacing: 1px;
+}
+
+.amount-highlight {
+  color: #16a34a;
+  font-size: 1.15rem;
+}
+
+.copy-btn {
+  border: 1px solid #bfdbfe;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-weight: 700;
+  font-size: 0.78rem;
+  border-radius: 6px;
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.copy-btn:hover {
+  background: #1d4ed8;
+  color: #fff;
+}
+
+.payment-trip-summary {
+  margin-top: 1.15rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  font-size: 0.92rem;
+  color: #334155;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 0.7rem 0.9rem;
+}
+
+.summary-tag {
+  background: #eef2ff;
+  color: #4338ca;
+  font-weight: 700;
+  font-size: 0.75rem;
+  border-radius: 6px;
+  padding: 2px 8px;
+}
+
+.summary-passenger {
+  color: #64748b;
+  margin-left: auto;
+}
+
+/* Submit card */
+.payment-submit-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.payment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.payment-field-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #334155;
+}
+
+.payment-form input {
+  padding: 0.8rem 0.9rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  font-size: 1rem;
+  width: 100%;
+}
+
+.payment-form input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.payment-error {
+  margin: 0.2rem 0 0;
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  background: #fee2e2;
+  color: #991b1b;
+  font-size: 0.88rem;
+}
+
+.payment-submit-btn {
+  margin-top: 0.6rem;
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  padding: 0.9rem 1rem;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  background: #16a34a;
+  color: #fff;
+  transition: background 0.15s ease;
+}
+
+.payment-submit-btn:hover:not(:disabled) {
+  background: #15803d;
+}
+
+.payment-submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.payment-footnote {
+  margin: 1rem 0 0;
+  font-size: 0.82rem;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+/* Empty state */
+.payment-empty-card {
+  max-width: 520px;
+  margin: 3rem auto;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 2rem;
+  text-align: center;
+}
+
+.payment-empty-card h2 {
+  margin: 0 0 0.5rem;
+}
+
+.payment-empty-card .btn-primary {
+  background: #1d4ed8;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 0.75rem 1.4rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 860px) {
+  .payment-grid {
+    grid-template-columns: 1fr;
+  }
+  .payment-hero {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .amount-right {
+    align-items: flex-start;
+    text-align: left;
+  }
+}

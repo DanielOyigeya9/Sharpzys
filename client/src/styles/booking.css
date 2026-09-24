@@ -579,9 +579,29 @@
   padding-bottom: 12px;
 }
 
+.sidebar-trip-type {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #4338ca;
+  background: #eef2ff;
+  border-radius: 999px;
+  padding: 3px 10px;
+  margin-bottom: 8px;
+}
+
 .sidebar-airline-badge {
   font-weight: 700;
   color: var(--brand-primary);
+  font-size: 0.82rem;
+  line-height: 1.35;
+  margin-bottom: 6px;
+}
+
+.sidebar-airline-badge span {
+  display: block;
 }
 
 .sidebar-price-row {

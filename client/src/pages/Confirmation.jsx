@@ -121,7 +121,8 @@ function Confirmation() {
           <div className="confirmation-details-card">
             {/* Flight Summary */}
             <div className="conf-section">
-              <h3>Flight Itinerary</h3>
+              <h3>Flight Itinerary {booking.tripType === 'roundTrip' || booking.returnFlight ? '· Round trip' : '· One way'}</h3>
+              <p style={{ margin: '0 0 0.4rem', fontWeight: 700, color: '#334155' }}>Outbound</p>
               <div className="conf-grid-2">
                 <div>
                   <span className="conf-label">Airline & Flight:</span>
@@ -140,6 +141,30 @@ function Confirmation() {
                   <strong>{booking.flight?.arrivalTime}</strong>
                 </div>
               </div>
+
+              {(booking.tripType === 'roundTrip' || booking.returnFlight) && booking.returnFlight && (
+                <>
+                  <p style={{ margin: '1rem 0 0.4rem', fontWeight: 700, color: '#334155' }}>Return</p>
+                  <div className="conf-grid-2">
+                    <div>
+                      <span className="conf-label">Airline & Flight:</span>
+                      <strong>{booking.returnFlight.airline} ({booking.returnFlight.flightNumber || 'Direct'})</strong>
+                    </div>
+                    <div>
+                      <span className="conf-label">Route:</span>
+                      <strong>{booking.returnFlight.origin} → {booking.returnFlight.destination}</strong>
+                    </div>
+                    <div>
+                      <span className="conf-label">Departure Time:</span>
+                      <strong>{booking.returnFlight.departureTime}</strong>
+                    </div>
+                    <div>
+                      <span className="conf-label">Arrival Time:</span>
+                      <strong>{booking.returnFlight.arrivalTime}</strong>
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
 
             <div className="conf-divider"></div>

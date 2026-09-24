@@ -530,15 +530,22 @@ function Admin() {
                                 </td>
                                 <td>
                                   <span className="airport-badge">{b.flight?.origin || 'N/A'} → {b.flight?.destination || 'N/A'}</span>
+                                  {(b.tripType === 'roundTrip' || b.returnFlight) && (
+                                    <div style={{ marginTop: 3 }}>
+                                      <span style={{ fontSize: '0.68rem', fontWeight: 700, color: '#4338ca', background: '#eef2ff', borderRadius: 6, padding: '1px 6px' }}>RT · {b.returnFlight?.origin || '?'}→{b.returnFlight?.destination || '?'}</span>
+                                    </div>
+                                  )}
                                 </td>
                                 <td>{b.flight?.departureTime || b.flight?.departureDate || 'N/A'}</td>
                                 <td>
                                   <span className="sub-text">
                                     {b.paymentMethod === 'bank_transfer' || b.paymentMethod === 'bank' ? 'Bank Transfer' : 'Pay on Site'}
                                   </span>
-                                  {b.paymentStatus === 'submitted' && (
+                                  {b.paymentTransactionId && (
                                     <div style={{ marginTop: 2 }}>
-                                      <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#b45309' }}>💰 Verify txn: {b.paymentTransactionId}</span>
+                                      <span style={{ fontSize: '0.72rem', fontWeight: 700, color: b.paymentStatus === 'verified' ? '#047857' : '#b45309' }}>
+                                        💳 {b.paymentTransactionId}{b.paymentStatus === 'submitted' ? ' · Verify' : ''}
+                                      </span>
                                     </div>
                                   )}
                                 </td>
@@ -946,9 +953,24 @@ function Admin() {
                 </div>
 
                 <div className="detail-item">
-                  <span className="detail-label">Flight Route</span>
+                  <span className="detail-label">Trip Type</span>
+                  <strong className="detail-val">{(selectedBooking.tripType === 'roundTrip' || selectedBooking.returnFlight) ? 'Round trip' : 'One way'}</strong>
+                </div>
+
+                <div className="detail-item">
+                  <span className="detail-label">{(selectedBooking.tripType === 'roundTrip' || selectedBooking.returnFlight) ? 'Outbound Route' : 'Flight Route'}</span>
                   <strong className="detail-val">{selectedBooking.flight?.origin} → {selectedBooking.flight?.destination}</strong>
                 </div>
+
+                {(selectedBooking.tripType === 'roundTrip' || selectedBooking.returnFlight) && selectedBooking.returnFlight && (
+                  <div className="detail-item highlighted-field">
+                    <span className="detail-label">Return Route</span>
+                    <strong className="detail-val">{selectedBooking.returnFlight.origin} → {selectedBooking.returnFlight.destination}</strong>
+                    <span className="sub-text">
+                      {selectedBooking.returnFlight.airline} {selectedBooking.returnFlight.flightNumber || ''} · {selectedBooking.returnFlight.departureDate || selectedBooking.returnFlight.departureTime || ''}
+                    </span>
+                  </div>
+                )}
 
                 <div className="detail-item">
                   <span className="detail-label">Departure Date</span>
@@ -993,9 +1015,9 @@ function Admin() {
                   className="approve-btn modal-btn"
                   style={{ background: '#0ea5e9' }}
                   onClick={() => handleVerifyPayment(selectedBooking.bookingReference, true)}
-                  disabled={isUpdating}
+                  disabled={updatingRef === selectedBooking.bookingReference}
                 >
-                  {isUpdating ? '...' : '✓ Verify Payment'}
+                  {updatingRef === selectedBooking.bookingReference ? '...' : '✓ Verify Payment'}
                 </button>
               )}
               {selectedBooking.paymentStatus === 'verified' && (
@@ -1003,9 +1025,9 @@ function Admin() {
                   type="button"
                   className="pnr-btn modal-btn"
                   onClick={() => handleVerifyPayment(selectedBooking.bookingReference, false)}
-                  disabled={isUpdating}
+                  disabled={updatingRef === selectedBooking.bookingReference}
                 >
-                  {isUpdating ? '...' : '✓ Payment Verified (revert)'}
+                  {updatingRef === selectedBooking.bookingReference ? '...' : '✓ Payment Verified (revert)'}
                 </button>
               )}
               <button
