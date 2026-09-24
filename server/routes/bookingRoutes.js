@@ -35,6 +35,8 @@ router.post('/book', (req, res, next) => {
   try {
     const {
       flight,
+      returnFlight = null,
+      tripType = 'oneWay',
       passengerName,
       email,
       phone,
@@ -68,6 +70,8 @@ router.post('/book', (req, res, next) => {
       phone: phone || '',
       passengers: passengers.length > 0 ? passengers : [{ name: primaryPassengerName, email, phone }],
       flight,
+      returnFlight: returnFlight || null,
+      tripType: tripType === 'roundTrip' ? 'roundTrip' : 'oneWay',
       price: price || flight.price,
       currency: currency || flight.currency || 'NGN',
       extras,
@@ -87,8 +91,11 @@ router.post('/book', (req, res, next) => {
     logger.info('bookingRoutes: created persistent booking request', {
       bookingReference,
       passengerName: primaryPassengerName,
+      tripType: bookingRecord.tripType,
       origin: flight.origin,
       destination: flight.destination,
+      returnOrigin: returnFlight?.origin || null,
+      returnDestination: returnFlight?.destination || null,
       status: 'Pending',
     });
 
