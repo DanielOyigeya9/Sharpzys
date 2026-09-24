@@ -10,9 +10,9 @@
  * ════════════════════════════════════════════════════════════════════════════
  */
 export const BANK_DETAILS = {
-  bankName: 'Guaranty Trust Bank (GTBank)',
-  accountName: 'Sharpzy Travels Limited',
-  accountNumber: '0248719365', // ← CHANGE THIS: your real account number
+  bankName: 'Stanbic Ibtc Bank',
+  accountName: 'Erastus Ekeh',
+  accountNumber: '0026604913', // ← CHANGE THIS: your real account number
   instructions:
     'Transfer the exact total amount, then submit your bank transaction reference so our team can verify and confirm your booking.',
 };
