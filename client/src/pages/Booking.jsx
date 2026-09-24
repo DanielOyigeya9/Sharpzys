@@ -117,7 +117,7 @@ function Booking() {
         contactInfo,
         extras,
         paymentMethod: normalizedPaymentMethod,
-        price: selectedFlight.price,
+        price: Math.round(Number(selectedFlight.price || 0) * (Number(totalPassengerCount) || 1)),
         currency: selectedFlight.currency || 'NGN',
       });
 
@@ -151,7 +151,12 @@ function Booking() {
   }
 
   const currencySymbol = selectedFlight.currency === 'NGN' ? '₦' : (selectedFlight.currency === 'USD' ? '$' : `${selectedFlight.currency} `);
-  const formattedPrice = `${currencySymbol}${Number(selectedFlight.price || 0).toLocaleString()}`;
+  const paxCount = Number(totalPassengerCount) || 1;
+  const farePerPerson = Number(selectedFlight.price || 0);
+  const totalPrice = Math.round(farePerPerson * paxCount);
+  const formatMoney = (n) => `${currencySymbol}${Number(n || 0).toLocaleString()}`;
+  const formattedPrice = formatMoney(farePerPerson);
+  const formattedTotal = formatMoney(totalPrice);
 
   return (
     <div className="booking-wrapper">
@@ -598,8 +603,12 @@ function Booking() {
                 </div>
 
                 <div className="sidebar-price-row">
-                  <span>Base Airfare ({totalPassengerCount} Pax)</span>
+                  <span>Fare per person</span>
                   <span>{formattedPrice}</span>
+                </div>
+                <div className="sidebar-price-row">
+                  <span>Passengers (adults + children + infants)</span>
+                  <span>× {paxCount}</span>
                 </div>
                 <div className="sidebar-price-row">
                   <span>Taxes & Carrier Surcharges</span>
@@ -609,8 +618,8 @@ function Booking() {
                 <div className="sidebar-divider"></div>
 
                 <div className="sidebar-total-row">
-                  <span>Total Amount</span>
-                  <strong className="total-amount">{formattedPrice}</strong>
+                  <span>Total Amount ({paxCount} Pax)</span>
+                  <strong className="total-amount">{formattedTotal}</strong>
                 </div>
 
                 <div className="sidebar-features">
