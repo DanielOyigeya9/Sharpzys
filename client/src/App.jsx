@@ -6,10 +6,12 @@ import Payment from './pages/Payment';
 import Confirmation from './pages/Confirmation';
 import ManageBooking from './pages/ManageBooking';
 import Admin from './pages/Admin';
+import ContactModal from './components/ContactModal';
 
 function App() {
   return (
     <BrowserRouter>
+      <ContactModal />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/admin" element={<Admin />} />

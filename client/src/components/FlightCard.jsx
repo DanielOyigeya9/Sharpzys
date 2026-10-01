@@ -42,7 +42,13 @@ function FlightCard({ flight, onSelect }) {
   if (!flight) return null;
 
   const currencySymbol = flight.currency === 'NGN' ? '₦' : (flight.currency === 'USD' ? '$' : `${flight.currency || '$'} `);
-  const formattedPrice = flight.price ? `${currencySymbol}${Number(flight.price).toLocaleString()}` : 'Price on request';
+  const baseFare = Number(flight.price || 0);
+  const tax5Percent = Math.round(baseFare * 0.05);
+  const totalFare = baseFare + tax5Percent;
+
+  const formattedBaseFare = flight.price ? `${currencySymbol}${baseFare.toLocaleString()}` : 'Price on request';
+  const formattedTax = flight.price ? `${currencySymbol}${tax5Percent.toLocaleString()}` : '—';
+  const formattedTotalFare = flight.price ? `${currencySymbol}${totalFare.toLocaleString()}` : 'Price on request';
 
   const depTimeFormatted = formatTime(flight.departureTime);
   const arrTimeFormatted = formatTime(flight.arrivalTime);
@@ -110,8 +116,8 @@ function FlightCard({ flight, onSelect }) {
         {/* Pricing & Selection */}
         <div className="card-pricing-col">
           <div className="price-tag">
-            <span className="price-sub">Per person</span>
-            <span className="price-amount">{formattedPrice}</span>
+            <span className="price-sub">Per person (incl. 5% tax)</span>
+            <span className="price-amount">{formattedTotalFare}</span>
           </div>
           <button
             type="button"
@@ -215,15 +221,15 @@ function FlightCard({ flight, onSelect }) {
                 <div className="breakdown-rows">
                   <div className="breakdown-row">
                     <span>Base Carrier Fare</span>
-                    <span>{formattedPrice}</span>
+                    <span>{formattedBaseFare}</span>
                   </div>
                   <div className="breakdown-row">
-                    <span>Taxes & Carrier Fees</span>
-                    <span>Included</span>
+                    <span>Flight Tax (5%)</span>
+                    <span>{formattedTax}</span>
                   </div>
                   <div className="breakdown-row total-row">
-                    <strong>Total Fare</strong>
-                    <strong className="total-price">{formattedPrice}</strong>
+                    <strong>Total Fare (per person)</strong>
+                    <strong className="total-price">{formattedTotalFare}</strong>
                   </div>
                 </div>
               </div>

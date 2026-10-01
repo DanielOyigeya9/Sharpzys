@@ -978,7 +978,7 @@ function Admin() {
                 </div>
 
                 <div className="detail-item">
-                  <span className="detail-label">Total Fare</span>
+                  <span className="detail-label">Total Fare (incl. 5% tax)</span>
                   <strong className="detail-val highlight">
                     {selectedBooking.currency === 'NGN' ? '₦' : '$'}
                     {Number(selectedBooking.price || 0).toLocaleString()}

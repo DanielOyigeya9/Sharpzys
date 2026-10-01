@@ -88,6 +88,7 @@ function Payment() {
             <div className="amount-left">
               <span className="amount-label">Amount to Pay</span>
               <strong className="amount-value">{formattedAmount}</strong>
+              <small style={{ display: 'block', fontSize: '0.775rem', color: '#64748b', marginTop: '0.15rem' }}>Includes 5% flight tax</small>
             </div>
             <div className="amount-right">
               <span className="amount-label">Booking Reference</span>

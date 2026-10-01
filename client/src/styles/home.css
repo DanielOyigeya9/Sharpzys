@@ -55,15 +55,22 @@ button, input, select {
   align-items: center;
 }
 
-.desktop-nav a {
+.desktop-nav a,
+.desktop-nav .nav-contact-btn {
   color: #fff;
+  background: transparent;
+  border: none;
+  padding: 0;
   text-decoration: none;
   font-weight: 600;
   font-size: 14px;
+  font-family: inherit;
+  cursor: pointer;
   transition: opacity 0.15s ease;
 }
 
-.desktop-nav a:hover {
+.desktop-nav a:hover,
+.desktop-nav .nav-contact-btn:hover {
   opacity: 0.85;
 }
 
@@ -93,7 +100,7 @@ button, input, select {
 
 .hero-content {
   position: relative;
-  z-index: 2;
+  z-index: 10;
   max-width: 1180px;
   margin: auto;
   padding: 145px 30px 80px;
@@ -130,6 +137,7 @@ button, input, select {
 /* ── 3. Flight Search Shell ────────────────────────────────── */
 .search-shell {
   position: relative;
+  z-index: 10;
   background: #fff;
   border-radius: 24px;
   padding: 8px;
@@ -314,7 +322,7 @@ button, input, select {
   border-radius: 18px;
   padding: 18px;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
-  z-index: 30;
+  z-index: 100;
   color: #171642;
 }
 
@@ -679,12 +687,24 @@ button, input, select {
   margin-top: 0;
 }
 
-.footer-main a:not(.logo) {
+.footer-main a:not(.logo),
+.footer-main .footer-contact-btn {
   display: block;
   color: #c7c4d7;
+  background: transparent;
+  border: none;
+  padding: 0;
   text-decoration: none;
   margin: 12px 0;
   font-size: 14px;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
+.footer-main a:not(.logo):hover,
+.footer-main .footer-contact-btn:hover {
+  color: #ffffff;
 }
 
 .footer-bottom {
@@ -719,13 +739,19 @@ button, input, select {
   cursor: pointer;
 }
 
-.mobile-menu a {
+.mobile-menu a,
+.mobile-menu .mobile-nav-contact-btn {
   color: #fff;
+  background: transparent;
+  border: none;
   text-decoration: none;
   font-size: 22px;
   font-weight: 700;
+  font-family: inherit;
   padding: 18px 0;
   border-bottom: 1px solid #38345d;
+  text-align: left;
+  cursor: pointer;
 }
 
 /* Toast Component */
@@ -907,5 +933,54 @@ button, input, select {
   }
   .passenger-field strong {
     font-size: 12px;
+  }
+}
+
+/* FAQ Contact Banner */
+.faq-contact-banner {
+  margin-top: 2rem;
+  padding: 1.25rem 1.5rem;
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.faq-contact-banner p {
+  margin: 0;
+  font-weight: 600;
+  color: #334155;
+  font-size: 0.95rem;
+}
+
+.faq-contact-btn {
+  background: #0f172a;
+  color: #ffffff;
+  border: none;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.65rem 1.25rem;
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s ease;
+}
+
+.faq-contact-btn:hover {
+  background: #1e293b;
+}
+
+@media (max-width: 600px) {
+  .faq-contact-banner {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+  .faq-contact-btn {
+    width: 100%;
   }
 }

@@ -121,7 +121,7 @@ function Booking() {
         contactInfo,
         extras,
         paymentMethod: normalizedPaymentMethod,
-        price: Math.round((Number(selectedFlight.price || 0) + Number(returnFlight?.price || 0)) * (Number(totalPassengerCount) || 1)),
+        price: grandTotal,
         currency: selectedFlight.currency || 'NGN',
       });
 
@@ -160,10 +160,15 @@ function Booking() {
   const outboundFare = Number(selectedFlight.price || 0);
   const returnFare = Number(returnFlight?.price || 0);
   const farePerPerson = outboundFare + returnFare;
-  const totalPrice = Math.round(farePerPerson * paxCount);
+  const baseTotalPrice = Math.round(farePerPerson * paxCount);
+  const tax5Percent = Math.round(baseTotalPrice * 0.05);
+  const grandTotal = baseTotalPrice + tax5Percent;
+
   const formatMoney = (n) => `${currencySymbol}${Number(n || 0).toLocaleString()}`;
   const formattedPrice = formatMoney(farePerPerson);
-  const formattedTotal = formatMoney(totalPrice);
+  const formattedBaseTotal = formatMoney(baseTotalPrice);
+  const formattedTax = formatMoney(tax5Percent);
+  const formattedTotal = formatMoney(grandTotal);
 
   return (
     <div className="booking-wrapper">
@@ -636,8 +641,12 @@ function Booking() {
                   <span>× {paxCount}</span>
                 </div>
                 <div className="sidebar-price-row">
-                  <span>Taxes & Carrier Surcharges</span>
-                  <span>Included</span>
+                  <span>Base Fare Total</span>
+                  <span>{formattedBaseTotal}</span>
+                </div>
+                <div className="sidebar-price-row">
+                  <span>Flight Taxes & Fees (5%)</span>
+                  <span>{formattedTax}</span>
                 </div>
 
                 <div className="sidebar-divider"></div>

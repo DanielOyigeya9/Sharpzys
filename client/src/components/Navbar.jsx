@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { openContactModal } from './ContactModal';
 
 function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -15,6 +16,12 @@ function Navbar() {
       }
     }
     navigate(path + (anchor ? `#${anchor}` : ''));
+  };
+
+  const handleContactClick = (e) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+    openContactModal();
   };
 
   return (
@@ -34,9 +41,9 @@ function Navbar() {
           <a href="/#airlines" onClick={(e) => { e.preventDefault(); handleNavClick('airlines', '/'); }}>
             Airlines
           </a>
-          <a href="/#help" onClick={(e) => { e.preventDefault(); handleNavClick('help', '/'); }}>
-            Help
-          </a>
+          <button type="button" className="nav-contact-btn" onClick={handleContactClick}>
+            Contact us
+          </button>
           <Link to="/manage-booking">
             Manage booking
           </Link>
@@ -66,9 +73,9 @@ function Navbar() {
         <a href="/#airlines" onClick={(e) => { e.preventDefault(); handleNavClick('airlines', '/'); }}>
           Airlines
         </a>
-        <a href="/#help" onClick={(e) => { e.preventDefault(); handleNavClick('help', '/'); }}>
-          Help
-        </a>
+        <button type="button" className="mobile-nav-contact-btn" onClick={handleContactClick}>
+          Contact us
+        </button>
         <Link to="/manage-booking" onClick={() => setMobileMenuOpen(false)}>
           Manage booking
         </Link>

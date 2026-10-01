@@ -8,8 +8,6 @@ function PassengerSelect({
   setChildren,
   infants = 0,
   setInfants,
-  cabinClass = 'Economy',
-  setCabinClass,
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [showInfantError, setShowInfantError] = useState(false);
@@ -86,12 +84,12 @@ function PassengerSelect({
     if (infants > 0) {
       parts.push(infants + ' ' + (infants === 1 ? 'Infant' : 'Infants'));
     }
-    return parts.join(', ') + ', ' + cabinClass;
+    return parts.join(', ');
   };
 
   return (
     <div className="input-box passenger-select-container" ref={containerRef}>
-      <label id="passenger-select-label">Passengers &amp; Class</label>
+      <label id="passenger-select-label">Passengers</label>
 
       {/* Summary Trigger Button */}
       <button
@@ -110,7 +108,7 @@ function PassengerSelect({
 
       {/* Popover Dropdown Panel */}
       {isOpen && (
-        <div className="passenger-dropdown-panel" role="dialog" aria-label="Passengers and Cabin Class">
+        <div className="passenger-dropdown-panel" role="dialog" aria-label="Passengers">
           {/* Header */}
           <div className="passenger-dropdown-header">
             <h3>Passengers</h3>
@@ -222,22 +220,6 @@ function PassengerSelect({
           </div>
 
           <div className="passenger-dropdown-divider"></div>
-
-          {/* Cabin Class Selection */}
-          <div className="cabin-class-section">
-            <label htmlFor="cabin-class-select" className="cabin-class-label">Cabin Class</label>
-            <select
-              id="cabin-class-select"
-              className="cabin-class-dropdown-select"
-              value={cabinClass}
-              onChange={(e) => setCabinClass(e.target.value)}
-            >
-              <option value="Economy">Economy</option>
-              <option value="Premium Economy">Premium Economy</option>
-              <option value="Business">Business</option>
-              <option value="First Class">First Class</option>
-            </select>
-          </div>
 
           {/* Done Action Button */}
           <div className="passenger-dropdown-footer">

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import SearchLoadingOverlay from '../components/SearchLoadingOverlay';
+import { openContactModal } from '../components/ContactModal';
 import { searchFlights } from '../services/api';
 import '../styles/home.css';
 
@@ -122,7 +123,7 @@ function Home() {
     const parts = [`${adults} Adult${adults !== 1 ? 's' : ''}`];
     if (children > 0) parts.push(`${children} Child${children !== 1 ? 'ren' : ''}`);
     if (infants > 0) parts.push(`${infants} Infant${infants !== 1 ? 's' : ''}`);
-    return `${parts.join(', ')}, ${cabin}`;
+    return parts.join(', ');
   };
 
   // Form submit search handler — orchestrates the search transaction
@@ -358,7 +359,7 @@ function Home() {
                     onClick={() => setPassengerPopoverOpen((v) => !v)}
                   >
                     <span>
-                      <small>Passengers & class</small>
+                      <small>Passengers</small>
                       <strong id="passengerSummary">{getPassengerSummary()}</strong>
                     </span>
                     <span>⌄</span>
@@ -415,16 +416,6 @@ function Home() {
                   </div>
                 </div>
 
-                <label className="class-select">
-                  Cabin class
-                  <select id="cabin" value={cabin} onChange={(e) => setCabin(e.target.value)}>
-                    <option>Economy</option>
-                    <option>Premium Economy</option>
-                    <option>Business</option>
-                    <option>First</option>
-                  </select>
-                </label>
-
                 <button type="button" className="done-btn" id="donePassengers" onClick={() => setPassengerPopoverOpen(false)}>
                   Done
                 </button>
@@ -466,10 +457,14 @@ function Home() {
               <h3>Book with confidence</h3>
               <p>Enter passenger details and submit your booking to the SharpzyTravels team.</p>
             </article>
-            <article>
+            <article
+              className="support-card-clickable"
+              onClick={() => openContactModal()}
+              style={{ cursor: 'pointer' }}
+            >
               <div className="icon">☎</div>
               <h3>Real support</h3>
-              <p>Get help when you need it, from booking through your journey.</p>
+              <p>Get help when you need it, from booking through your journey. Click to contact us.</p>
             </article>
           </div>
         </section>
@@ -575,6 +570,13 @@ function Home() {
             <summary>Where can I find my booking?</summary>
             <p>Use the Manage Booking area with your SharpzyTravels booking reference.</p>
           </details>
+
+          <div className="faq-contact-banner">
+            <p>Have a question about your flight or need urgent assistance?</p>
+            <button type="button" className="faq-contact-btn" onClick={() => openContactModal()}>
+              Contact SharpzyTravels Support →
+            </button>
+          </div>
         </section>
       </main>
 

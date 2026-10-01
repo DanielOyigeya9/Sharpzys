@@ -58,7 +58,13 @@ function Confirmation() {
   }
 
   const currencySymbol = booking.currency === 'NGN' ? '₦' : (booking.currency === 'USD' ? '$' : `${booking.currency} `);
-  const formattedPrice = `${currencySymbol}${Number(booking.price || 0).toLocaleString()}`;
+  const totalPrice = Number(booking.price || 0);
+  const basePrice = Math.round(totalPrice / 1.05);
+  const tax5Percent = totalPrice - basePrice;
+
+  const formattedPrice = `${currencySymbol}${totalPrice.toLocaleString()}`;
+  const formattedBase = `${currencySymbol}${basePrice.toLocaleString()}`;
+  const formattedTax = `${currencySymbol}${tax5Percent.toLocaleString()}`;
 
   const isBankTransfer = booking.paymentMethod === 'bank_transfer' || booking.paymentMethod === 'bank';
   const paymentSubmitted = booking.paymentStatus === 'submitted' || !!booking.paymentTransactionId;
@@ -197,8 +203,16 @@ function Confirmation() {
             {/* Total Fare Summary */}
             <div className="conf-section">
               <h3>Total Summary</h3>
-              <div className="conf-price-row">
-                <span>Total Amount:</span>
+              <div className="conf-price-row" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.4rem', color: '#64748b' }}>
+                <span>Base Fare:</span>
+                <strong>{formattedBase}</strong>
+              </div>
+              <div className="conf-price-row" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.6rem', color: '#64748b' }}>
+                <span>Flight Taxes & Fees (5%):</span>
+                <strong>{formattedTax}</strong>
+              </div>
+              <div className="conf-price-row" style={{ display: 'flex', justifyContent: 'space-between', paddingTop: '0.6rem', borderTop: '1px dashed #cbd5e1' }}>
+                <strong style={{ fontSize: '1.05rem' }}>Total Amount Paid / Due:</strong>
                 <strong className="conf-price-amount">{formattedPrice}</strong>
               </div>
             </div>

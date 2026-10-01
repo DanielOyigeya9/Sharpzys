@@ -100,10 +100,16 @@ function SearchResults() {
     return Array.from(set);
   }, [flights]);
 
+  // Helper to compute total price per person (base + 5% tax)
+  const getTotalPrice = (f) => {
+    const base = Number(f?.price) || 0;
+    return Math.round(base * 1.05);
+  };
+
   // Compute price range bounds
   const priceBounds = useMemo(() => {
     if (!flights.length) return { min: 0, max: 500000 };
-    const prices = flights.map((f) => Number(f.price) || 0).filter((p) => p > 0);
+    const prices = flights.map((f) => getTotalPrice(f)).filter((p) => p > 0);
     if (!prices.length) return { min: 0, max: 500000 };
     return { min: Math.min(...prices), max: Math.max(...prices) };
   }, [flights]);
@@ -123,7 +129,7 @@ function SearchResults() {
     }
 
     if (maxPriceFilter > 0) {
-      list = list.filter((f) => (Number(f.price) || 0) <= maxPriceFilter);
+      list = list.filter((f) => getTotalPrice(f) <= maxPriceFilter);
     }
 
     if (selectedTimeRange !== 'all') {
@@ -140,7 +146,7 @@ function SearchResults() {
     }
 
     if (sortBy === 'cheapest') {
-      list.sort((a, b) => (Number(a.price) || 0) - (Number(b.price) || 0));
+      list.sort((a, b) => getTotalPrice(a) - getTotalPrice(b));
     } else if (sortBy === 'fastest') {
       list.sort((a, b) => (a.duration || '').localeCompare(b.duration || ''));
     } else if (sortBy === 'earliest') {
@@ -302,8 +308,6 @@ function SearchResults() {
                 {searchParams.adults} Adult{searchParams.adults > 1 ? 's' : ''}
                 {searchParams.children > 0 ? `, ${searchParams.children} Child${searchParams.children > 1 ? 'ren' : ''}` : ''}
                 {searchParams.infants > 0 ? `, ${searchParams.infants} Infant${searchParams.infants > 1 ? 's' : ''}` : ''}
-                <span className="divider">•</span>
-                {searchParams.cabinClass || 'Economy'}
               </p>
             </div>
             <button
@@ -356,8 +360,6 @@ function SearchResults() {
                   setChildren={(val) => setSearchParams((prev) => ({ ...prev, children: typeof val === 'function' ? val(prev.children || 0) : val }))}
                   infants={searchParams.infants || 0}
                   setInfants={(val) => setSearchParams((prev) => ({ ...prev, infants: typeof val === 'function' ? val(prev.infants || 0) : val }))}
-                  cabinClass={searchParams.cabinClass || 'Economy'}
-                  setCabinClass={(val) => setSearchParams((prev) => ({ ...prev, cabinClass: typeof val === 'function' ? val(prev.cabinClass || 'Economy') : val }))}
                 />
 
                 <div className="modify-actions">

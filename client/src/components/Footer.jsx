@@ -1,6 +1,12 @@
 import { Link } from 'react-router-dom';
+import { openContactModal } from './ContactModal';
 
 function Footer() {
+  const handleContactClick = (e) => {
+    e.preventDefault();
+    openContactModal();
+  };
+
   return (
     <footer id="manage">
       <div className="footer-main">
@@ -18,7 +24,13 @@ function Footer() {
         <div>
           <h4>Support</h4>
           <a href="/#help">FAQs</a>
-          <a href="/#help">Contact us</a>
+          <button
+            type="button"
+            className="footer-contact-btn"
+            onClick={handleContactClick}
+          >
+            Contact us
+          </button>
         </div>
         <div>
           <h4>Manage</h4>

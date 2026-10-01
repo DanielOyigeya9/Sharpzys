@@ -128,7 +128,7 @@ function ManageBooking() {
                 </div>
 
                 <div className="detail-item">
-                  <span>Total Fare</span>
+                  <span>Total Fare (incl. 5% tax)</span>
                   <strong>{retrievedBooking.currency === 'NGN' ? '₦' : '$'}{Number(retrievedBooking.price || 0).toLocaleString()}</strong>
                 </div>
               </div>
