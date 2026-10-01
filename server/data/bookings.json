@@ -1,5 +1,247 @@
 [
   {
+    "airlinePnr": "I7676783687",
+    "bookingReference": "FN-L4QWF5",
+    "status": "Confirmed",
+    "statusMessage": "Your flight reservation has been confirmed with Ibom Air. Airline PNR: I7676783687.",
+    "passengerName": "Daniel Oyigeya",
+    "email": "play96878@gmail.com",
+    "phone": "+234 989787673",
+    "passengers": [
+      {
+        "type": "Adult",
+        "roleLabel": "Adult 1",
+        "title": "Mr",
+        "firstName": "Daniel",
+        "middleName": "",
+        "lastName": "Oyigeya",
+        "dateOfBirth": "2026-09-25",
+        "gender": "Male",
+        "nationality": "Nigerian",
+        "passportNumber": "",
+        "phone": "",
+        "email": ""
+      }
+    ],
+    "flight": {
+      "id": "flynaija-ibom_QI550_2026-10-01_cohn67",
+      "provider": "IbomAir",
+      "source": "flynaija-ibom",
+      "airline": "Ibom Air",
+      "airlineCode": "QI",
+      "flightNumber": "QI 550",
+      "origin": "LOS",
+      "destination": "ABV",
+      "departureAirport": "LOS",
+      "arrivalAirport": "ABV",
+      "departureDate": "2026-10-01",
+      "departureTime": "07:00",
+      "arrivalDate": "2026-10-01",
+      "arrivalTime": "08:15",
+      "duration": 75,
+      "stops": 0,
+      "cabinClass": "Economy",
+      "price": 134200,
+      "totalPrice": null,
+      "seatsAvailable": null,
+      "currency": "NGN",
+      "aircraft": "",
+      "bookingUrl": "https://book-ibomair.crane.aero/ibe/home?from=LOS&to=ABV&date=2026-10-01&passengers=1",
+      "availabilityStatus": "AVAILABLE",
+      "rawOfferId": "synced-cmu282smk08v35wuneqrl06qb",
+      "metadata": {
+        "flynaijaAirlineId": "ibom-air",
+        "flynaijaIataCode": "QIT",
+        "flynaijaSource": "mock",
+        "lastUpdated": "2026-09-24T11:59:03.540Z",
+        "deepLink": "https://book-ibomair.crane.aero/ibe/home?from=LOS&to=ABV&date=2026-10-01&passengers=1",
+        "segments": [
+          {
+            "flightNumber": "QI550",
+            "carrierCode": "QIT",
+            "from": "LOS",
+            "to": "ABV",
+            "depTime": "2026-10-01T07:00:00",
+            "arrTime": "2026-10-01T08:15:00"
+          }
+        ]
+      }
+    },
+    "price": 134200,
+    "currency": "NGN",
+    "extras": {
+      "seatPreference": "Any available seat",
+      "mealPreference": "Standard meal",
+      "specialAssistance": "None"
+    },
+    "paymentMethod": "bank_transfer",
+    "paymentTransactionId": "9874676476546754",
+    "paymentStatus": "verified",
+    "paymentSubmittedAt": "2026-09-24T13:19:00.361Z",
+    "createdAt": "2026-09-24T13:18:50.996Z",
+    "updatedAt": "2026-09-24T13:19:47.150Z",
+    "paymentVerifiedAt": "2026-09-24T13:19:40.425Z"
+  },
+  {
+    "airlinePnr": "KEQH",
+    "bookingReference": "FN-SPJ82X",
+    "status": "Confirmed",
+    "statusMessage": "Your flight reservation has been confirmed with Air Peace. Airline PNR: KEQH.",
+    "passengerName": "Opay",
+    "email": "play96878@gmail.com",
+    "phone": "+234 87764786434",
+    "passengers": [
+      {
+        "type": "Adult",
+        "roleLabel": "Adult 1",
+        "title": "Mr",
+        "firstName": "Daniel",
+        "middleName": "",
+        "lastName": "Oyigeya",
+        "dateOfBirth": "2026-09-08",
+        "gender": "Male",
+        "nationality": "Nigerian",
+        "passportNumber": "",
+        "phone": "",
+        "email": ""
+      }
+    ],
+    "flight": {
+      "id": "flynaija-airpeace_P47122_2026-10-01_tyzgmd",
+      "provider": "AirPeace",
+      "source": "flynaija-airpeace",
+      "airline": "Air Peace",
+      "airlineCode": "P4",
+      "flightNumber": "P4 7122",
+      "origin": "LOS",
+      "destination": "ABV",
+      "departureAirport": "LOS",
+      "arrivalAirport": "ABV",
+      "departureDate": "2026-10-01",
+      "departureTime": "10:35",
+      "arrivalDate": "2026-10-01",
+      "arrivalTime": "11:55",
+      "duration": 80,
+      "stops": 0,
+      "cabinClass": "Economy",
+      "price": 122100,
+      "totalPrice": null,
+      "seatsAvailable": null,
+      "currency": "NGN",
+      "aircraft": "",
+      "bookingUrl": "https://www.flyairpeace.com/?from=LOS&to=ABV&date=2026-10-01&passengers=1",
+      "availabilityStatus": "AVAILABLE",
+      "rawOfferId": "synced-cmu1jdzmu07jk5n9d26dcrrfj",
+      "metadata": {
+        "flynaijaAirlineId": "air-peace",
+        "flynaijaIataCode": "P4",
+        "flynaijaSource": "mock",
+        "lastUpdated": "2026-09-24T12:18:40.692Z",
+        "deepLink": "https://www.flyairpeace.com/?from=LOS&to=ABV&date=2026-10-01&passengers=1",
+        "segments": [
+          {
+            "flightNumber": "P47122",
+            "carrierCode": "P4",
+            "from": "LOS",
+            "to": "ABV",
+            "depTime": "2026-10-01T10:35:00",
+            "arrTime": "2026-10-01T11:55:00"
+          }
+        ]
+      }
+    },
+    "price": 234200,
+    "currency": "NGN",
+    "extras": {
+      "seatPreference": "Any available seat",
+      "mealPreference": "Standard meal",
+      "specialAssistance": "None"
+    },
+    "paymentMethod": "pay_on_site",
+    "paymentTransactionId": null,
+    "paymentStatus": "pay_on_site",
+    "paymentSubmittedAt": null,
+    "createdAt": "2026-09-24T12:58:27.737Z",
+    "updatedAt": "2026-09-24T13:00:11.261Z"
+  },
+  {
+    "airlinePnr": "IUHDIUDS",
+    "bookingReference": "FN-8GK46F",
+    "status": "Confirmed",
+    "statusMessage": "Your flight reservation has been confirmed with Aero Contractors. Airline PNR: IUHDIUDS.",
+    "passengerName": "Daniel Oyi",
+    "email": "play96878@gmail.com",
+    "phone": "+234 81039865875",
+    "passengers": [
+      {
+        "type": "Adult",
+        "roleLabel": "Adult 1",
+        "title": "Mr",
+        "firstName": "Daniel",
+        "middleName": "",
+        "lastName": "Oyigeya",
+        "dateOfBirth": "2026-09-11",
+        "gender": "Male",
+        "nationality": "Nigerian",
+        "passportNumber": "",
+        "phone": "",
+        "email": ""
+      }
+    ],
+    "flight": {
+      "id": "flybro-aero_N2-121_2026-10-01_g0ge3s",
+      "provider": "Aero",
+      "source": "flybro-aero",
+      "airline": "Aero Contractors",
+      "airlineCode": "N2",
+      "flightNumber": "N2-121",
+      "origin": "LOS",
+      "destination": "ABV",
+      "departureAirport": "LOS",
+      "arrivalAirport": "ABV",
+      "departureDate": "2026-10-01",
+      "departureTime": "06:45",
+      "arrivalDate": "2026-10-01",
+      "arrivalTime": "08:00",
+      "duration": "1 Hour(s) 15 Minute(s)",
+      "stops": 0,
+      "cabinClass": "FLEXIBLE ECONOMY",
+      "price": 100988,
+      "totalPrice": null,
+      "seatsAvailable": null,
+      "currency": "NGN",
+      "aircraft": "B_737",
+      "bookingUrl": "https://book-flyaero.crane.aero/web/Availability.xhtml",
+      "availabilityStatus": "AVAILABLE",
+      "rawOfferId": "flybro-aero_N2-121_01/10/2026 06:45",
+      "metadata": {
+        "flybroSource": "flybro-aero_redirect",
+        "modalDetail": {
+          "Flight Number": "N2-121",
+          "From": "Lagos",
+          "Departing Date": "01/10/2026 06:45",
+          "To": "Abuja",
+          "Arrival Date": "01/10/2026 08:00",
+          "Flight Duration": "1 Hour(s) 15 Minute(s)",
+          "Aircraft Type": "?B_737?"
+        }
+      }
+    },
+    "price": 100988,
+    "currency": "NGN",
+    "extras": {
+      "seatPreference": "Any available seat",
+      "mealPreference": "Standard meal",
+      "specialAssistance": "None"
+    },
+    "paymentMethod": "pay_on_site",
+    "paymentTransactionId": null,
+    "paymentStatus": "pay_on_site",
+    "paymentSubmittedAt": null,
+    "createdAt": "2026-09-24T11:56:14.826Z",
+    "updatedAt": "2026-09-24T13:00:07.874Z"
+  },
+  {
     "airlinePnr": "PPNDYGDG9Y",
     "bookingReference": "FN-WLDEH6",
     "status": "Confirmed",

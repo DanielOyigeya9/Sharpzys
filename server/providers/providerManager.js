@@ -20,6 +20,11 @@ import EnuguAirProvider from './enuguAirProvider.js';
 import logger from '../utils/logger.js';
 import { recordProviderResult, STATUS } from '../services/searchMetrics.js';
 
+// Hard per-provider ceiling so a single slow/hanging provider (e.g. the
+// Chromium-based scraper) can never stall the whole aggregate search. Each
+// outcome is isolated, so remaining providers still contribute results.
+const PROVIDER_TIMEOUT_MS = parseInt(process.env.PROVIDER_TIMEOUT_MS || '30000', 10);
+
 class ProviderManager {
   constructor() {
     /** @type {Map<string, object>} name → provider instance */
@@ -116,12 +121,24 @@ class ProviderManager {
     const outcomes = await Promise.allSettled(
       entries.map(async (provider) => {
         const t0 = Date.now();
+        let timer;
         try {
-          const flights = await provider.search(params);
+          const flights = await Promise.race([
+            provider.search(params),
+            new Promise((_, reject) => {
+              timer = setTimeout(() => {
+                const e = new Error(`${provider.name} did not respond within ${PROVIDER_TIMEOUT_MS}ms`);
+                e.code = 'PROVIDER_TIMEOUT';
+                reject(e);
+              }, PROVIDER_TIMEOUT_MS);
+            }),
+          ]);
           return { flights: flights || [], durationMs: Date.now() - t0 };
         } catch (err) {
           if (err && typeof err === 'object') err._durationMs = Date.now() - t0;
           throw err;
+        } finally {
+          if (timer) clearTimeout(timer);
         }
       })
     );
